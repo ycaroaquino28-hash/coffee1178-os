@@ -1,0 +1,1 @@
+window.COFFEE1178_CONFIG={SUPABASE_URL:"https://SEU-PROJETO.supabase.co",SUPABASE_KEY:"sb_publishable_..."};
