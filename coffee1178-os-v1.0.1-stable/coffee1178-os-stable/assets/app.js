@@ -58,6 +58,7 @@ function nav(){
     ${k?`<button class="button ${screen==="kitchen"?"success":"secondary"}" data-nav="kitchen">Cozinha</button>`:""}
     ${p?`<button class="button ${screen==="payments"?"success":"secondary"}" data-nav="payments">Caixa</button>`:""}
     ${r?`<button class="button ${screen==="reports"?"success":"secondary"}" data-nav="reports">Relatórios</button>`:""}
+    ${r?`<button class="button ${screen==="products"?"success":"secondary"}" data-nav="products">Produtos</button>`:""}
     <button class="button secondary" id="logout">Sair</button>
   </nav>`;
 }
