@@ -225,12 +225,127 @@ function renderReports(){
   root.innerHTML=layout(`<h2>Relatórios</h2><section class="stats"><article class="card"><small>Vendas de hoje</small><strong>${money(tp.reduce((s,p)=>s+p.amount_cents,0))}</strong></article><article class="card"><small>Pagamentos hoje</small><strong>${tp.length}</strong></article><article class="card"><small>Total registrado</small><strong>${money(data.payments.reduce((s,p)=>s+p.amount_cents,0))}</strong></article></section><h3>Últimos pagamentos</h3><section class="card">${data.payments.slice(0,30).map(p=>`<div class="audit"><strong>${money(p.amount_cents)} · ${esc(p.method)}</strong><small>${new Date(p.created_at).toLocaleString("pt-BR")} · ${esc(p.confirmed_by_name)}</small></div>`).join("")}</section><h3>Auditoria</h3><section class="card">${data.audit.slice(0,60).map(a=>`<div class="audit"><strong>${esc(a.action.replaceAll("_"," "))}</strong><small>${new Date(a.created_at).toLocaleString("pt-BR")} · ${esc(a.actor_name)}</small></div>`).join("")}</section>`);
   bindNav();
 }
+function renderProducts(){
+  const products=[...data.products].sort((a,b)=>
+    a.category.localeCompare(b.category,"pt-BR") ||
+    a.name.localeCompare(b.name,"pt-BR")
+  );
+
+  root.innerHTML=layout(`
+    <h2>Produtos</h2>
+    <section class="card block">
+      <strong>Edição de produtos</strong>
+      <p><small>Altere os dados e clique em Salvar alterações.</small></p>
+    </section>
+
+    ${products.map(p=>`
+      <section class="card block">
+        <label>Nome</label>
+        <input
+          class="input"
+          id="product-name-${p.id}"
+          value="${esc(p.name)}"
+        >
+
+        <label>Categoria</label>
+        <input
+          class="input"
+          id="product-category-${p.id}"
+          value="${esc(p.category)}"
+        >
+
+        <label>Preço em reais</label>
+        <input
+          class="input"
+          id="product-price-${p.id}"
+          inputmode="decimal"
+          value="${(p.price_cents/100).toFixed(2).replace(".",",")}"
+        >
+
+        <label class="line">
+          <input
+            type="checkbox"
+            id="product-active-${p.id}"
+            ${p.active?"checked":""}
+          >
+          Produto ativo
+        </label>
+
+        <button
+          class="button success"
+          data-save-product="${p.id}"
+        >
+          Salvar alterações
+        </button>
+      </section>
+    `).join("")}
+  `);
+
+  bindNav();
+
+  document.querySelectorAll("[data-save-product]").forEach(button=>{
+    button.onclick=()=>saveProduct(button.dataset.saveProduct);
+  });
+}
+
+async function saveProduct(id){
+  if(!online()){
+    alert("Alterações de produtos exigem internet.");
+    return;
+  }
+
+  const name=document
+    .getElementById(`product-name-${id}`)
+    .value
+    .trim();
+
+  const category=document
+    .getElementById(`product-category-${id}`)
+    .value
+    .trim();
+
+  const priceText=document
+    .getElementById(`product-price-${id}`)
+    .value
+    .trim()
+    .replace(",", ".");
+
+  const priceCents=Math.round(Number(priceText)*100);
+
+  const active=document
+    .getElementById(`product-active-${id}`)
+    .checked;
+
+  if(!name || !category || !Number.isFinite(priceCents) || priceCents<0){
+    alert("Confira o nome, a categoria e o preço.");
+    return;
+  }
+
+  const {error}=await supabase.rpc("admin_update_product",{
+    p_product_id:id,
+    p_name:name,
+    p_category:category,
+    p_price_cents:priceCents,
+    p_active:active
+  });
+
+  if(error){
+    alert(error.message);
+    return;
+  }
+
+  await loadAll();
+  alert("Produto atualizado com sucesso.");
+  render();
+}
+
 function render(){
   if(!operator){renderLogin();return}
   if(activeTable){renderOrder();return}
   if(screen==="kitchen")renderKitchen();
   else if(screen==="payments")renderPayments();
   else if(screen==="reports")renderReports();
+  else if(screen==="products")renderProducts();
   else renderTables();
 }
 async function doLogout(){
