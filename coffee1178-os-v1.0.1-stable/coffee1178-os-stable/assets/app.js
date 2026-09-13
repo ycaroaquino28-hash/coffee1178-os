@@ -17,6 +17,7 @@ let cart = [];
 let message = "";
 let realtime = null;
 let kitchenFilter = "sent";
+let menuArea = "cafeteria";
 
 const money = cents => new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format((cents||0)/100);
 const minutes = iso => Math.max(0,Math.floor((Date.now()-new Date(iso).getTime())/60000));
@@ -160,18 +161,30 @@ function renderOrder(){
       <div class="line total"><span>Total</span><strong>${money(total)}</strong></div>
       <button class="button full success" id="send" ${cart.length?"":"disabled"}>Enviar para produção</button>
     </section>
-    <input class="input" id="search" placeholder="Buscar produto">
-    <section class="products" id="products">${productCards(data.products)}</section>`:""}
+    <section class="menu-area" aria-label="Área do cardápio">
+      <button class="area-button cafeteria ${menuArea==="cafeteria"?"active":""}" data-area="cafeteria"><span>Cafeteria</span><small>Cafés, salgados, confeitaria e croissants</small></button>
+      <button class="area-button house ${menuArea==="house"?"active":""}" data-area="house"><span>Coffee House</span><small>Drinks, bebidas e petiscos</small></button>
+    </section>
+    <input class="input" id="search" placeholder="Buscar produto em ${menuArea==="cafeteria"?"Cafeteria":"Coffee House"}">
+    <section class="products" id="products">${productCards(productsForArea())}</section>`:""}
     ${current.length?`<button class="button full secondary" id="closing">Solicitar fechamento</button>`:""}`);
   bindNav();
   document.querySelector("#back").onclick=()=>{activeTable=null;render()};
   bindCart();
+  document.querySelectorAll("[data-area]").forEach(b=>b.onclick=()=>{menuArea=b.dataset.area;render()});
   const search=document.querySelector("#search");
-  if(search) search.oninput=()=>{document.querySelector("#products").innerHTML=productCards(data.products.filter(p=>p.name.toLowerCase().includes(search.value.toLowerCase())));bindAdd()};
+  if(search) search.oninput=()=>{document.querySelector("#products").innerHTML=productCards(productsForArea().filter(p=>p.name.toLowerCase().includes(search.value.toLowerCase())));bindAdd()};
   const send=document.querySelector("#send"); if(send) send.onclick=sendOrder;
   const close=document.querySelector("#closing"); if(close) close.onclick=requestClosing;
 }
-function productCards(items){return items.map(p=>`<article class="card product"><div><strong>${esc(p.name)}</strong><small>${esc(p.category)} · ${money(p.price_cents)}</small></div><button class="button" data-add="${p.id}">Adicionar</button></article>`).join("")}
+function isCoffeeHouseProduct(product){
+  const text=`${product.category||""} ${product.name||""}`.toLocaleLowerCase("pt-BR");
+  return /(drink|coquetel|cocktail|gin|vodka|aperol|licor|spritz|espresso 43|energ[eé]tico|red bull|t[oô]nica|refrigerante|[aá]gua|mineral|suco|fuze|petisco|por[cç][aã]o|batata|anel|onion|mandioquinha|t[aá]bua|p[aã]o de alho)/.test(text);
+}
+function productsForArea(){
+  return data.products.filter(product=>menuArea==="house"?isCoffeeHouseProduct(product):!isCoffeeHouseProduct(product));
+}
+function productCards(items){return items.map(p=>`<article class="card product"><div><strong>${esc(p.name)}</strong><small>${esc(p.category)} · ${money(p.price_cents)}</small></div><button class="button" data-add="${p.id}">Adicionar</button></article>`).join("")||`<div class="card empty">Nenhum produto ativo nesta área.</div>`}
 function bindAdd(){document.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>{const p=data.products.find(x=>x.id===b.dataset.add),found=cart.find(x=>x.id===p.id);found?found.quantity++:cart.push({...p,quantity:1,note:""});render()})}
 function bindCart(){
   bindAdd();
