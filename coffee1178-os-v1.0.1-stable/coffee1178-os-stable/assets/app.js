@@ -179,10 +179,16 @@ function renderOrder(){
 }
 function isCoffeeHouseProduct(product){
   const text=`${product.category||""} ${product.name||""}`.toLocaleLowerCase("pt-BR");
+  if(isPotatoBread(product)) return false;
   return /(drink|coquetel|cocktail|gin|vodka|aperol|licor|spritz|espresso 43|energ[eé]tico|red bull|t[oô]nica|refrigerante|[aá]gua|mineral|suco|fuze|petisco|por[cç][aã]o|batata|anel|onion|mandioquinha|t[aá]bua|p[aã]o de alho)/.test(text);
 }
+function normalizedProductName(product){return String(product.name||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLocaleLowerCase("pt-BR").trim()}
+function isSharedBeverage(product){
+  return ["agua mineral sem gas 500 ml","agua com gas 500 ml","coca-cola original 350 ml","coca-cola zero 350 ml","suco de uva integral tial 250 ml"].includes(normalizedProductName(product));
+}
+function isPotatoBread(product){return normalizedProductName(product)==="pao de batata com requeijao"}
 function productsForArea(){
-  return data.products.filter(product=>menuArea==="house"?isCoffeeHouseProduct(product):!isCoffeeHouseProduct(product));
+  return data.products.filter(product=>menuArea==="house"?isCoffeeHouseProduct(product):isSharedBeverage(product)||!isCoffeeHouseProduct(product));
 }
 function productCards(items){return items.map(p=>`<article class="card product"><div><strong>${esc(p.name)}</strong><small>${esc(p.category)} · ${money(p.price_cents)}</small></div><button class="button" data-add="${p.id}">Adicionar</button></article>`).join("")||`<div class="card empty">Nenhum produto ativo nesta área.</div>`}
 function bindAdd(){document.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>{const p=data.products.find(x=>x.id===b.dataset.add),found=cart.find(x=>x.id===p.id);found?found.quantity++:cart.push({...p,quantity:1,note:""});render()})}
