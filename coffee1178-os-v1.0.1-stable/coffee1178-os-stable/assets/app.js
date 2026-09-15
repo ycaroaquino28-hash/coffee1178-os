@@ -59,6 +59,7 @@ function nav(){
     ${k?`<button class="button ${screen==="kitchen"?"success":"secondary"}" data-nav="kitchen">Cozinha</button>`:""}
     ${p?`<button class="button ${screen==="payments"?"success":"secondary"}" data-nav="payments">Caixa</button>`:""}
     ${r?`<button class="button ${screen==="reports"?"success":"secondary"}" data-nav="reports">Relatórios</button>`:""}
+    ${r?`<button class="button ${screen==="outgoing"?"success":"secondary"}" data-nav="outgoing">Saídas</button>`:""}
     ${r?`<button class="button ${screen==="products"?"success":"secondary"}" data-nav="products">Produtos</button>`:""}
     <button class="button secondary" id="logout">Sair</button>
   </nav>`;
@@ -245,6 +246,14 @@ function renderReports(){
   root.innerHTML=layout(`<h2>Relatórios</h2><section class="stats"><article class="card"><small>Vendas de hoje</small><strong>${money(tp.reduce((s,p)=>s+p.amount_cents,0))}</strong></article><article class="card"><small>Pagamentos hoje</small><strong>${tp.length}</strong></article><article class="card"><small>Total registrado</small><strong>${money(data.payments.reduce((s,p)=>s+p.amount_cents,0))}</strong></article></section><h3>Últimos pagamentos</h3><section class="card">${data.payments.slice(0,30).map(p=>`<div class="audit"><strong>${money(p.amount_cents)} · ${esc(p.method)}</strong><small>${new Date(p.created_at).toLocaleString("pt-BR")} · ${esc(p.confirmed_by_name)}</small></div>`).join("")}</section><h3>Auditoria</h3><section class="card">${data.audit.slice(0,60).map(a=>`<div class="audit"><strong>${esc(a.action.replaceAll("_"," "))}</strong><small>${new Date(a.created_at).toLocaleString("pt-BR")} · ${esc(a.actor_name)}</small></div>`).join("")}</section>`);
   bindNav();
 }
+async function renderOutgoing(){
+  root.innerHTML=layout(`<h2>Saídas</h2><section class="card block"><p class="muted">Produtos efetivamente entregues hoje.</p><div id="outgoing-list"><p class="muted">Carregando...</p></div></section>`);
+  bindNav();
+  const {data:items,error}=await supabase.rpc("delivered_product_summary",{p_from:new Date().toISOString().slice(0,10),p_to:new Date().toISOString().slice(0,10)});
+  const target=document.querySelector("#outgoing-list"); if(!target) return;
+  if(error){target.innerHTML=`<p class="muted">${esc(error.message)}</p>`;return}
+  target.innerHTML=items?.length?items.map(i=>`<div class="line"><strong>${esc(i.product_name)}</strong><strong>${i.quantity} saída(s)</strong></div>`).join(""):`<p class="muted">Nenhum produto entregue hoje.</p>`;
+}
 function renderProducts(){
   const products=[...data.products].sort((a,b)=>
     a.category.localeCompare(b.category,"pt-BR") ||
@@ -365,6 +374,7 @@ function render(){
   if(screen==="kitchen")renderKitchen();
   else if(screen==="payments")renderPayments();
   else if(screen==="reports")renderReports();
+  else if(screen==="outgoing")renderOutgoing();
   else if(screen==="products")renderProducts();
   else renderTables();
 }
