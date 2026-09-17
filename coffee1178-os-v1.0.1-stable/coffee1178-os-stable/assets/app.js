@@ -181,6 +181,7 @@ function renderOrder(){
 function isCoffeeHouseProduct(product){
   const text=`${product.category||""} ${product.name||""}`.toLocaleLowerCase("pt-BR");
   if(isPotatoBread(product)) return false;
+  if(isSharedBeverage(product)) return true;
   return /(drink|coquetel|cocktail|gin|vodka|aperol|licor|spritz|espresso 43|energ[eé]tico|red bull|t[oô]nica|refrigerante|[aá]gua|mineral|suco|fuze|petisco|por[cç][aã]o|batata|anel|onion|mandioquinha|t[aá]bua|p[aã]o de alho)/.test(text);
 }
 function normalizedProductName(product){return String(product.name||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLocaleLowerCase("pt-BR").trim()}
