@@ -1,4 +1,4 @@
-const CACHE = "coffee1178-stable-v2";
+const CACHE = "coffee1178-stable-v3";
 const SHELL = [
   "./","./index.html","./config.js","./manifest.webmanifest",
   "./assets/styles.css","./assets/app.js","./assets/icon-house.svg"

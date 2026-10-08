@@ -18,3 +18,166 @@ button,input,select{font:inherit}.app{width:min(100%,1050px);margin:auto;min-hei
 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stats article{display:flex;flex-direction:column;gap:6px}.stats strong{font-size:1.25rem}.audit{padding:9px 0;border-bottom:1px dashed rgba(111,74,50,.35)}
 .nav{position:fixed;z-index:25;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,1050px);display:flex;gap:6px;overflow:auto;background:rgba(243,234,215,.98);padding:9px 12px calc(9px + env(safe-area-inset-bottom));border-top:1px solid rgba(178,148,91,.55)}.nav .button{flex:1;min-width:72px;padding:8px;font-size:.75rem}
 @media(min-width:680px){.tables{grid-template-columns:repeat(4,minmax(0,1fr))}.products{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{grid-template-columns:repeat(3,1fr)}}
+
+
+/* Coffee 1178 — identidade visual orgânica marrom + Coffee House em vidro canelado */
+html{
+  background:#4a2e22;
+}
+body{
+  position:relative;
+  min-height:100vh;
+  background:
+    radial-gradient(1200px 820px at 8% 10%, rgba(155,103,73,.30), transparent 55%),
+    radial-gradient(900px 760px at 92% 18%, rgba(91,53,38,.42), transparent 58%),
+    radial-gradient(980px 900px at 38% 92%, rgba(126,77,55,.34), transparent 60%),
+    conic-gradient(from 205deg at 28% 52%,
+      #4b2f24 0deg,
+      #65412f 55deg,
+      #3d281f 118deg,
+      #76503a 184deg,
+      #4a2f24 248deg,
+      #684632 310deg,
+      #4b2f24 360deg);
+  background-attachment:fixed;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:-18%;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(ellipse at 24% 34%, rgba(255,220,188,.08) 0 10%, transparent 34%),
+    radial-gradient(ellipse at 72% 66%, rgba(32,17,13,.22) 0 12%, transparent 38%),
+    radial-gradient(ellipse at 58% 18%, rgba(224,163,118,.10) 0 8%, transparent 32%),
+    conic-gradient(from 120deg at 52% 48%,
+      transparent 0 18%,
+      rgba(255,255,255,.035) 23%,
+      transparent 31% 52%,
+      rgba(0,0,0,.08) 58%,
+      transparent 66% 100%);
+  filter:blur(28px) saturate(.92);
+  transform:scale(1.08) rotate(-3deg);
+  opacity:.95;
+}
+.app{
+  position:relative;
+  z-index:1;
+  background:transparent;
+}
+.topbar,
+.nav{
+  background:rgba(239,224,203,.92);
+  backdrop-filter:blur(14px) saturate(1.05);
+  -webkit-backdrop-filter:blur(14px) saturate(1.05);
+}
+.card{
+  background:rgba(255,249,239,.94);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border-color:rgba(193,155,111,.56);
+  box-shadow:0 12px 30px rgba(35,18,12,.18);
+}
+.content>h2{
+  color:#fff4e8;
+  text-shadow:0 2px 14px rgba(29,15,10,.35);
+}
+.menu-shell{
+  overflow:hidden;
+}
+.menu-shell.house-theme{
+  position:relative;
+  isolation:isolate;
+  margin-top:14px;
+  padding:12px;
+  border:1px solid rgba(255,212,166,.48);
+  background:
+    radial-gradient(circle at 12% 16%, rgba(255,193,117,.52), transparent 24%),
+    radial-gradient(circle at 88% 20%, rgba(255,145,57,.46), transparent 30%),
+    radial-gradient(circle at 50% 92%, rgba(91,30,17,.62), transparent 46%),
+    linear-gradient(135deg,#6f2415 0%,#a94420 34%,#db6b28 62%,#7a2717 100%);
+  box-shadow:
+    0 18px 44px rgba(39,16,10,.34),
+    inset 0 1px 0 rgba(255,255,255,.20);
+}
+.menu-shell.house-theme::before{
+  content:"";
+  position:absolute;
+  inset:-8%;
+  z-index:-1;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.24) 0 2px,
+      rgba(255,255,255,.08) 2px 8px,
+      rgba(70,16,7,.18) 8px 13px,
+      rgba(255,255,255,.10) 13px 18px
+    );
+  filter:blur(2.2px) contrast(1.08);
+  opacity:.74;
+  transform:scale(1.03);
+}
+.menu-shell.house-theme::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:
+    radial-gradient(ellipse at 15% 50%, rgba(255,196,107,.28), transparent 24%),
+    radial-gradient(ellipse at 82% 46%, rgba(255,121,40,.34), transparent 28%),
+    linear-gradient(180deg,rgba(255,255,255,.08),rgba(36,8,4,.14));
+  backdrop-filter:blur(5px);
+  -webkit-backdrop-filter:blur(5px);
+}
+.menu-shell.house-theme .menu-area{
+  margin-top:0;
+}
+.menu-shell.house-theme .input{
+  background:rgba(255,248,239,.92);
+  border-color:rgba(255,204,158,.72);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.64),0 8px 20px rgba(64,18,8,.14);
+}
+.menu-shell.house-theme .product{
+  background:rgba(255,249,242,.93);
+  border-color:rgba(224,167,122,.60);
+  box-shadow:0 10px 26px rgba(54,18,9,.18);
+}
+.area-button.house{
+  position:relative;
+  overflow:hidden;
+  color:#fff7ef;
+  background:
+    radial-gradient(circle at 12% 14%, rgba(255,206,128,.50), transparent 27%),
+    radial-gradient(circle at 88% 22%, rgba(255,142,58,.45), transparent 30%),
+    linear-gradient(135deg,#792817 0%,#aa4520 42%,#de6f2b 70%,#7d2a18 100%);
+  border-color:rgba(255,214,170,.46);
+  box-shadow:0 12px 30px rgba(70,19,9,.24);
+}
+.area-button.house::before{
+  content:"";
+  position:absolute;
+  inset:-8%;
+  pointer-events:none;
+  background:repeating-linear-gradient(
+    90deg,
+    rgba(255,255,255,.28) 0 2px,
+    rgba(255,255,255,.06) 2px 7px,
+    rgba(65,13,6,.20) 7px 12px,
+    rgba(255,255,255,.11) 12px 18px
+  );
+  filter:blur(1.8px);
+  opacity:.70;
+}
+.area-button.house span,
+.area-button.house small{
+  position:relative;
+  z-index:1;
+}
+.area-button.house.active{
+  border-color:#ffd1a4;
+  box-shadow:0 14px 34px rgba(62,17,8,.32),inset 0 1px 0 rgba(255,255,255,.22);
+}
+.area-button.house small{
+  color:#ffe9d7;
+}
