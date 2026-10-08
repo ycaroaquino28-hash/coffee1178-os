@@ -162,12 +162,14 @@ function renderOrder(){
       <div class="line total"><span>Total</span><strong>${money(total)}</strong></div>
       <button class="button full success" id="send" ${cart.length?"":"disabled"}>Enviar para produção</button>
     </section>
-    <section class="menu-area" aria-label="Área do cardápio">
-      <button class="area-button cafeteria ${menuArea==="cafeteria"?"active":""}" data-area="cafeteria"><span>Cafeteria</span><small>Cafés, salgados, confeitaria e croissants</small></button>
-      <button class="area-button house ${menuArea==="house"?"active":""}" data-area="house"><span>Coffee House</span><small>Drinks, bebidas e petiscos</small></button>
-    </section>
-    <input class="input" id="search" placeholder="Buscar produto em ${menuArea==="cafeteria"?"Cafeteria":"Coffee House"}">
-    <section class="products" id="products">${productCards(productsForArea())}</section>`:""}
+    <section class="menu-shell ${menuArea==="house"?"house-theme":"cafeteria-theme"}">
+      <section class="menu-area" aria-label="Área do cardápio">
+        <button class="area-button cafeteria ${menuArea==="cafeteria"?"active":""}" data-area="cafeteria"><span>Cafeteria</span><small>Cafés, salgados, confeitaria e croissants</small></button>
+        <button class="area-button house ${menuArea==="house"?"active":""}" data-area="house"><span>Coffee House</span><small>Drinks, bebidas e petiscos</small></button>
+      </section>
+      <input class="input" id="search" placeholder="Buscar produto em ${menuArea==="cafeteria"?"Cafeteria":"Coffee House"}">
+      <section class="products" id="products">${productCards(productsForArea())}</section>
+    </section>`:""}
     ${current.length?`<button class="button full secondary" id="closing">Solicitar fechamento</button>`:""}`);
   bindNav();
   document.querySelector("#back").onclick=()=>{activeTable=null;render()};

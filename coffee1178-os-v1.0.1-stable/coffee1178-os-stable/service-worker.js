@@ -1,7 +1,7 @@
-const CACHE = "coffee1178-stable-v1";
+const CACHE = "coffee1178-stable-v2";
 const SHELL = [
   "./","./index.html","./config.js","./manifest.webmanifest",
-  "./assets/styles.css","./assets/app.js","./assets/icon.svg"
+  "./assets/styles.css","./assets/app.js","./assets/icon-house.svg"
 ];
 
 self.addEventListener("install", event => {

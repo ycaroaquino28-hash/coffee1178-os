@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Coffee 1178 House">
+  <defs>
+    <linearGradient id="sunset" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6c3a35"/>
+      <stop offset=".38" stop-color="#9d5848"/>
+      <stop offset=".7" stop-color="#d07c5d"/>
+      <stop offset="1" stop-color="#5d312f"/>
+    </linearGradient>
+    <radialGradient id="amber" cx=".22" cy=".12" r=".9">
+      <stop offset="0" stop-color="#f2b679" stop-opacity=".55"/>
+      <stop offset=".52" stop-color="#d98362" stop-opacity=".08"/>
+      <stop offset="1" stop-color="#4f2828" stop-opacity=".28"/>
+    </radialGradient>
+    <pattern id="ribs" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="1.5" height="20" fill="#fff7ef" fill-opacity=".10"/>
+      <rect x="4" width="3" height="20" fill="#3c2020" fill-opacity=".07"/>
+    </pattern>
+  </defs>
+  <rect width="512" height="512" rx="104" fill="url(#sunset)"/>
+  <rect width="512" height="512" rx="104" fill="url(#amber)"/>
+  <rect width="512" height="512" rx="104" fill="url(#ribs)"/>
+  <rect x="42" y="42" width="428" height="428" rx="82" fill="#fff8ef" fill-opacity=".075" stroke="#f0c6a4" stroke-opacity=".48" stroke-width="2"/>
+  <text x="256" y="145" text-anchor="middle" fill="#fff7ef" font-family="Georgia, 'Times New Roman', serif" font-size="38" font-weight="400" letter-spacing="10">COFFEE</text>
+  <text x="256" y="312" text-anchor="middle" fill="#fff8f0" font-family="Georgia, 'Times New Roman', serif" font-size="150" font-weight="500" letter-spacing="3">1178</text>
+  <line x1="151" y1="340" x2="361" y2="340" stroke="#efc49f" stroke-opacity=".72" stroke-width="2"/>
+  <text x="256" y="401" text-anchor="middle" fill="#fff4e8" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="400" letter-spacing="11">HOUSE</text>
+</svg>
