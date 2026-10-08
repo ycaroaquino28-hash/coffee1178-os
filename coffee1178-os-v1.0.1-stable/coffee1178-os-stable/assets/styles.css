@@ -181,3 +181,112 @@ body::before{
 .area-button.house small{
   color:#ffe9d7;
 }
+
+
+/* Ajuste leve — remove verdes e reduz peso visual */
+:root{
+  --moss:#9a7357;
+  --ready:#8b6b58;
+  --orange:#b8734d;
+  --gold:#b99068;
+  --wood:#6a4938;
+  --card:#fffaf4;
+  --shadow:0 8px 22px rgba(45,24,15,.12);
+}
+.button.success{
+  background:#8a604b;
+  border-color:#a97b5f;
+  color:#fff8f2;
+}
+.connection.online{
+  background:#9a7357;
+}
+.free{
+  color:#8a604b;
+}
+.ready{
+  color:#9a664f;
+}
+.notice.ok{
+  background:#efe2d7;
+  color:#684435;
+}
+.topbar,
+.nav{
+  background:rgba(242,229,211,.95);
+  box-shadow:none;
+}
+.card{
+  background:rgba(255,250,244,.96);
+  border-color:rgba(183,145,105,.42);
+  box-shadow:0 8px 20px rgba(44,24,16,.11);
+}
+body{
+  background:
+    radial-gradient(1100px 760px at 10% 12%, rgba(151,104,79,.20), transparent 58%),
+    radial-gradient(900px 720px at 88% 18%, rgba(92,55,41,.28), transparent 62%),
+    radial-gradient(920px 840px at 45% 88%, rgba(120,78,58,.20), transparent 62%),
+    linear-gradient(145deg,#4a3025 0%,#5a3b2d 42%,#493026 100%);
+}
+body::before{
+  filter:blur(34px) saturate(.82);
+  opacity:.58;
+}
+.menu-shell.house-theme{
+  border-color:rgba(239,201,168,.34);
+  background:
+    radial-gradient(circle at 14% 18%, rgba(255,194,125,.28), transparent 30%),
+    radial-gradient(circle at 85% 22%, rgba(221,116,62,.24), transparent 34%),
+    radial-gradient(circle at 50% 92%, rgba(86,36,25,.36), transparent 50%),
+    linear-gradient(135deg,#7a3424 0%,#9d4a2d 42%,#bd6843 72%,#753326 100%);
+  box-shadow:0 12px 28px rgba(38,16,10,.22),inset 0 1px 0 rgba(255,255,255,.14);
+}
+.menu-shell.house-theme::before{
+  opacity:.46;
+  filter:blur(2.8px);
+}
+.menu-shell.house-theme::after{
+  background:
+    radial-gradient(ellipse at 18% 50%, rgba(255,205,147,.18), transparent 28%),
+    radial-gradient(ellipse at 82% 46%, rgba(234,136,80,.18), transparent 30%),
+    linear-gradient(180deg,rgba(255,255,255,.05),rgba(46,16,10,.09));
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
+}
+.menu-shell.house-theme .product{
+  background:rgba(255,250,245,.95);
+  border-color:rgba(211,162,127,.42);
+  box-shadow:0 7px 18px rgba(49,19,11,.12);
+}
+.menu-shell.house-theme .input{
+  background:rgba(255,250,245,.96);
+  border-color:rgba(213,168,134,.48);
+  box-shadow:none;
+}
+.area-button.house{
+  background:
+    radial-gradient(circle at 14% 16%, rgba(255,205,139,.28), transparent 30%),
+    radial-gradient(circle at 86% 24%, rgba(229,134,77,.22), transparent 34%),
+    linear-gradient(135deg,#7b3425 0%,#9c492d 45%,#bd6743 72%,#753326 100%);
+  border-color:rgba(238,196,158,.34);
+  box-shadow:0 8px 20px rgba(64,24,13,.16);
+}
+.area-button.house::before{
+  opacity:.40;
+  filter:blur(2.4px);
+}
+.area-button.house.active{
+  border-color:#ddb28e;
+  box-shadow:0 9px 22px rgba(60,22,12,.20),inset 0 1px 0 rgba(255,255,255,.15);
+}
+.area-button.cafeteria{
+  background:
+    radial-gradient(circle at 82% 88%,rgba(139,88,82,.36),transparent 48%),
+    radial-gradient(circle at 10% 15%,rgba(133,98,102,.16),transparent 44%),
+    linear-gradient(135deg,#f5e7e2,#edd4d0 55%,#dfb5aa);
+  border-color:rgba(142,92,101,.28);
+  box-shadow:0 8px 20px rgba(69,42,38,.10);
+}
+.area-button.cafeteria.active{
+  border-color:#a87973;
+}
