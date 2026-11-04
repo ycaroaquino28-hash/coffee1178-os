@@ -1,18 +1,47 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#8f5446">
-  <meta name="description" content="Comandas e mesas da Coffee 1178">
-  <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="icon" href="./assets/icon-house.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./assets/styles.css">
-  <title>Coffee 1178 OS</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#F1E8D8">
+<title>Coffee 1178 & House — Prévia</title>
+<style>
+:root{--vanilla:#F1E8D8;--paper:#FBF8F2;--coffee:#76523D;--dark:#35261F;--muted:#8C796D;--line:#E8DED2;--surface:#fff;--soft:#EEE1D3}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--dark);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;transition:background .28s,color .28s}
+button{font:inherit;cursor:pointer}.hero{min-height:340px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:42px 20px;background:var(--vanilla);transition:background .28s,color .28s}
+.brand{color:var(--coffee);display:flex;flex-direction:column;align-items:center}.coffee,.house{font:400 13px Georgia,serif;letter-spacing:9px}.number{font:400 clamp(90px,24vw,138px)/.92 Georgia,serif;letter-spacing:-8px;margin:12px 0}.tag{font:400 11px Georgia,serif;letter-spacing:3px;color:var(--coffee);margin-top:34px;text-transform:uppercase}
+.wrap{max-width:960px;margin:auto;padding:26px 18px 110px}.intro{display:flex;justify-content:space-between;align-items:center;gap:12px}.intro h1{font:400 29px Georgia,serif;margin:4px 0}.eyebrow{font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}.pill{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:10px 15px;color:var(--coffee)}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:20px 0 28px}.tab{border:1px solid var(--line);background:#F7F0E7;border-radius:18px;padding:16px 10px;color:var(--coffee);font-weight:700;transition:.2s}.tab.active{background:var(--coffee);color:#fff;box-shadow:0 7px 16px #76523d30}
+h2{font:400 25px Georgia,serif}.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.product{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:0 5px 18px #4d30280b}.product h3{font:400 18px Georgia,serif;margin:0 0 10px}.product p{font-size:12px;color:var(--muted);margin:0 0 14px}.bottom{display:flex;align-items:center;justify-content:space-between;gap:8px}.price{font-weight:700;color:var(--coffee)}.add{border:0;border-radius:13px;background:var(--soft);color:var(--coffee);padding:10px 13px;font-weight:700}
+.bar{position:fixed;bottom:0;left:0;right:0;background:#fbf8f2ed;backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:12px 18px}.bar-inner{max-width:960px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}.note{font-size:11px;color:var(--muted);max-width:220px}.cartbtn{border:0;border-radius:17px;background:var(--coffee);color:#fff;padding:15px 20px}
+body.house{--paper:#241914;--coffee:#D7A864;--dark:#F7EFE6;--muted:#C2AE9B;--line:#5C4133;--surface:#32241E;--soft:#4A342A;background:#241914}
+body.house .hero{background-image:url("./assets/preview-house-amber.jpg");background-position:center;background-size:cover;background-repeat:no-repeat;color:#F4E1C4}
+body.house .brand,body.house .tag{color:#F6E4C7;text-shadow:0 2px 18px rgba(30,14,8,.4)}
+body.house .coffee,body.house .house,body.house .tag{font-family:"Baskerville","Palatino Linotype",Georgia,serif}
+body.house .coffee{letter-spacing:10px}body.house .house{letter-spacing:8px}body.house .number{color:#F4DFC0;font-family:"Baskerville","Palatino Linotype",Georgia,serif}
+body.house .tab{background:#2E211B;border-color:#5E4234;color:#D7A864}body.house .tab.active{background:linear-gradient(145deg,#80502F,#B37435 58%,#80502F);color:#fff}
+body.house .pill{background:#2C201B;color:#D8AF72}body.house .product{box-shadow:0 10px 24px rgba(0,0,0,.16)}body.house .bar{background:rgba(31,22,18,.93)}body.house .cartbtn{background:linear-gradient(145deg,#7C4A27,#A8672E)}
+@media(min-width:680px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{min-height:390px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
 </head>
 <body>
-  <div id="app"><div class="boot"><div class="brand">Coffee 1178 OS</div><p>Iniciando...</p></div></div>
-  <script src="./config.js"></script>
-  <script type="module" src="./assets/app.js"></script>
-</body>
-</html>
+<header class="hero">
+  <div class="brand"><span class="coffee">COFFEE</span><span class="number">1178</span><span class="house">&amp; HOUSE</span></div>
+  <div class="tag">UMA NOVA FORMA DE VIVER O CAFÉ</div>
+</header>
+<main class="wrap">
+  <div class="intro"><div><div class="eyebrow">Cardápio digital · Prévia visual</div><h1>Escolha seu momento.</h1></div><span class="pill">Mesa —</span></div>
+  <nav class="tabs"><button class="tab active" id="cafeTab">Cafeteria 1178</button><button class="tab" id="houseTab">Coffee &amp; House</button></nav>
+  <div class="eyebrow" id="hint">Cafés · confeitaria · salgados</div><h2 id="title">Cafeteria 1178</h2><div class="products" id="products"></div>
+</main>
+<div class="bar"><div class="bar-inner"><span class="note">Prévia de demonstração. Nenhum pedido será enviado ao Coffee 1178 OS.</span><button class="cartbtn">Ver seleção · <span id="count">0</span></button></div></div>
+<script>
+const menus={
+cafe:["Café Tradicional","Café com Espuma","Café Especial 1178","Café Espresso","Latte Art","Cappuccino Tradicional","Cappuccino com Nutella","Chocolate Quente","Croissant Canastra","Croissant com Nutella","Pão de Queijo","Tortinha de Frango com Requeijão","Pão de Batata com Requeijão","Pão na Chapa com Requeijão","Pão na Chapa com Queijo Canastra","Misto Canastra","Brownie Meio Amargo","Brownie de Castanhas","Pão de Mel com Doce de Leite","Pão de Mel com Café","Bolo de Cenoura com Calda","Bolo de Laranja","Bolo de Chocolate Artesanal","Água sem Gás 500 ml","Água com Gás 500 ml","Coca-Cola Original 350 ml","Coca-Cola Zero 350 ml","Suco de Uva Tial 250 ml"],
+house:["Aperol Spritz","Absolut & Red Bull","Caffè d’Oro","Firenze Gin","Gin Tônica","Tropical Gin","Maracujá Spritz (sem álcool)","Limone di Sicilia (sem álcool)","Verde Firenze (sem álcool)","Tábua 1178 — Grande","Tábua 1178 — Pequena","Batatas Crocantes 1178","Água sem Gás 500 ml","Água com Gás 500 ml","Coca-Cola Original 350 ml","Coca-Cola Zero 350 ml","Suco de Uva Tial 250 ml"]};
+let active="cafe",count=0;
+function render(){document.body.classList.toggle("house",active==="house");document.querySelector('meta[name="theme-color"]').content=active==="house"?"#241914":"#F1E8D8";cafeTab.classList.toggle("active",active==="cafe");houseTab.classList.toggle("active",active==="house");title.textContent=active==="cafe"?"Cafeteria 1178":"Coffee & House";hint.textContent=active==="cafe"?"Cafés · confeitaria · salgados":"Drinks · petiscos · bebidas";products.innerHTML=menus[active].map(n=>'<article class="product"><h3>'+n+'</h3><p>Descrição em revisão</p><div class="bottom"><span class="price">Preço a confirmar</span><button class="add">Adicionar +</button></div></article>').join("");document.querySelectorAll(".add").forEach(b=>b.onclick=()=>{count++;document.getElementById("count").textContent=count})}
+cafeTab.onclick=()=>{active="cafe";render()};houseTab.onclick=()=>{active="house";render()};render();
+</script>
+</body></html>
