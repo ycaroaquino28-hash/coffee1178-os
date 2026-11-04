@@ -12,7 +12,7 @@ button{font:inherit;cursor:pointer}.hero{min-height:340px;display:flex;flex-dire
 .brand{color:var(--coffee);display:flex;flex-direction:column;align-items:center}.coffee,.house{font:400 13px Georgia,serif;letter-spacing:9px}.number{font:400 clamp(90px,24vw,138px)/.92 Georgia,serif;letter-spacing:-8px;margin:12px 0}.tag{font:400 11px Georgia,serif;letter-spacing:0;color:var(--coffee);margin-top:34px;text-transform:uppercase}
 .wrap{max-width:960px;margin:auto;padding:26px 18px 110px}.intro{display:flex;justify-content:space-between;align-items:center;gap:12px}.intro h1{font:400 29px Georgia,serif;margin:4px 0}.eyebrow{font-size:11px;letter-spacing:0;color:var(--muted);text-transform:uppercase}.pill{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:10px 15px;color:var(--coffee)}
 .tabs{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:20px 0 28px}.tab{border:1px solid var(--line);background:#F7F0E7;border-radius:18px;padding:16px 10px;color:var(--coffee);font-weight:700;transition:.2s}.tab.active{background:var(--coffee);color:#fff;box-shadow:0 7px 16px #76523d30}
-h2{font:400 28px/1.15 Georgia,serif;margin:24px 0 18px;letter-spacing:0}.products{display:grid;grid-template-columns:1fr;gap:12px}.product{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:17px 16px;box-shadow:0 5px 18px #4d30280b;display:flex;flex-direction:column;gap:14px;min-width:0}.product h3{font:600 19px/1.25 system-ui,-apple-system,"Segoe UI",sans-serif;margin:0;letter-spacing:0!important;word-spacing:0!important;text-transform:none;overflow-wrap:anywhere}.bottom{display:flex;align-items:center;justify-content:space-between;gap:12px}.price{font-size:13px;font-weight:650;color:var(--coffee);letter-spacing:0}.add{border:0;border-radius:12px;background:var(--soft);color:var(--coffee);padding:10px 14px;font-size:13px;font-weight:750;white-space:nowrap;min-height:42px}
+h2{font:400 28px/1.15 Georgia,serif;margin:24px 0 18px;letter-spacing:0}.products{display:grid;grid-template-columns:1fr;gap:12px}.product{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:17px 16px;box-shadow:0 5px 18px #4d30280b;display:flex;flex-direction:column;gap:14px;min-width:0}.product h3{font:600 19px/1.25 system-ui,-apple-system,"Segoe UI",sans-serif;margin:0;letter-spacing:0!important;word-spacing:0!important;text-transform:none;overflow-wrap:anywhere}.product p{font-size:12px;line-height:1.35;color:var(--muted);margin:-4px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.bottom{display:flex;align-items:center;justify-content:space-between;gap:12px}.price{font-size:13px;font-weight:650;color:var(--coffee);letter-spacing:0}.add{border:0;border-radius:12px;background:var(--soft);color:var(--coffee);padding:10px 14px;font-size:13px;font-weight:750;white-space:nowrap;min-height:42px}
 .bar{position:fixed;bottom:0;left:0;right:0;background:#fbf8f2ed;backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:12px 18px}.bar-inner{max-width:960px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}.note{font-size:11px;color:var(--muted);max-width:220px}.cartbtn{border:0;border-radius:17px;background:var(--coffee);color:#fff;padding:15px 20px}
 body.house{--paper:#241914;--coffee:#D7A864;--dark:#F7EFE6;--muted:#C2AE9B;--line:#5C4133;--surface:#32241E;--soft:#4A342A;background:#241914}
 body.house .hero{background-image:url("./assets/preview-house-amber.jpg");background-position:center;background-size:cover;background-repeat:no-repeat;color:#F4E1C4}
@@ -43,22 +43,53 @@ body.house .pill{background:#2C201B;color:#D8AF72}body.house .product{background
 <script>
 const menus={
   cafe:[
-    {name:"Café Tradicional",price:300},{name:"Café Especial 1178",price:990},{name:"Café Espresso",price:1090},{name:"Latte Art",price:1290},
-    {name:"Cappuccino Tradicional",price:1190},{name:"Cappuccino com Nutella",price:1590},{name:"Chocolate Quente",price:1290},{name:"Leite & Canela 1178",price:890,note:"Leite com canela e açúcar · 300 ml"},
-    {name:"Croissant Canastra",price:1990},{name:"Croissant com Nutella",price:2290},{name:"Pão de Queijo",price:450},{name:"Tortinha de Frango com Requeijão",price:790},
-    {name:"Pão de Batata com Requeijão",price:690},{name:"Pão na Chapa com Requeijão",price:790},{name:"Pão na Chapa com Queijo Canastra",price:990},{name:"Misto Canastra",price:2190},
-    {name:"Brownie Meio Amargo",price:1290},{name:"Brownie de Castanhas",price:1290},
-    {name:"Pão de Mel com Doce de Leite",price:990,photo:null,photoStatus:"Foto em conferência"},{name:"Pão de Mel com Café",price:990,photo:null,photoStatus:"Foto em conferência"},
-    {name:"Bolo de Cenoura com Calda",price:990},{name:"Bolo de Laranja",price:790},{name:"Bolo de Chocolate Artesanal",price:790},
-    {name:"Água sem Gás 500 ml",price:350},{name:"Água com Gás 500 ml",price:450},{name:"Coca-Cola Original 350 ml",price:700},{name:"Coca-Cola Zero 350 ml",price:700},{name:"Suco de Uva Lata",price:700}
+    {name:"Café Tradicional",price:300,note:"Café tradicional servido quente."},
+    {name:"Café Especial 1178",price:990,note:"Café especial preparado na hora."},
+    {name:"Café Espresso",price:1090,note:"Café espresso servido em dose individual."},
+    {name:"Latte Art",price:1290,note:"Espresso com leite vaporizado e finalização em latte art."},
+    {name:"Cappuccino Tradicional",price:1190,note:"Espresso, leite vaporizado e espuma de leite."},
+    {name:"Cappuccino com Nutella",price:1590,note:"Cappuccino tradicional com Nutella."},
+    {name:"Chocolate Quente",price:1290,note:"Bebida quente à base de chocolate."},
+    {name:"Latte & Cannella",price:890,note:"Leite com canela e açúcar · 300 ml."},
+    {name:"Croissant Canastra",price:1990,note:"Croissant recheado com queijo Canastra."},
+    {name:"Croissant com Nutella",price:2290,note:"Croissant recheado com Nutella."},
+    {name:"Pão de Queijo",price:450,note:"Pão de queijo 90 g, assado e servido quente."},
+    {name:"Tortinha de Frango com Requeijão",price:790,note:"Tortinha salgada de frango com requeijão."},
+    {name:"Pão de Batata com Requeijão",price:690,note:"Pão de batata recheado com requeijão."},
+    {name:"Pão na Chapa com Requeijão",price:790,note:"Pão na chapa com requeijão."},
+    {name:"Pão na Chapa com Queijo Canastra",price:990,note:"Pão na chapa com queijo Canastra."},
+    {name:"Misto Canastra",price:2190,note:"Pão rústico com queijo Canastra e presunto selecionado."},
+    {name:"Brownie Meio Amargo",price:1290,note:"Brownie de chocolate meio amargo."},
+    {name:"Brownie de Castanhas",price:1290,note:"Brownie com castanhas."},
+    {name:"Pão de Mel com Doce de Leite",price:990,note:"Pão de mel individual com doce de leite.",photo:null,photoStatus:"Foto em conferência"},
+    {name:"Pão de Mel com Café",price:990,note:"Pão de mel individual com café.",photo:null,photoStatus:"Foto em conferência"},
+    {name:"Bolo de Cenoura com Calda",price:990,note:"Fatia de bolo de cenoura com calda."},
+    {name:"Bolo de Laranja",price:790,note:"Fatia de bolo de laranja."},
+    {name:"Bolo de Chocolate Artesanal",price:790,note:"Fatia de bolo de chocolate artesanal."},
+    {name:"Água sem Gás 500 ml",price:350,note:"Água mineral sem gás · 500 ml."},
+    {name:"Água com Gás 500 ml",price:450,note:"Água mineral com gás · 500 ml."},
+    {name:"Coca-Cola Original 350 ml",price:700,note:"Coca-Cola Original · 350 ml."},
+    {name:"Coca-Cola Zero 350 ml",price:700,note:"Coca-Cola Zero · 350 ml."},
+    {name:"Suco de Uva Lata",price:700,note:"Suco de uva em lata."}
   ],
   house:[
-    {name:"Aperol Spritz",price:2590},{name:"Absolut & Red Bull",price:2690},{name:"Caffè d’Oro",price:3490},{name:"Firenze Gin",price:2490},{name:"Gin Tônica",price:2390},
-    {name:"Tropical Gin",price:2490,photo:null,photoStatus:"Foto em conferência"},{name:"Maracujá Spritz (sem álcool)",price:1090,photo:null,photoStatus:"Foto em conferência"},
-    {name:"Limone di Sicilia (sem álcool)",price:1390},{name:"Verde Firenze (sem álcool)",price:1490,photo:null,photoStatus:"Foto correta pendente"},
-    {name:"Tábua 1178 — Grande",price:5990},{name:"Tábua 1178 — Pequena",price:3990,photo:null,photoStatus:"Foto correta pendente"},
-    {name:"Batatas Crocantes 1178",price:1290},{name:"Água sem Gás 500 ml",price:350},{name:"Água com Gás 500 ml",price:450},
-    {name:"Coca-Cola Original 350 ml",price:700},{name:"Coca-Cola Zero 350 ml",price:700},{name:"Suco de Uva Lata",price:700}
+    {name:"Aperol Spritz",price:2590,note:"Drink à base de Aperol e espumante seco."},
+    {name:"Absolut & Red Bull",price:2690,note:"Vodka Absolut com Red Bull."},
+    {name:"Caffè d’Oro",price:3490,note:"Drink de café com Licor 43."},
+    {name:"Firenze Gin",price:2490,note:"Drink à base de gin, servido gelado."},
+    {name:"Gin Tônica",price:2390,note:"Gin com água tônica."},
+    {name:"Tropical Gin",price:2490,note:"Drink à base de gin.",photo:null,photoStatus:"Foto em conferência"},
+    {name:"Maracujá Spritz (sem álcool)",price:1090,note:"Drink sem álcool com maracujá.",photo:null,photoStatus:"Foto em conferência"},
+    {name:"Limone di Sicilia (sem álcool)",price:1390,note:"Drink sem álcool com limão siciliano."},
+    {name:"Verde Firenze (sem álcool)",price:1490,note:"Drink sem álcool da linha Firenze.",photo:null,photoStatus:"Foto correta pendente"},
+    {name:"Tábua 1178 — Grande",price:5990,note:"Seleção de frios para compartilhar."},
+    {name:"Tábua 1178 — Pequena",price:3990,note:"Seleção de frios em porção menor.",photo:null,photoStatus:"Foto correta pendente"},
+    {name:"Batatas Crocantes 1178",price:1290,note:"Batatas palito com sal e páprica."},
+    {name:"Água sem Gás 500 ml",price:350,note:"Água mineral sem gás · 500 ml."},
+    {name:"Água com Gás 500 ml",price:450,note:"Água mineral com gás · 500 ml."},
+    {name:"Coca-Cola Original 350 ml",price:700,note:"Coca-Cola Original · 350 ml."},
+    {name:"Coca-Cola Zero 350 ml",price:700,note:"Coca-Cola Zero · 350 ml."},
+    {name:"Suco de Uva Lata",price:700,note:"Suco de uva em lata."}
   ]
 };
 let active="cafe";
