@@ -12,7 +12,7 @@ button{font:inherit;cursor:pointer}.hero{min-height:340px;display:flex;flex-dire
 .brand{color:var(--coffee);display:flex;flex-direction:column;align-items:center}.coffee,.house{font:400 13px Georgia,serif;letter-spacing:9px}.number{font:400 clamp(90px,24vw,138px)/.92 Georgia,serif;letter-spacing:-8px;margin:12px 0}.tag{font:400 11px Georgia,serif;letter-spacing:0;color:var(--coffee);margin-top:34px;text-transform:uppercase}
 .wrap{max-width:960px;margin:auto;padding:26px 18px 110px}.intro{display:flex;justify-content:space-between;align-items:center;gap:12px}.intro h1{font:400 29px Georgia,serif;margin:4px 0}.eyebrow{font-size:11px;letter-spacing:0;color:var(--muted);text-transform:uppercase}.pill{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:10px 15px;color:var(--coffee)}
 .tabs{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:20px 0 28px}.tab{border:1px solid var(--line);background:#F7F0E7;border-radius:18px;padding:16px 10px;color:var(--coffee);font-weight:700;transition:.2s}.tab.active{background:var(--coffee);color:#fff;box-shadow:0 7px 16px #76523d30}
-h2{font:400 28px/1.15 Georgia,serif;margin:24px 0 18px;letter-spacing:0}.products{display:grid;grid-template-columns:1fr;gap:12px}.product{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:17px 16px;box-shadow:0 5px 18px #4d30280b;display:flex;flex-direction:column;gap:14px;min-width:0}.product-media{width:100%;aspect-ratio:4/3;border-radius:13px;background-image:url("./assets/menu-sprite.jpg");background-repeat:no-repeat;background-size:500% 600%;background-color:var(--soft);box-shadow:inset 0 0 0 1px rgba(0,0,0,.03)}.product h3{font:600 19px/1.25 system-ui,-apple-system,"Segoe UI",sans-serif;margin:0;letter-spacing:0!important;word-spacing:0!important;text-transform:none;overflow-wrap:anywhere}.product p{font-size:12px;line-height:1.35;color:var(--muted);margin:-4px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.bottom{display:flex;align-items:center;justify-content:space-between;gap:12px}.price{font-size:13px;font-weight:650;color:var(--coffee);letter-spacing:0}.add{border:0;border-radius:12px;background:var(--soft);color:var(--coffee);padding:10px 14px;font-size:13px;font-weight:750;white-space:nowrap;min-height:42px}
+h2{font:400 28px/1.15 Georgia,serif;margin:24px 0 18px;letter-spacing:0}.products{display:grid;grid-template-columns:1fr;gap:12px}.product{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:17px 16px;box-shadow:0 5px 18px #4d30280b;display:flex;flex-direction:column;gap:14px;min-width:0}.product-media{width:100%;aspect-ratio:4/3;border-radius:13px;overflow:hidden;background:var(--soft);box-shadow:inset 0 0 0 1px rgba(0,0,0,.03)}.product-media img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;filter:none!important;transform:none!important;image-rendering:auto}.product h3{font:600 19px/1.25 system-ui,-apple-system,"Segoe UI",sans-serif;margin:0;letter-spacing:0!important;word-spacing:0!important;text-transform:none;overflow-wrap:anywhere}.product p{font-size:12px;line-height:1.35;color:var(--muted);margin:-4px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.bottom{display:flex;align-items:center;justify-content:space-between;gap:12px}.price{font-size:13px;font-weight:650;color:var(--coffee);letter-spacing:0}.add{border:0;border-radius:12px;background:var(--soft);color:var(--coffee);padding:10px 14px;font-size:13px;font-weight:750;white-space:nowrap;min-height:42px}
 .bar{position:fixed;bottom:0;left:0;right:0;background:#fbf8f2ed;backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:12px 18px}.bar-inner{max-width:960px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}.note{font-size:11px;color:var(--muted);max-width:220px}.cartbtn{border:0;border-radius:17px;background:var(--coffee);color:#fff;padding:15px 20px}
 body.house{--paper:#241914;--coffee:#D7A864;--dark:#F7EFE6;--muted:#C2AE9B;--line:#5C4133;--surface:#32241E;--soft:#4A342A;background:#241914}
 body.house .hero{background-image:url("./assets/preview-house-amber.jpg");background-position:center;background-size:cover;background-repeat:no-repeat;color:#F4E1C4}
@@ -94,38 +94,38 @@ const menus={
   ]
 };
 
-const photoMap={
-  "Café Tradicional":[0,60],
-  "Café Especial 1178":[75,20],
-  "Café Espresso":[100,20],
-  "Latte Art":[50,80],
-  "Cappuccino com Nutella":[25,80],
-  "Chocolate Quente":[0,40],
-  "Croissant Canastra":[100,60],
-  "Croissant com Nutella":[75,80],
-  "Pão de Queijo":[0,20],
-  "Tortinha de Frango com Requeijão":[25,20],
-  "Pão de Batata com Requeijão":[50,20],
-  "Pão na Chapa com Requeijão":[25,60],
-  "Pão na Chapa com Queijo Canastra":[50,60],
-  "Misto Canastra":[0,100],
-  "Brownie Meio Amargo":[75,60],
-  "Brownie de Castanhas":[100,80],
-  "Pão de Mel com Doce de Leite":[100,40],
-  "Pão de Mel com Café":[100,40],
-  "Bolo de Cenoura com Calda":[25,40],
-  "Bolo de Laranja":[50,40],
-  "Bolo de Chocolate Artesanal":[75,40],
-  "Aperol Spritz":[25,0],
-  "Absolut & Red Bull":[0,0],
-  "Caffè d’Oro":[75,0],
-  "Firenze Gin":[100,0],
-  "Tropical Gin":[75,100],
-  "Maracujá Spritz (sem álcool)":[50,100],
-  "Drink de Maçã Verde sem Álcool":[100,0],
-  "Tábua 1178 — Grande":[25,100],
-  "Tábua 1178 — Pequena":[100,100],
-  "Batatas Crocantes 1178":[50,0]
+const photoFileMap={
+  "Café Tradicional":"image-6-.jpg",
+  "Café Especial 1178":"image-20261103-143703-.jpg",
+  "Café Espresso":"image-20261103-144331-.jpg",
+  "Latte Art":"img_20261011_111901_707.jpg",
+  "Cappuccino com Nutella":"img_20260920_153126_589.jpg",
+  "Chocolate Quente":"image-20261103-145327-.jpg",
+  "Croissant Canastra":"img-20261015-wa0020.jpg",
+  "Croissant com Nutella":"img_20261016_104210_144.jpg",
+  "Pão de Queijo":"image-10-.jpg",
+  "Tortinha de Frango com Requeijão":"image-20261103-143315-.jpg",
+  "Pão de Batata com Requeijão":"image-20261103-143504-.jpg",
+  "Pão na Chapa com Requeijão":"image-7-.jpg",
+  "Pão na Chapa com Queijo Canastra":"image-8-.jpg",
+  "Misto Canastra":"misto-canastra.jpg",
+  "Brownie Meio Amargo":"image-9-.jpg",
+  "Brownie de Castanhas":"img_20261030_080045_749.jpg",
+  "Pão de Mel com Doce de Leite":"image-5-.jpg",
+  "Pão de Mel com Café":"image-5-.jpg",
+  "Bolo de Cenoura com Calda":"image-20261103-145520-.jpg",
+  "Bolo de Laranja":"image-20261103-145643-.jpg",
+  "Bolo de Chocolate Artesanal":"image-20261103-145752-.jpg",
+  "Aperol Spritz":"aperol.jpg",
+  "Absolut & Red Bull":"absolut.jpg",
+  "Caffè d’Oro":"caffe-doro.jpg",
+  "Firenze Gin":"firenze.jpg",
+  "Tropical Gin":"tropical.jpg",
+  "Maracujá Spritz (sem álcool)":"tabua-p.jpg",
+  "Drink de Maçã Verde sem Álcool":"firenze.jpg",
+  "Tábua 1178 — Grande":"tabua-g.jpg",
+  "Tábua 1178 — Pequena":"verde.jpg",
+  "Batatas Crocantes 1178":"batatas.jpg"
 };
 let active="cafe";
 const cart={};
@@ -138,7 +138,7 @@ function render(){
   cafeTab.classList.toggle("active",active==="cafe"); houseTab.classList.toggle("active",active==="house");
   title.textContent=active==="cafe"?"Cafeteria 1178":"Coffee & House";
   hint.textContent=active==="cafe"?"Cafés · confeitaria · salgados":"Drinks · petiscos · bebidas";
-  products.innerHTML=menus[active].map((p,i)=>{const pos=photoMap[p.name];const media=pos?'<div class="product-media" role="img" aria-label="'+p.name+'" style="background-position:'+pos[0]+'% '+pos[1]+'%"></div>':'';return '<article class="product">'+media+'<h3>'+p.name+'</h3>'+(p.note?'<p>'+p.note+'</p>':'')+((p.photoStatus&&!pos)?'<div class="photo-note">'+p.photoStatus+'</div>':'')+'<div class="bottom"><span class="price">'+money(p.price)+'</span><button class="add" data-add="'+i+'">Adicionar +</button></div></article>'}).join("");
+  products.innerHTML=menus[active].map((p,i)=>{const file=photoFileMap[p.name];const src=file&&window.COFFEE_PHOTOS?window.COFFEE_PHOTOS[file]:null;const media=src?'<div class="product-media"><img src="'+src+'" alt="'+p.name+'" loading="lazy" decoding="async"></div>':'';return '<article class="product">'+media+'<h3>'+p.name+'</h3>'+(p.note?'<p>'+p.note+'</p>':'')+((p.photoStatus&&!src)?'<div class="photo-note">'+p.photoStatus+'</div>':'')+'<div class="bottom"><span class="price">'+money(p.price)+'</span><button class="add" data-add="'+i+'">Adicionar +</button></div></article>'}).join("");
   document.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>{const k=keyFor(active,+b.dataset.add);cart[k]=(cart[k]||0)+1;updateCartBadge()});
 }
 function updateCartBadge(){count.textContent=cartCount()}
