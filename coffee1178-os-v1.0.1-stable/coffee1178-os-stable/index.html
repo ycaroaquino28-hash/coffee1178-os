@@ -21,6 +21,7 @@ body.house .coffee,body.house .house{font-family:"Baskerville","Palatino Linotyp
 body.house .coffee{letter-spacing:10px}body.house .house{letter-spacing:8px}body.house .number{color:#F4DFC0;font-family:"Baskerville","Palatino Linotype",Georgia,serif}
 body.house .tab{background:#2E211B;border-color:#5E4234;color:#D7A864}body.house .tab.active{background:linear-gradient(145deg,#80502F,#B37435 58%,#80502F);color:#fff}
 body.house .pill{background:#2C201B;color:#D8AF72}body.house .product{background:linear-gradient(180deg,rgba(58,42,34,.98),rgba(48,34,28,.98));border-color:#634739;box-shadow:0 8px 22px rgba(0,0,0,.14)}body.house .product h3{color:#FFF7EF}body.house .price{color:#DDB57C}body.house .add{background:#563A2D;color:#FFF6EC;border:1px solid #76523D}body.house .bar{background:rgba(31,22,18,.93)}body.house .cartbtn{background:linear-gradient(145deg,#7C4A27,#A8672E)}
+.photo-note{font-size:11px;color:var(--muted);margin-top:-6px}.overlay{position:fixed;inset:0;background:rgba(25,16,12,.66);display:none;align-items:flex-end;z-index:50}.overlay.open{display:flex}.sheet{width:min(100%,650px);max-height:82vh;overflow:auto;margin:0 auto;background:var(--paper);color:var(--dark);border-radius:24px 24px 0 0;padding:22px 18px 28px;border:1px solid var(--line);box-shadow:0 -18px 50px rgba(0,0,0,.22)}.sheet-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.sheet-head h2{margin:0}.close{border:1px solid var(--line);background:var(--surface);color:var(--dark);border-radius:999px;width:38px;height:38px;font-size:22px;line-height:1}.cartrow{display:grid;grid-template-columns:1fr auto;gap:8px 14px;padding:14px 0;border-bottom:1px solid var(--line)}.cartrow strong{font-size:14px}.qty{display:flex;align-items:center;gap:8px}.qty button{width:30px;height:30px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--dark)}.cart-total{display:flex;justify-content:space-between;gap:12px;padding-top:18px;font-weight:800}.empty-cart{padding:24px 0;color:var(--muted)}
 @media(min-width:560px){.products{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(min-width:900px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{min-height:390px}}
 @media(max-width:559px){.wrap{padding-left:14px;padding-right:14px}.intro{align-items:flex-start}.intro h1{font-size:25px}.tabs{gap:7px}.tab{padding:14px 8px;font-size:14px}.product{padding:16px}.product h3{font-size:18px}.bottom{align-items:center}.price{font-size:12px}.add{padding:9px 12px}}
@@ -37,14 +38,59 @@ body.house .pill{background:#2C201B;color:#D8AF72}body.house .product{background
   <nav class="tabs"><button class="tab active" id="cafeTab">Cafeteria 1178</button><button class="tab" id="houseTab">Coffee &amp; House</button></nav>
   <div class="eyebrow" id="hint">Cafés · confeitaria · salgados</div><h2 id="title">Cafeteria 1178</h2><div class="products" id="products"></div>
 </main>
-<div class="bar"><div class="bar-inner"><span class="note">Prévia de demonstração. Nenhum pedido será enviado ao Coffee 1178 OS.</span><button class="cartbtn">Ver seleção · <span id="count">0</span></button></div></div>
+<div class="bar"><div class="bar-inner"><span class="note">Prévia de demonstração. Nenhum pedido será enviado ao Coffee 1178 OS.</span><button class="cartbtn" id="cartBtn">Ver seleção · <span id="count">0</span></button></div></div>
+<div class="overlay" id="overlay" aria-hidden="true"><section class="sheet" role="dialog" aria-modal="true" aria-label="Sua seleção"><div class="sheet-head"><h2>Sua seleção</h2><button class="close" id="closeCart" aria-label="Fechar">×</button></div><div id="cartItems"></div><div class="cart-total"><span>Total demonstrativo</span><span id="cartTotal">R$ 0,00</span></div><p class="note" style="max-width:none;margin-top:14px">Esta é uma prévia visual. Nenhum pedido é enviado ao Coffee 1178 OS.</p></section></div>
 <script>
 const menus={
-cafe:["Café Tradicional","Café com Espuma","Café Especial 1178","Café Espresso","Latte Art","Cappuccino Tradicional","Cappuccino com Nutella","Chocolate Quente","Croissant Canastra","Croissant com Nutella","Pão de Queijo","Tortinha de Frango com Requeijão","Pão de Batata com Requeijão","Pão na Chapa com Requeijão","Pão na Chapa com Queijo Canastra","Misto Canastra","Brownie Meio Amargo","Brownie de Castanhas","Pão de Mel com Doce de Leite","Pão de Mel com Café","Bolo de Cenoura com Calda","Bolo de Laranja","Bolo de Chocolate Artesanal","Água sem Gás 500 ml","Água com Gás 500 ml","Coca-Cola Original 350 ml","Coca-Cola Zero 350 ml","Suco de Uva Tial 250 ml"],
-house:["Aperol Spritz","Absolut & Red Bull","Caffè d’Oro","Firenze Gin","Gin Tônica","Tropical Gin","Maracujá Spritz (sem álcool)","Limone di Sicilia (sem álcool)","Verde Firenze (sem álcool)","Tábua 1178 — Grande","Tábua 1178 — Pequena","Batatas Crocantes 1178","Água sem Gás 500 ml","Água com Gás 500 ml","Coca-Cola Original 350 ml","Coca-Cola Zero 350 ml","Suco de Uva Tial 250 ml"]};
-let active="cafe",count=0;
-function render(){document.body.classList.toggle("house",active==="house");document.querySelector('meta[name="theme-color"]').content=active==="house"?"#241914":"#F1E8D8";cafeTab.classList.toggle("active",active==="cafe");houseTab.classList.toggle("active",active==="house");title.textContent=active==="cafe"?"Cafeteria 1178":"Coffee & House";hint.textContent=active==="cafe"?"Cafés · confeitaria · salgados":"Drinks · petiscos · bebidas";products.innerHTML=menus[active].map(n=>'<article class="product"><h3>'+n+'</h3><div class="bottom"><span class="price">Preço a confirmar</span><button class="add">Adicionar +</button></div></article>').join("");document.querySelectorAll(".add").forEach(b=>b.onclick=()=>{count++;document.getElementById("count").textContent=count})}
-cafeTab.onclick=()=>{active="cafe";render()};houseTab.onclick=()=>{active="house";render()};render();
+  cafe:[
+    {name:"Café Tradicional",price:300},{name:"Café Especial 1178",price:990},{name:"Café Espresso",price:1090},{name:"Latte Art",price:1290},
+    {name:"Cappuccino Tradicional",price:1190},{name:"Cappuccino com Nutella",price:1590},{name:"Chocolate Quente",price:1290},{name:"Leite & Canela 1178",price:890,note:"Leite com canela e açúcar · 300 ml"},
+    {name:"Croissant Canastra",price:1990},{name:"Croissant com Nutella",price:2290},{name:"Pão de Queijo",price:450},{name:"Tortinha de Frango com Requeijão",price:790},
+    {name:"Pão de Batata com Requeijão",price:690},{name:"Pão na Chapa com Requeijão",price:790},{name:"Pão na Chapa com Queijo Canastra",price:990},{name:"Misto Canastra",price:2190},
+    {name:"Brownie Meio Amargo",price:1290},{name:"Brownie de Castanhas",price:1290},
+    {name:"Pão de Mel com Doce de Leite",price:990,photo:null,photoStatus:"Foto em conferência"},{name:"Pão de Mel com Café",price:990,photo:null,photoStatus:"Foto em conferência"},
+    {name:"Bolo de Cenoura com Calda",price:990},{name:"Bolo de Laranja",price:790},{name:"Bolo de Chocolate Artesanal",price:790},
+    {name:"Água sem Gás 500 ml",price:350},{name:"Água com Gás 500 ml",price:450},{name:"Coca-Cola Original 350 ml",price:690},{name:"Coca-Cola Zero 350 ml",price:690},{name:"Suco de Uva Tial 250 ml",price:700}
+  ],
+  house:[
+    {name:"Aperol Spritz",price:2590},{name:"Absolut & Red Bull",price:2690},{name:"Caffè d’Oro",price:3490},{name:"Firenze Gin",price:2490},{name:"Gin Tônica",price:2390},
+    {name:"Tropical Gin",price:2490,photo:null,photoStatus:"Foto em conferência"},{name:"Maracujá Spritz (sem álcool)",price:1090,photo:null,photoStatus:"Foto em conferência"},
+    {name:"Limone di Sicilia (sem álcool)",price:1390},{name:"Verde Firenze (sem álcool)",price:1490,photo:null,photoStatus:"Foto correta pendente"},
+    {name:"Tábua 1178 — Grande",price:5990},{name:"Tábua 1178 — Pequena",price:3990,photo:null,photoStatus:"Foto correta pendente"},
+    {name:"Batatas Crocantes 1178",price:1290},{name:"Água sem Gás 500 ml",price:350},{name:"Água com Gás 500 ml",price:450},
+    {name:"Coca-Cola Original 350 ml",price:750},{name:"Coca-Cola Zero 350 ml",price:750},{name:"Suco de Uva Tial 250 ml",price:750}
+  ]
+};
+let active="cafe";
+const cart={};
+const money=c=>new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(c/100);
+const keyFor=(area,index)=>area+"-"+index;
+function cartCount(){return Object.values(cart).reduce((s,q)=>s+q,0)}
+function render(){
+  document.body.classList.toggle("house",active==="house");
+  document.querySelector('meta[name="theme-color"]').content=active==="house"?"#241914":"#F1E8D8";
+  cafeTab.classList.toggle("active",active==="cafe"); houseTab.classList.toggle("active",active==="house");
+  title.textContent=active==="cafe"?"Cafeteria 1178":"Coffee & House";
+  hint.textContent=active==="cafe"?"Cafés · confeitaria · salgados":"Drinks · petiscos · bebidas";
+  products.innerHTML=menus[active].map((p,i)=>'<article class="product"><h3>'+p.name+'</h3>'+(p.note?'<p>'+p.note+'</p>':'')+(p.photoStatus?'<div class="photo-note">'+p.photoStatus+'</div>':'')+'<div class="bottom"><span class="price">'+money(p.price)+'</span><button class="add" data-add="'+i+'">Adicionar +</button></div></article>').join("");
+  document.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>{const k=keyFor(active,+b.dataset.add);cart[k]=(cart[k]||0)+1;updateCartBadge()});
+}
+function updateCartBadge(){count.textContent=cartCount()}
+function renderCart(){
+  const entries=Object.entries(cart).filter(([,q])=>q>0);
+  if(!entries.length){cartItems.innerHTML='<div class="empty-cart">Nenhum produto selecionado.</div>';cartTotal.textContent=money(0);return}
+  let total=0;
+  cartItems.innerHTML=entries.map(([k,q])=>{const [area,idx]=k.split("-");const p=menus[area][+idx];total+=p.price*q;return '<div class="cartrow"><div><strong>'+p.name+'</strong><div class="photo-note">'+money(p.price)+' cada</div></div><div class="qty"><button data-minus="'+k+'">−</button><span>'+q+'</span><button data-plus="'+k+'">+</button></div></div>'}).join("");
+  cartTotal.textContent=money(total);
+  document.querySelectorAll("[data-minus]").forEach(b=>b.onclick=()=>{cart[b.dataset.minus]--;if(cart[b.dataset.minus]<=0)delete cart[b.dataset.minus];updateCartBadge();renderCart()});
+  document.querySelectorAll("[data-plus]").forEach(b=>b.onclick=()=>{cart[b.dataset.plus]++;updateCartBadge();renderCart()});
+}
+function openCart(){renderCart();overlay.classList.add("open");overlay.setAttribute("aria-hidden","false")}
+function closeCartFn(){overlay.classList.remove("open");overlay.setAttribute("aria-hidden","true")}
+cafeTab.onclick=()=>{active="cafe";render()};
+houseTab.onclick=()=>{active="house";render()};
+cartBtn.onclick=openCart;closeCart.onclick=closeCartFn;overlay.onclick=e=>{if(e.target===overlay)closeCartFn()};
+render();updateCartBadge();
 </script>
 </body></html>
 <style>
