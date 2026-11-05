@@ -15,8 +15,8 @@ button{font:inherit;cursor:pointer}.hero{min-height:340px;display:flex;flex-dire
 h2{font:400 28px/1.15 Georgia,serif;margin:24px 0 18px;letter-spacing:0}.products{display:grid;grid-template-columns:1fr;gap:12px}.product{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:17px 16px;box-shadow:0 5px 18px #4d30280b;display:flex;flex-direction:column;gap:14px;min-width:0}.product-media{width:100%;aspect-ratio:4/3;border-radius:13px;overflow:hidden;background:var(--soft);box-shadow:inset 0 0 0 1px rgba(0,0,0,.03)}.product-media img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;filter:none!important;transform:none!important;image-rendering:auto}.product h3{font:600 19px/1.25 system-ui,-apple-system,"Segoe UI",sans-serif;margin:0;letter-spacing:0!important;word-spacing:0!important;text-transform:none;overflow-wrap:anywhere}.product p{font-size:12px;line-height:1.35;color:var(--muted);margin:-4px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.bottom{display:flex;align-items:center;justify-content:space-between;gap:12px}.price{font-size:13px;font-weight:650;color:var(--coffee);letter-spacing:0}.add{border:0;border-radius:12px;background:var(--soft);color:var(--coffee);padding:10px 14px;font-size:13px;font-weight:750;white-space:nowrap;min-height:42px}
 .bar{position:fixed;bottom:0;left:0;right:0;background:#fbf8f2ed;backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:12px 18px}.bar-inner{max-width:960px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}.note{font-size:11px;color:var(--muted);max-width:220px}.cartbtn{border:0;border-radius:17px;background:var(--coffee);color:#fff;padding:15px 20px}
 body.house{--paper:#241914;--coffee:#D7A864;--dark:#F7EFE6;--muted:#C2AE9B;--line:#5C4133;--surface:#32241E;--soft:#4A342A;background:#241914}
-body.house .hero{background-image:url("./assets/preview-house-amber.jpg");background-position:center;background-size:cover;background-repeat:no-repeat;color:#F4E1C4}
-body.house .brand,body.house .tag{color:#F6E4C7;text-shadow:0 2px 18px rgba(30,14,8,.4)}
+body.house .hero{position:relative;background-color:#241914;background-image:url("./assets/preview-house-amber.jpg");background-position:center 48%;background-size:cover;background-repeat:no-repeat;color:#F4E1C4;margin-bottom:-1px;border-bottom:0;box-shadow:inset 0 -3px 0 #241914}
+body.house .hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:5px;background:linear-gradient(to bottom,rgba(36,25,20,0),#241914);pointer-events:none}\nbody.house .brand,body.house .tag{color:#F6E4C7;text-shadow:0 2px 18px rgba(30,14,8,.4)}
 body.house .coffee,body.house .house{font-family:"Baskerville","Palatino Linotype",Georgia,serif}body.house .tag{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:0}
 body.house .coffee{letter-spacing:10px}body.house .house{letter-spacing:8px}body.house .number{color:#F4DFC0;font-family:"Baskerville","Palatino Linotype",Georgia,serif}
 body.house .tab{background:#2E211B;border-color:#5E4234;color:#D7A864}body.house .tab.active{background:linear-gradient(145deg,#80502F,#B37435 58%,#80502F);color:#fff}
@@ -28,6 +28,7 @@ body.house .pill{background:#2C201B;color:#D8AF72}body.house .product{background
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 <script src="./assets/menu/photos-original.js"></script>
+<script src="./assets/menu/photo-patch.js"></script>
 </head>
 <body>
 <header class="hero">
@@ -99,10 +100,12 @@ const photoFileMap={
   "Café Especial 1178":"image-20261103-143703-.jpg",
   "Café Espresso":"image-20261103-144331-.jpg",
   "Latte Art":"img_20261011_111901_707.jpg",
+  "Cappuccino Tradicional":"cappuccino-tradicional.webp",
   "Cappuccino com Nutella":"img_20260920_153126_589.jpg",
   "Chocolate Quente":"image-20261103-145327-.jpg",
+  "Latte & Cannella":"latte-cannella.webp",
   "Croissant Canastra":"img-20261015-wa0020.jpg",
-  "Croissant com Nutella":"img_20261016_104210_144.jpg",
+  "Croissant com Nutella":"croissant-nutella-correto.webp",
   "Pão de Queijo":"image-10-.jpg",
   "Tortinha de Frango com Requeijão":"image-20261103-143315-.jpg",
   "Pão de Batata com Requeijão":"image-20261103-143504-.jpg",
@@ -122,6 +125,7 @@ const photoFileMap={
   "Firenze Gin":"firenze.jpg",
   "Tropical Gin":"tropical.jpg",
   "Maracujá Spritz (sem álcool)":"tabua-p.jpg",
+  "Limone di Sicilia (sem álcool)":"limone-sicilia.webp",
   "Drink de Maçã Verde sem Álcool":"firenze.jpg",
   "Tábua 1178 — Grande":"tabua-g.jpg",
   "Tábua 1178 — Pequena":"verde.jpg",
