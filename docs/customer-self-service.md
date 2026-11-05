@@ -82,3 +82,27 @@ Não há preview nova nem deploy de produção. Nenhuma migration, role, trigger
 Consulta somente de leitura confirmou os quatro UUIDs, nomes, preços e `active=true` no Supabase. Mapeamentos liberados: Coca-Cola Original 350 ml (700), Coca-Cola Zero 350 ml (700), Suco de Uva em Lata (700) e Leite e Canela (890). Caffè d’Oro continua a 3290 centavos. A foto anterior de leite/canela foi preservada na nova chave do catálogo.
 
 Reexecutados: 13 testes de unidade/regressão, teste Chromium em celular/tablet com Supabase simulado, validação sintática dos módulos e teste offline do provisionamento QR; todos passaram. O navegador verificou os quatro produtos liberados nas áreas correspondentes e as quatro associações ainda bloqueadas. A suite SQL continua sem execução porque `psql`/PostgreSQL/Supabase CLI não estão disponíveis; não foi executada no banco de produção como alternativa. O hash do app operacional permanece inalterado. Nenhuma migration, deploy ou alteração de produto no banco nesta sincronização.
+
+
+## Validação em Supabase staging real — 2026-11-05
+
+Foi criado um segundo projeto Supabase gratuito e isolado para staging, sem tocar no banco de produção. A proposta de autoatendimento foi aplicada junto de um schema operacional mínimo equivalente ao necessário para o Coffee 1178 OS, com 7 mesas e os 40 produtos atuais copiados por leitura do banco de produção.
+
+O primeiro teste em Supabase gerenciado revelou uma incompatibilidade importante que os testes locais simulados não mostravam: custom roles não recebem `USAGE` no schema gerenciado `auth`. Por isso, `customer_private.require_customer()` não pode chamar `auth.uid()` / `auth.jwt()` diretamente sob o owner `coffee_customer_rpc`. A proposta foi corrigida para ler os claims já validados pelo PostgREST através de `request.jwt.claims`, mantendo a rejeição de sessões que também estejam ligadas a operador.
+
+Após a correção, passaram em staging real:
+- token QR inválido rejeitado;
+- token correto identifica Mesa 01;
+- tentativa de trocar Mesa 01 por Mesa 02 é rejeitada;
+- cliente não enxerga diretamente `orders`, `order_items` ou `cafe_tables`;
+- catálogo retorna os 40 produtos ativos esperados;
+- preço enviado pelo navegador é rejeitado;
+- total divergente é rejeitado;
+- idempotência retorna o mesmo pedido para a mesma chave;
+- cliente 2 não enxerga pedido do cliente 1;
+- fluxo operacional completo do pedido passou: `sent → preparing → ready → delivered → closed`;
+- fechamento por Pix liberou a Mesa 01 e revogou a sessão do cliente.
+
+Os fixtures artificiais usados nos testes SQL foram removidos ao final e as FKs de Auth foram novamente validadas. Ficou ativo apenas o token de staging da Mesa 01 para o próximo teste pelo navegador.
+
+Pendência para o teste real no celular: habilitar **Anonymous Sign-Ins** no projeto Supabase de staging e publicar uma preview apontando somente para as chaves públicas desse staging. Nenhuma migration de autoatendimento foi aplicada no banco de produção.
