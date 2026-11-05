@@ -91,3 +91,14 @@ test('only the four unapproved associations remain blocked and reconciliation ha
  assert.equal(rows.filter(r=>r.situation==='nome diferente').length,21);
  for(const item of unique){const r=rows.find(r=>r.site===item.name);assert.equal(r.product_id,item.productId);assert.equal(r.site_price_cents,item.price);assert.equal(r.supabase_price_cents,item.price);}
 });
+
+
+test('managed Supabase customer auth reads verified request claims without direct auth schema access',()=>{
+ const sql=fs.readFileSync(new URL('../supabase/proposals/customer_self_service.sql',import.meta.url),'utf8');
+ const match=sql.match(/create function customer_private\.require_customer\(\)[\s\S]*?end \$\$;/);
+ assert(match,'require_customer function not found');
+ const block=match[0];
+ assert.match(block,/current_setting\('request\.jwt\.claims'/);
+ assert(!block.includes('auth.uid()'));
+ assert(!block.includes('auth.jwt()'));
+});
