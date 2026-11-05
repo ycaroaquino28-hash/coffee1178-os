@@ -9,10 +9,12 @@ revoke all on schema customer_private from public, anon, authenticated;
 -- No LOGIN, no BYPASSRLS, and never granted to authenticated/anon/authenticator.
 create role coffee_customer_rpc nologin noinherit nobypassrls;
 grant coffee_customer_rpc to postgres;
-grant usage on schema public, auth, extensions, customer_private to coffee_customer_rpc;
+grant usage on schema public, extensions, customer_private to coffee_customer_rpc;
+-- Supabase managed projects do not allow custom roles to receive USAGE on the auth schema.
+-- Customer identity is therefore read from PostgREST's verified request.jwt.claims GUC below.
 -- Temporarily needed to transfer function ownership; revoked below.
 grant create on schema customer_private to coffee_customer_rpc;
-grant execute on function auth.uid(), auth.jwt(), public.session_operator_id() to coffee_customer_rpc;
+grant execute on function public.session_operator_id() to coffee_customer_rpc;
 grant execute on function extensions.digest(text,text) to coffee_customer_rpc;
 
 create table customer_private.customer_table_tokens (
@@ -83,15 +85,27 @@ create policy customer_api_items on public.order_items to coffee_customer_rpc
  with check (exists(select 1 from public.orders o where o.id=order_id and o.source='customer'));
 
 create function customer_private.require_customer() returns uuid
-language plpgsql stable security invoker set search_path='' as $$
-declare u uuid:=auth.uid();
+language plpgsql stable security invoker set search_path='' as $
+declare
+ claims jsonb:=coalesce(nullif(current_setting('request.jwt.claims',true),''),'{}')::jsonb;
+ u uuid;
+ anon boolean:=false;
 begin
- if u is null or coalesce(auth.jwt()->>'is_anonymous','false') <> 'true'
-    or public.session_operator_id() is not null then
+ begin
+   u:=nullif(claims->>'sub','')::uuid;
+ exception when invalid_text_representation then
+   u:=null;
+ end;
+ begin
+   anon:=coalesce((claims->>'is_anonymous')::boolean,false);
+ exception when invalid_text_representation then
+   anon:=false;
+ end;
+ if u is null or anon is not true or public.session_operator_id() is not null then
    raise exception using errcode='P0001', message='CUSTOMER_AUTH_REQUIRED';
  end if;
  return u;
-end $$;
+end $;
 create function customer_private.active_session() returns customer_private.customer_sessions
 language plpgsql stable security invoker set search_path='' as $$
 declare s customer_private.customer_sessions; u uuid:=customer_private.require_customer();
