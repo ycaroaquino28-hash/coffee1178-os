@@ -143,6 +143,7 @@ function render(){
   cafeTab.classList.toggle("active",active==="cafe"); houseTab.classList.toggle("active",active==="house");
   title.textContent=active==="cafe"?"Cafeteria 1178":"Coffee & House";
   hint.textContent=active==="cafe"?"Cafés · confeitaria · salgados":"Drinks · petiscos · bebidas";
+  document.querySelector(".tag").textContent=active==="house"?"ENTRE O CAFÉ E A NOITE":"UMA NOVA FORMA DE VIVER O CAFÉ";
   products.innerHTML=menus[active].map((p,i)=>{const file=photoFileMap[p.name];const src=file?(file.startsWith("./")?file:(window.COFFEE_PHOTOS?window.COFFEE_PHOTOS[file]:null)):null;const fullDrink=["Caffè d’Oro","Aperol Spritz","Drink de Maçã Verde sem Álcool","Gin Tônica"].includes(p.name);const media=src?'<div class="product-media'+(fullDrink?' drink-full':'')+'"><img src="'+src+'" alt="'+p.name+'" loading="lazy" decoding="async"></div>':'';return '<article class="product">'+media+'<h3>'+p.name+'</h3>'+(p.note?'<p>'+p.note+'</p>':'')+((p.photoStatus&&!src)?'<div class="photo-note">'+p.photoStatus+'</div>':'')+'<div class="bottom"><span class="price">'+money(p.price)+'</span><button class="add" data-add="'+i+'">Adicionar +</button></div></article>'}).join("");
   document.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>{const k=keyFor(active,+b.dataset.add);cart[k]=(cart[k]||0)+1;updateCartBadge()});
 }
