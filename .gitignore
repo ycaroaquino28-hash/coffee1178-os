@@ -1,0 +1,4 @@
+.netlify/
+private-qr/
+config.js
+__pycache__/

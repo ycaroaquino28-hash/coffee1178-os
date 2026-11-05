@@ -1,0 +1,362 @@
+[
+  {
+    "site": "Café Tradicional",
+    "site_price_cents": 300,
+    "supabase": "Café Tradicional",
+    "supabase_price_cents": 300,
+    "product_id": "72d6bb60-9bc5-4575-b93a-94f43badc2bb",
+    "situation": "igual",
+    "review": "mapeado"
+  },
+  {
+    "site": "Café Especial 1178",
+    "site_price_cents": 990,
+    "supabase": "Café Especial 1178",
+    "supabase_price_cents": 990,
+    "product_id": "4f9bdb33-e5c5-4f67-bd52-111684f34046",
+    "situation": "igual",
+    "review": "mapeado"
+  },
+  {
+    "site": "Café Espresso",
+    "site_price_cents": 1090,
+    "supabase": "Espresso",
+    "supabase_price_cents": 1090,
+    "product_id": "54457f0f-63f0-4981-b759-812ec1cf5274",
+    "situation": "nome diferente",
+    "review": "mapeado"
+  },
+  {
+    "site": "Latte Art",
+    "site_price_cents": 1290,
+    "supabase": "Latte Art 1178",
+    "supabase_price_cents": 1290,
+    "product_id": "8338f8da-e433-40d0-bd51-f2fc4ba002db",
+    "situation": "nome diferente",
+    "review": "mapeado"
+  },
+  {
+    "site": "Cappuccino Tradicional",
+    "site_price_cents": 1190,
+    "supabase": "Cappuccino Tradicional",
+    "supabase_price_cents": 1190,
+    "product_id": "3b46f49a-2621-4a5f-8c87-537d523c67c4",
+    "situation": "igual",
+    "review": "mapeado"
+  },
+  {
+    "site": "Cappuccino com Nutella",
+    "site_price_cents": 1590,
+    "supabase": "Cappuccino com Nutella",
+    "supabase_price_cents": 1590,
+    "product_id": "bae4dc90-af5a-4a33-8471-4575ced09a8a",
+    "situation": "igual",
+    "review": "mapeado"
+  },
+  {
+    "site": "Chocolate Quente",
+    "site_price_cents": 1290,
+    "supabase": "Chocolate Quente Artesanal",
+    "supabase_price_cents": 1290,
+    "product_id": "625c931d-31c9-40ee-a05f-c0d97b9456bc",
+    "situation": "nome diferente",
+    "review": "mapeado"
+  },
+  {
+    "site": "Latte & Cannella",
+    "site_price_cents": 890,
+    "supabase": null,
+    "supabase_price_cents": null,
+    "product_id": null,
+    "situation": "ausente no Supabase",
+    "review": "pendente de conferência"
+  },
+  {
+    "site": "Croissant Canastra",
+    "site_price_cents": 1990,
+    "supabase": "Croissant Canastra",
+    "supabase_price_cents": 1990,
+    "product_id": "8a451ca7-c780-40ba-ad3d-00a5675cb298",
+    "situation": "igual",
+    "review": "mapeado"
+  },
+  {
+    "site": "Croissant com Nutella",
+    "site_price_cents": 2290,
+    "supabase": "Croissant Nutella",
+    "supabase_price_cents": 2290,
+    "product_id": "7e97283d-fc7f-4675-956b-02665d540da4",
+    "situation": "nome diferente",
+    "review": "mapeado"
+  },
+  {
+    "site": "Pão de Queijo",
+    "site_price_cents": 450,
+    "supabase": "Pão de Queijo 90 g",
+    "supabase_price_cents": 450,
+    "product_id": "7f891078-afbb-4baa-905b-dfc925e15e0c",
+    "situation": "nome diferente",
+    "review": "mapeado"
+  },
+  {
+    "site": "Tortinha de Frango com Requeijão",
+    "site_price_cents": 790,
+    "supabase": "Tortinha de Frango",
+    "supabase_price_cents": 790,
+    "product_id": "8abb0c24-242d-4e95-96a1-d79f0c1ccde2",
+    "situation": "nome diferente",
+    "review": "pendente de conferência"
+  },
+  {
+    "site": "Pão de Batata com Requeijão",
+    "site_price_cents": 690,
+    "supabase": "Pão de Batata com Requeijão",
+    "supabase_price_cents": 690,
+    "product_id": "f6cec94f-b4dc-4c56-a9bf-49f4e83e23b8",
+    "situation": "igual",
+    "review": "mapeado"
+  },
+  {
+    "site": "Pão na Chapa com Requeijão",
+    "site_price_cents": 790,
+    "supabase": "Pão Francês na Chapa",
+    "supabase_price_cents": 790,
+    "product_id": "9e0d939a-eb61-4b83-a29a-93bc0a1b8656",
+    "situation": "nome diferente",
+    "review": "pendente de conferência"
+  },
+  {
+    "site": "Pão na Chapa com Queijo Canastra",
+    "site_price_cents": 990,
+    "supabase": "Pão na Chapa com Queijo Canastra",
+    "supabase_price_cents": 990,
+    "product_id": "74aba9dc-3324-4fcb-90a9-8bfc933e145b",
+    "situation": "igual",
+    "review": "mapeado"
+  },
+  {
+    "site": "Misto Canastra",
+    "site_price_cents": 2190,
+    "supabase": "Misto Canastra 1178",
+    "supabase_price_cents": 2190,
+    "product_id": "da53e562-0d92-43e1-861d-cd741ed21b78",
+    "situation": "nome diferente",
+    "review": "mapeado"
+  },
+  {
+    "site": "Brownie Meio Amargo",
+    "site_price_cents": 1290,
+    "supabase": "Brownie Meio Amargo",
+    "supabase_price_cents": 1290,
+    "product_id": "beb6a672-52ec-4ca8-a861-0f192970dac4",
+    "situation": "igual",
+    "review": "mapeado"
+  },
+  {
+    "site": "Brownie de Castanhas",
+    "site_price_cents": 1290,
+    "supabase": "Brownie de Castanha",
+    "supabase_price_cents": 1290,
+    "product_id": "13597198-e5f9-46c5-aec3-04a71c910f84",
+    "situation": "nome diferente",
+    "review": "mapeado"
+  },
+  {
+    "site": "Pão de Mel com Doce de Leite",
+    "site_price_cents": 990,
+    "supabase": "Mini Pão de Mel de Doce de Leite",
+    "supabase_price_cents": 990,
+    "product_id": "560729aa-9072-4fbc-b306-f3e53e24fd48",
+    "situation": "nome diferente",
+    "review": "mapeado"
+  },
+  {
+    "site": "Pão de Mel com Café",
+    "site_price_cents": 990,
+    "supabase": "Mini Pão de Mel de Café",
+    "supabase_price_cents": 990,
+    "product_id": "c406974b-65ab-4289-9a47-1e0ac2d06832",
+    "situation": "nome diferente",
+    "review": "mapeado"
+  },
+  {
+    "site": "Bolo de Cenoura com Calda",
+    "site_price_cents": 990,
+    "supabase": "Bolo de Cenoura com Ganache",
+    "supabase_price_cents": 990,
+    "product_id": "98e0913e-3ce3-4c63-a9b1-10c3c3a70d49",
+    "situation": "nome diferente",
+    "review": "pendente de conferência"
+  },
+  {
+    "site": "Bolo de Laranja",
+    "site_price_cents": 790,
+    "supabase": "Bolo de Laranja Artesanal",
+    "supabase_price_cents": 790,
+    "product_id": "e0213e28-2f63-4b77-bd84-8917c4780a5d",
+    "situation": "nome diferente",
+    "review": "mapeado"
+  },
+  {
+    "site": "Bolo de Chocolate Artesanal",
+    "site_price_cents": 790,
+    "supabase": "Bolo de Chocolate Artesanal",
+    "supabase_price_cents": 790,
+    "product_id": "7823ab39-50fb-4b05-925d-ac43bca21a6d",
+    "situation": "igual",
+    "review": "mapeado"
+  },
+  {
+    "site": "Água sem Gás 500 ml",
+    "site_price_cents": 350,
+    "supabase": "Água Mineral sem gás 500 ml",
+    "supabase_price_cents": 350,
+    "product_id": "7f50294c-65d9-428b-9be0-4f25f3a07ff7",
+    "situation": "nome diferente",
+    "review": "mapeado"
+  },
+  {
+    "site": "Água com Gás 500 ml",
+    "site_price_cents": 450,
+    "supabase": "Água com gás 500 ml",
+    "supabase_price_cents": 450,
+    "product_id": "9d49763c-b353-426e-9643-13c6e30dbec3",
+    "situation": "nome diferente",
+    "review": "mapeado"
+  },
+  {
+    "site": "Coca-Cola Original 350 ml",
+    "site_price_cents": 700,
+    "supabase": "Coca-Cola Original 350 ml",
+    "supabase_price_cents": 750,
+    "product_id": "145c5004-b381-4061-a431-2e3185251b1d",
+    "situation": "preço diferente",
+    "review": "mapeado"
+  },
+  {
+    "site": "Coca-Cola Zero 350 ml",
+    "site_price_cents": 700,
+    "supabase": "Coca-Cola Zero 350 ml",
+    "supabase_price_cents": 750,
+    "product_id": "bf586ace-5b11-4b38-9002-1cc693f42a1f",
+    "situation": "preço diferente",
+    "review": "mapeado"
+  },
+  {
+    "site": "Suco de Uva Lata",
+    "site_price_cents": 700,
+    "supabase": "Suco de Uva Integral Tial 250 ml",
+    "supabase_price_cents": 750,
+    "product_id": "6f951d49-cab7-4382-ba98-000f345d0645",
+    "situation": "nome diferente; preço diferente",
+    "review": "pendente de conferência"
+  },
+  {
+    "site": "Aperol Spritz",
+    "site_price_cents": 2590,
+    "supabase": "Aperol Spritz",
+    "supabase_price_cents": 2590,
+    "product_id": "1b7c2332-0e8a-430d-977d-6fa3b4a48750",
+    "situation": "igual",
+    "review": "mapeado"
+  },
+  {
+    "site": "Absolut & Red Bull",
+    "site_price_cents": 2690,
+    "supabase": "Absolut & Red Bull",
+    "supabase_price_cents": 2690,
+    "product_id": "1a24b80e-fa11-4e8d-a11c-048e953cbde5",
+    "situation": "igual",
+    "review": "mapeado"
+  },
+  {
+    "site": "Caffè d’Oro",
+    "site_price_cents": 3290,
+    "supabase": "Caffè d'Oro 43",
+    "supabase_price_cents": 3290,
+    "product_id": "8b19f66e-a480-4ad3-af32-ebb95e94e696",
+    "situation": "nome diferente",
+    "review": "mapeado"
+  },
+  {
+    "site": "Firenze Gin",
+    "site_price_cents": 2490,
+    "supabase": "Firenze Gin",
+    "supabase_price_cents": 2490,
+    "product_id": "e56b12e0-23b8-46b5-9533-cb2fae3ede78",
+    "situation": "igual",
+    "review": "mapeado"
+  },
+  {
+    "site": "Gin Tônica",
+    "site_price_cents": 2390,
+    "supabase": "Gin Tônica",
+    "supabase_price_cents": 2390,
+    "product_id": "44aad30e-1f6a-4b45-b425-901ae7da1caf",
+    "situation": "igual",
+    "review": "mapeado"
+  },
+  {
+    "site": "Tropical Gin",
+    "site_price_cents": 2490,
+    "supabase": "Tropical Gin",
+    "supabase_price_cents": 2490,
+    "product_id": "40e7d6d1-b5b3-46e8-9153-e87be940642c",
+    "situation": "igual",
+    "review": "mapeado"
+  },
+  {
+    "site": "Maracujá Spritz (sem álcool)",
+    "site_price_cents": 1090,
+    "supabase": "Maracujá Spritz",
+    "supabase_price_cents": 1090,
+    "product_id": "b811a7d6-25ee-4a2b-a50f-4cf2bacfbacf",
+    "situation": "nome diferente",
+    "review": "mapeado"
+  },
+  {
+    "site": "Limone di Sicilia (sem álcool)",
+    "site_price_cents": 1390,
+    "supabase": "Limone di Sicília",
+    "supabase_price_cents": 1390,
+    "product_id": "b0d1ba24-9688-4d18-9b39-263e55a2367c",
+    "situation": "nome diferente",
+    "review": "mapeado"
+  },
+  {
+    "site": "Drink de Maçã Verde sem Álcool",
+    "site_price_cents": 1490,
+    "supabase": "Verde Firenze",
+    "supabase_price_cents": 1490,
+    "product_id": "49a1f1d3-6944-4286-a2e4-97cffc2dc7a2",
+    "situation": "nome diferente",
+    "review": "pendente de conferência"
+  },
+  {
+    "site": "Tábua 1178 — Grande",
+    "site_price_cents": 5990,
+    "supabase": "Tábua 1178 — Para Compartilhar",
+    "supabase_price_cents": 5990,
+    "product_id": "a1606d63-1b55-47da-915b-e1554bcfc80f",
+    "situation": "nome diferente",
+    "review": "mapeado"
+  },
+  {
+    "site": "Tábua 1178 — Pequena",
+    "site_price_cents": 3990,
+    "supabase": "Tábua 1178 — Individual",
+    "supabase_price_cents": 3990,
+    "product_id": "953a9be2-83fd-49cd-92f9-d32d18a70446",
+    "situation": "nome diferente",
+    "review": "mapeado"
+  },
+  {
+    "site": "Batatas Crocantes 1178",
+    "site_price_cents": 1290,
+    "supabase": "Batatas Crocantes 1178",
+    "supabase_price_cents": 1290,
+    "product_id": "b78a24f3-44c5-4ba0-a7b5-c000e8dceffc",
+    "situation": "igual",
+    "review": "mapeado"
+  }
+]
