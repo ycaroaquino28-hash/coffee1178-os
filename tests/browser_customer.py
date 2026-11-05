@@ -55,8 +55,21 @@ with sync_playwright() as p:
  page.wait_for_function("document.getElementById('tableLabel').textContent==='Mesa 01'")
  assert '?t=' not in page.url
  assert page.locator('h2#title').inner_text()=='Cafeteria 1178'
+ # Approved products are enabled in the live UI; unresolved associations stay disabled.
+ for name in ['Coca-Cola Original 350 ml','Coca-Cola Zero 350 ml','Suco de Uva em Lata','Leite e Canela']:
+  product=page.locator('article.product').filter(has=page.get_by_role('heading',name=name,exact=True))
+  assert product.get_by_role('button',name='Adicionar +').is_enabled(),name
+ for name in ['Tortinha de Frango com Requeijão','Pão na Chapa com Requeijão','Bolo de Cenoura com Calda']:
+  product=page.locator('article.product').filter(has=page.get_by_role('heading',name=name,exact=True))
+  assert product.get_by_role('button',name='Adicionar +').is_disabled(),name
  page.get_by_role('button',name='Coffee & House',exact=True).click()
  assert page.locator('.tag').inner_text()=='ENTRE O CAFÉ E A NOITE'
+ for name in ['Coca-Cola Original 350 ml','Coca-Cola Zero 350 ml','Suco de Uva em Lata']:
+  product=page.locator('article.product').filter(has=page.get_by_role('heading',name=name,exact=True))
+  assert product.get_by_role('button',name='Adicionar +').is_enabled(),name
+ blocked=page.locator('article.product').filter(has=page.get_by_role('heading',name='Drink de Maçã Verde sem Álcool',exact=True))
+ assert blocked.get_by_role('button',name='Adicionar +').is_disabled()
+
  doro=page.locator('article.product').filter(has=page.get_by_role('heading',name='Caffè d’Oro',exact=True))
  assert '32,90' in doro.inner_text();assert doro.locator('img').count()==1
  gin=page.locator('article.product').filter(has=page.get_by_role('heading',name='Gin Tônica',exact=True))

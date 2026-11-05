@@ -1,6 +1,8 @@
 # Conferência de produtos — 2026-11-05
 
-Leitura do banco, sem alterações. Caffè d’Oro já corrigido no visual para R$ 32,90. Correspondências com composição/embalagem ambígua permanecem bloqueadas até conferência. Diferenças de preço também bloqueiam o envio; nenhum outro preço foi alterado. Nomes visuais e fotos foram preservados.
+Consulta somente de leitura ao Supabase após as alterações comerciais realizadas pelo proprietário. Frontend sincronizado: Coca-Cola Original 350 ml e Coca-Cola Zero 350 ml a R$ 7,00; Suco de Uva em Lata a R$ 7,00; Leite e Canela a R$ 8,90. Os quatro UUIDs foram conferidos, os mapeamentos estão aprovados e liberados para envio quando a sessão da mesa estiver válida. Caffè d’Oro permanece a R$ 32,90. Nenhuma alteração foi feita no banco.
+
+40 itens visuais únicos e 40 produtos no banco: 19 iguais, 21 com nome diferente, zero divergências de preço e zero ausências. As quatro associações ainda não aprovadas permanecem bloqueadas: Tortinha de Frango com Requeijão; Pão na Chapa com Requeijão; Bolo de Cenoura com Calda; Drink de Maçã Verde sem Álcool. As fotos foram preservadas.
 
 | Produto do site | Preço do site | Produto Supabase | Preço Supabase | Situação | Associação |
 |---|---:|---|---:|---|---|
@@ -11,7 +13,7 @@ Leitura do banco, sem alterações. Caffè d’Oro já corrigido no visual para 
 | Cappuccino Tradicional | R$ 11,90 | Cappuccino Tradicional | R$ 11,90 | igual | mapeado |
 | Cappuccino com Nutella | R$ 15,90 | Cappuccino com Nutella | R$ 15,90 | igual | mapeado |
 | Chocolate Quente | R$ 12,90 | Chocolate Quente Artesanal | R$ 12,90 | nome diferente | mapeado |
-| Latte & Cannella | R$ 8,90 | — | — | ausente no Supabase | pendente de conferência |
+| Leite e Canela | R$ 8,90 | Leite e Canela | R$ 8,90 | igual | mapeado |
 | Croissant Canastra | R$ 19,90 | Croissant Canastra | R$ 19,90 | igual | mapeado |
 | Croissant com Nutella | R$ 22,90 | Croissant Nutella | R$ 22,90 | nome diferente | mapeado |
 | Pão de Queijo | R$ 4,50 | Pão de Queijo 90 g | R$ 4,50 | nome diferente | mapeado |
@@ -29,9 +31,9 @@ Leitura do banco, sem alterações. Caffè d’Oro já corrigido no visual para 
 | Bolo de Chocolate Artesanal | R$ 7,90 | Bolo de Chocolate Artesanal | R$ 7,90 | igual | mapeado |
 | Água sem Gás 500 ml | R$ 3,50 | Água Mineral sem gás 500 ml | R$ 3,50 | nome diferente | mapeado |
 | Água com Gás 500 ml | R$ 4,50 | Água com gás 500 ml | R$ 4,50 | nome diferente | mapeado |
-| Coca-Cola Original 350 ml | R$ 7,00 | Coca-Cola Original 350 ml | R$ 7,50 | preço diferente | mapeado |
-| Coca-Cola Zero 350 ml | R$ 7,00 | Coca-Cola Zero 350 ml | R$ 7,50 | preço diferente | mapeado |
-| Suco de Uva Lata | R$ 7,00 | Suco de Uva Integral Tial 250 ml | R$ 7,50 | nome diferente; preço diferente | pendente de conferência |
+| Coca-Cola Original 350 ml | R$ 7,00 | Coca-Cola Original 350 ml | R$ 7,00 | igual | mapeado |
+| Coca-Cola Zero 350 ml | R$ 7,00 | Coca-Cola Zero 350 ml | R$ 7,00 | igual | mapeado |
+| Suco de Uva em Lata | R$ 7,00 | Suco de Uva em Lata | R$ 7,00 | igual | mapeado |
 | Aperol Spritz | R$ 25,90 | Aperol Spritz | R$ 25,90 | igual | mapeado |
 | Absolut & Red Bull | R$ 26,90 | Absolut & Red Bull | R$ 26,90 | igual | mapeado |
 | Caffè d’Oro | R$ 32,90 | Caffè d'Oro 43 | R$ 32,90 | nome diferente | mapeado |

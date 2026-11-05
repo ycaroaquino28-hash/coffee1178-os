@@ -63,13 +63,13 @@
     "review": "mapeado"
   },
   {
-    "site": "Latte & Cannella",
+    "site": "Leite e Canela",
     "site_price_cents": 890,
-    "supabase": null,
-    "supabase_price_cents": null,
-    "product_id": null,
-    "situation": "ausente no Supabase",
-    "review": "pendente de conferência"
+    "supabase": "Leite e Canela",
+    "supabase_price_cents": 890,
+    "product_id": "120ca94f-5925-420c-8522-972555a27b4a",
+    "situation": "igual",
+    "review": "mapeado"
   },
   {
     "site": "Croissant Canastra",
@@ -228,28 +228,28 @@
     "site": "Coca-Cola Original 350 ml",
     "site_price_cents": 700,
     "supabase": "Coca-Cola Original 350 ml",
-    "supabase_price_cents": 750,
+    "supabase_price_cents": 700,
     "product_id": "145c5004-b381-4061-a431-2e3185251b1d",
-    "situation": "preço diferente",
+    "situation": "igual",
     "review": "mapeado"
   },
   {
     "site": "Coca-Cola Zero 350 ml",
     "site_price_cents": 700,
     "supabase": "Coca-Cola Zero 350 ml",
-    "supabase_price_cents": 750,
+    "supabase_price_cents": 700,
     "product_id": "bf586ace-5b11-4b38-9002-1cc693f42a1f",
-    "situation": "preço diferente",
+    "situation": "igual",
     "review": "mapeado"
   },
   {
-    "site": "Suco de Uva Lata",
+    "site": "Suco de Uva em Lata",
     "site_price_cents": 700,
-    "supabase": "Suco de Uva Integral Tial 250 ml",
-    "supabase_price_cents": 750,
+    "supabase": "Suco de Uva em Lata",
+    "supabase_price_cents": 700,
     "product_id": "6f951d49-cab7-4382-ba98-000f345d0645",
-    "situation": "nome diferente; preço diferente",
-    "review": "pendente de conferência"
+    "situation": "igual",
+    "review": "mapeado"
   },
   {
     "site": "Aperol Spritz",

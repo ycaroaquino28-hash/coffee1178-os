@@ -69,3 +69,25 @@ test('expected checkout total is only sent as a consent guard',async()=>{
  let sent;const sender=new OrderSender({storage:memory(),storageKey:'k',rpc:async(name,args)=>{sent=args;return {data:result};}});
  await sender.send(cart(),3980);assert.equal(sent.p_expected_total_cents,3980);assert(!('price_cents' in sent.p_items[0]));
 });
+
+test('approved commercial products use exact names, prices and UUIDs and can be ordered',()=>{
+ const catalog=JSON.parse(fs.readFileSync(new URL('fixtures/products.json',import.meta.url),'utf8'));
+ const approved=[['Coca-Cola Original 350 ml',700,'145c5004-b381-4061-a431-2e3185251b1d'],['Coca-Cola Zero 350 ml',700,'bf586ace-5b11-4b38-9002-1cc693f42a1f'],['Suco de Uva em Lata',700,'6f951d49-cab7-4382-ba98-000f345d0645'],['Leite e Canela',890,'120ca94f-5925-420c-8522-972555a27b4a']];
+ for(const [name,price,id] of approved){
+  const entries=Object.values(menus).flat().filter(p=>p.name===name);assert(entries.length);
+  for(const item of entries){assert.equal(item.productId,id);assert.equal(item.price,price);assert.equal(item.mappingReviewed,true);assert.equal(availability(item,catalog,true).ok,true);}
+  const p=catalog.find(p=>p.id===id);assert.equal(p.name,name);assert.equal(p.price_cents,price);assert.equal(p.active,true);
+ }
+ assert.equal(photoFileMap['Leite e Canela'],'latte-cannella.webp');
+});
+test('only the four unapproved associations remain blocked and reconciliation has no price/missing differences',()=>{
+ const blocked=['Tortinha de Frango com Requeijão','Pão na Chapa com Requeijão','Bolo de Cenoura com Calda','Drink de Maçã Verde sem Álcool'].sort();
+ const catalog=JSON.parse(fs.readFileSync(new URL('fixtures/products.json',import.meta.url),'utf8'));
+ const unique=[...new Map(Object.values(menus).flat().map(p=>[p.name,p])).values()];
+ assert.deepEqual(unique.filter(p=>!availability(p,catalog,true).ok).map(p=>p.name).sort(),blocked);
+ const rows=JSON.parse(fs.readFileSync(new URL('../docs/product-reconciliation.json',import.meta.url),'utf8'));
+ assert.equal(rows.length,40);assert.equal(catalog.length,40);
+ assert.equal(rows.filter(r=>r.situation==='igual').length,19);
+ assert.equal(rows.filter(r=>r.situation==='nome diferente').length,21);
+ for(const item of unique){const r=rows.find(r=>r.site===item.name);assert.equal(r.product_id,item.productId);assert.equal(r.site_price_cents,item.price);assert.equal(r.supabase_price_cents,item.price);}
+});

@@ -1,4 +1,4 @@
-// Visual e fotos preservados da branch cliente-autoatendimento. IDs conferidos em 2026-11-05.
+// Visual e fotos preservados. Mapeamentos comerciais conferidos no Supabase em 2026-11-05.
 export const menus = {
   "cafe": [
     {
@@ -51,11 +51,11 @@ export const menus = {
       "mappingReviewed": true
     },
     {
-      "name": "Latte & Cannella",
+      "name": "Leite e Canela",
       "price": 890,
       "note": "Leite com canela e açúcar · 300 ml.",
-      "productId": null,
-      "mappingReviewed": false
+      "productId": "120ca94f-5925-420c-8522-972555a27b4a",
+      "mappingReviewed": true
     },
     {
       "name": "Croissant Canastra",
@@ -195,11 +195,11 @@ export const menus = {
       "mappingReviewed": true
     },
     {
-      "name": "Suco de Uva Lata",
+      "name": "Suco de Uva em Lata",
       "price": 700,
       "note": "Suco de uva em lata.",
       "productId": "6f951d49-cab7-4382-ba98-000f345d0645",
-      "mappingReviewed": false
+      "mappingReviewed": true
     }
   ],
   "house": [
@@ -324,11 +324,11 @@ export const menus = {
       "mappingReviewed": true
     },
     {
-      "name": "Suco de Uva Lata",
+      "name": "Suco de Uva em Lata",
       "price": 700,
       "note": "Suco de uva em lata.",
       "productId": "6f951d49-cab7-4382-ba98-000f345d0645",
-      "mappingReviewed": false
+      "mappingReviewed": true
     }
   ]
 };
@@ -340,7 +340,6 @@ export const photoFileMap = {
   "Cappuccino Tradicional": "cappuccino-tradicional.webp",
   "Cappuccino com Nutella": "img_20260920_153126_589.jpg",
   "Chocolate Quente": "image-20261103-145327-.jpg",
-  "Latte & Cannella": "latte-cannella.webp",
   "Croissant Canastra": "img-20261015-wa0020.jpg",
   "Croissant com Nutella": "croissant-nutella-correto.webp",
   "Pão de Queijo": "image-10-.jpg",
@@ -367,5 +366,6 @@ export const photoFileMap = {
   "Drink de Maçã Verde sem Álcool": "firenze.jpg",
   "Tábua 1178 — Grande": "tabua-g.jpg",
   "Tábua 1178 — Pequena": "verde.jpg",
-  "Batatas Crocantes 1178": "batatas.jpg"
+  "Batatas Crocantes 1178": "batatas.jpg",
+  "Leite e Canela": "latte-cannella.webp"
 };

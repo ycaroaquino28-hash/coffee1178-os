@@ -8,7 +8,7 @@ O frontend usa o `index.html` existente em `coffee1178-os-v1.0.1-stable/coffee11
 
 O mapeamento de produtos usa UUIDs lidos do banco. Correspondências ambíguas (composição, sabor ou embalagem) não são habilitadas para envio até conferência. Preços diferentes do banco também bloqueiam o item, sem corrigir seu preço visual automaticamente. O catálogo oficial é consultado por RPC antes de cada novo envio. O backend sempre calcula o total com `products.price_cents`, independentemente do navegador.
 
-Relatório completo: `product-reconciliation.md` e versão estruturada `.json`. São 40 itens visuais únicos: 15 iguais; 21 com nome diferente; 2 somente com preço diferente; 1 com nome e preço diferentes; 1 ausente no Supabase. As correspondências candidatas cobrem os 39 produtos encontrados no banco; não há item adicional do banco sem candidato visual. Isso não constitui aprovação das correspondências ambíguas.
+Relatório completo: `product-reconciliation.md` e versão estruturada `.json`. São 40 itens visuais únicos: 19 iguais e 21 com nome diferente; não há divergências de preço nem ausências. Os quatro mapeamentos comerciais aprovados (duas Coca-Colas, Suco de Uva em Lata e Leite e Canela) estão conferidos e liberados quando houver sessão válida. Permanecem bloqueados somente Tortinha de Frango com Requeijão, Pão na Chapa com Requeijão, Bolo de Cenoura com Calda e Drink de Maçã Verde sem Álcool. O relatório pode ser regenerado com `node scripts/reconcile-products.mjs`.
 
 ## QR → sessão → pedido → operação
 
@@ -55,7 +55,7 @@ Gera em `private-qr/` (ignorado pelo Git) URL portadora privada e SQL contendo *
 
 ## Verificação executada
 
-- `node tests/customer-core.test.mjs`: 11 testes passaram. Payload sem mesa/preço; limites; IDs/preço Caffè/fotos; indisponibilidade e divergência; duplo clique; falha de rede/reload com mesma chave; edição bloqueada durante envio incerto; falha de storage; rejeição explícita; escaping; labels dos status; verificações estáticas do SQL.
+- `node tests/customer-core.test.mjs`: 13 testes passaram. Payload sem mesa/preço; limites; IDs/preço Caffè/fotos; indisponibilidade e divergência; duplo clique; falha de rede/reload com mesma chave; edição bloqueada durante envio incerto; falha de storage; rejeição explícita; escaping; labels dos status; verificações estáticas do SQL.
 - `python tests/browser_customer.py`: Chromium local, 390×844 e 1024×768. Interface com **SDK Supabase simulado**: mesa 01/02, tratamento de QR inválido e troca de mesa negada, Cafeteria/House, frase, Caffè a R$32,90, fotos decodificadas, carrinho/observação, dupla submissão com uma chamada, status recebido/pronto, sem overflow horizontal e sem exceções JavaScript.
 - Hash do app operacional conferido; fotos originais mantidas.
 - Script de provisionamento testado offline: token aleatório de 256 bits e SQL contendo apenas o hash SHA-256, sem token bruto.
@@ -76,3 +76,9 @@ Os testes simulados não comprovam RLS nem validação no servidor. A suite SQL 
 9. Grants preexistentes nas tabelas operacionais são amplos (incluindo TRUNCATE para anon/authenticated), embora RLS esteja habilitada. A proposta não amplia esses grants, mas uma auditoria completa das RPCs/permissões preexistentes continua necessária antes de abrir acesso de clientes. Não foram removidos para evitar alterar produção fora do escopo aprovado.
 
 Não há preview nova nem deploy de produção. Nenhuma migration, role, trigger ou policy desta proposta foi criada no Supabase conectado.
+
+## Sincronização comercial aprovada — 2026-11-05
+
+Consulta somente de leitura confirmou os quatro UUIDs, nomes, preços e `active=true` no Supabase. Mapeamentos liberados: Coca-Cola Original 350 ml (700), Coca-Cola Zero 350 ml (700), Suco de Uva em Lata (700) e Leite e Canela (890). Caffè d’Oro continua a 3290 centavos. A foto anterior de leite/canela foi preservada na nova chave do catálogo.
+
+Reexecutados: 13 testes de unidade/regressão, teste Chromium em celular/tablet com Supabase simulado, validação sintática dos módulos e teste offline do provisionamento QR; todos passaram. O navegador verificou os quatro produtos liberados nas áreas correspondentes e as quatro associações ainda bloqueadas. A suite SQL continua sem execução porque `psql`/PostgreSQL/Supabase CLI não estão disponíveis; não foi executada no banco de produção como alternativa. O hash do app operacional permanece inalterado. Nenhuma migration, deploy ou alteração de produto no banco nesta sincronização.
