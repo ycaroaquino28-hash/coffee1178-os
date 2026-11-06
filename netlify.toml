@@ -13,5 +13,6 @@
   [headers.values]
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "DENY"
+    Content-Security-Policy = "script-src 'self' https://cdn.jsdelivr.net; script-src-attr 'none'; frame-src 'none'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'"
     Referrer-Policy = "no-referrer"
     X-Robots-Tag = "noindex, nofollow, noarchive"
