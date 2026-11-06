@@ -14,9 +14,9 @@ function officialNetlifyLink(element){
 function hideHostingChrome(node){
  const root=node instanceof Element?node:node.parentElement;
  if(!root)return;
- for(const element of [root,...root.querySelectorAll(candidates)]){
+ for(const element of [root,...root.querySelectorAll('*')]){
   if(appOwned(element)||element.matches('script,style,link'))continue;
-  let hosting=element.matches(knownChrome);
+  let hosting=element.matches(knownChrome)||element.localName.includes('netlify');
   if(element.tagName==='A' && officialNetlifyLink(element) && /powered\s*by\s*netlify/i.test(element.textContent))hosting=true;
   if(!hosting)continue;
   hide(element);

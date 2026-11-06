@@ -16,3 +16,25 @@
     Content-Security-Policy = "script-src 'self' https://cdn.jsdelivr.net; script-src-attr 'none'; frame-src 'none'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'"
     Referrer-Policy = "no-referrer"
     X-Robots-Tag = "noindex, nofollow, noarchive"
+
+# Always revalidate the HTML and presentation entrypoints on mobile.
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "no-store"
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-store"
+[[headers]]
+  for = "/pedido"
+  [headers.values]
+    Cache-Control = "no-store"
+[[headers]]
+  for = "/assets/customer.css"
+  [headers.values]
+    Cache-Control = "no-cache, must-revalidate"
+[[headers]]
+  for = "/assets/staging-presentation.mjs"
+  [headers.values]
+    Cache-Control = "no-cache, must-revalidate"
