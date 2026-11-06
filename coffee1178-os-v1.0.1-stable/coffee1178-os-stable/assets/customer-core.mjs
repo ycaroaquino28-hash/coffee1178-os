@@ -62,4 +62,4 @@ export class OrderSender {
     } finally {this.busy=false;}
   }
 }
-export const statusLabel = status => ({sent:'Pedido recebido',preparing:'Preparando',ready:'Pronto',delivered:'Entregue',closed:'Finalizado',cancelled:'Cancelado'}[status] || 'Atualizando');
+export const statusLabel = status => ({sent:'Pedido recebido',preparing:'Preparando',ready:'Pronto para servir',delivered:'Entregue',closed:'Finalizado',cancelled:'Cancelado'}[status] || 'Atualizando');

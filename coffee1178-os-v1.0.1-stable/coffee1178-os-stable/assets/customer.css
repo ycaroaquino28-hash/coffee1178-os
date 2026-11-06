@@ -27,3 +27,27 @@ body.cart-open .bar{visibility:hidden;pointer-events:none}
 #cartItems{min-height:0;overflow-y:auto;overscroll-behavior:contain;padding-bottom:20px;scroll-padding-bottom:20px}
 #sendOrder{position:relative;bottom:auto;z-index:1;flex-shrink:0}
 iframe{display:none!important;visibility:hidden!important;pointer-events:none!important}
+
+/* Customer-only order progress; inherits the approved cafe/House palette. */
+#orderStatus article.order-tracking{padding:18px;overflow-wrap:anywhere;color:var(--dark);scroll-margin-top:16px;scroll-margin-bottom:110px}
+.order-tracking-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.order-tracking-head h3{margin:0;font-size:16px;font-weight:700;line-height:1.4}
+.order-status-badge{display:inline-block;border:1px solid var(--line);border-radius:999px;background:var(--soft);color:var(--coffee);padding:5px 10px;font-size:12px;font-weight:650}
+.order-tracking-items{list-style:none;margin:14px 0 0;padding:0}
+.order-tracking-items li+li{margin-top:8px}
+.order-tracking-items small{display:block;color:var(--muted);font-size:12px;line-height:1.4;margin-top:3px;white-space:pre-wrap}
+#orderStatus .order-tracking-total{margin:12px 0 0;color:var(--muted)}
+.order-tracking-total strong{color:var(--dark)}
+.order-timeline{list-style:none;margin:18px 0 0;padding:16px 0 0;border-top:1px solid var(--line)}
+.order-step{position:relative;display:flex;align-items:flex-start;gap:12px;min-height:44px;color:var(--muted);font-size:13px;line-height:22px}
+.order-step:last-child{min-height:22px}
+.order-step:not(:last-child)::after{content:"";position:absolute;left:10px;top:24px;bottom:2px;border-left:1px solid var(--line)}
+.order-step.is-complete::after{border-left-color:var(--coffee)}
+.order-step-mark{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;flex:0 0 22px;width:22px;height:22px;border:1px solid var(--line);border-radius:50%;background:var(--surface);font-size:12px;line-height:1}
+.order-step.is-complete .order-step-mark{background:var(--coffee);border-color:var(--coffee);color:var(--paper)}
+.order-step.is-current{color:var(--dark);font-weight:750}
+.order-step.is-current .order-step-mark{border:2px solid var(--coffee);box-shadow:0 0 0 3px var(--soft);color:var(--coffee)}
+.order-step.is-current.is-complete .order-step-mark{color:var(--paper)}
+#orderStatus .order-tracking-message{margin:16px 0 0;padding-top:12px;border-top:1px solid var(--line);font-weight:650;line-height:1.5;color:var(--coffee)}
+.order-tracking.is-cancelled .order-status-badge{border-color:var(--coffee);font-weight:750}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}

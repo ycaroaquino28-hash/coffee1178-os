@@ -1,9 +1,12 @@
 import {menus,photoFileMap} from './customer-menu.mjs?v=products-20261106-03';
-import {availability,buildItems,OrderSender,money,escapeHtml as esc,statusLabel,MAX_UNITS,MAX_LINES,MAX_QUANTITY,MAX_NOTE} from './customer-core.mjs';
+import {availability,buildItems,OrderSender,money,escapeHtml as esc,statusLabel,MAX_UNITS,MAX_LINES,MAX_QUANTITY,MAX_NOTE} from './customer-core.mjs?v=tracking-20261106-01';
+import {renderOrderTracking,mergeAcknowledgedOrders,POLL_INTERVAL_MS} from './customer-tracking.mjs?v=tracking-20261106-01';
 const $=id=>document.getElementById(id);
 const ui=Object.fromEntries(['cafeTab','houseTab','title','hint','products','count','cartItems','cartTotal','cartBtn','closeCart','overlay','sendOrder','sendMessage','customerMessage','tableLabel','connectionNote','orderStatus','newVisit'].map(id=>[id,$(id)]));
 let active='cafe',cart={},catalog=[],connected=false,sender=null,client=null,orders=[],statusTimer,refreshing=false;
 let lastFocus;
+let statusFailures=0,renderedOrdersMarkup='';
+const acknowledgedOrders=new Map();
 const msg=text=>{ui.customerMessage.textContent=text;};
 const cartCount=()=>Object.values(cart).reduce((sum,item)=>sum+item.quantity,0);
 const visualById=id=>Object.values(menus).flat().find(p=>p.productId===id);
@@ -71,16 +74,25 @@ function invalidate(error){
  }
 }
 function renderOrders(){
- ui.orderStatus.innerHTML=orders.map(o=>`<article><strong>Pedido #${esc(o.number)} · ${esc(statusLabel(o.status))}</strong><p>${(o.items||[]).map(i=>`${esc(i.quantity)}× ${esc(i.name)}`).join(' · ')}</p><p>Total confirmado: ${money(o.total_cents)}</p></article>`).join('');
+ const markup=orders.map(renderOrderTracking).join('');
+ // Avoid repainting/announcing unchanged cards on every poll.
+ if(markup!==renderedOrdersMarkup){ui.orderStatus.innerHTML=markup;renderedOrdersMarkup=markup;}
 }
 async function refreshStatus(){
- if(!connected||refreshing)return;
+ if(!connected||refreshing||document.hidden||!navigator.onLine)return;
  refreshing=true;clearTimeout(statusTimer);
  try{
   const {data,error}=await client.rpc('get_customer_orders');if(error)throw error;
-  orders=data||[];renderOrders();ui.connectionNote.textContent='Pedidos enviados para a equipe da Coffee 1178.';
- }catch(error){invalidate(error);ui.connectionNote.textContent='Acompanhamento indisponível. Tentaremos novamente.';}
- finally{refreshing=false;if(connected&&!document.hidden)statusTimer=setTimeout(refreshStatus,10000);}
+  orders=mergeAcknowledgedOrders(data||[],acknowledgedOrders);statusFailures=0;
+  renderOrders();ui.connectionNote.textContent='Pedidos enviados para a equipe da Coffee 1178.';
+ }catch(error){statusFailures++;invalidate(error);ui.connectionNote.textContent='Acompanhamento indisponível. Tentaremos novamente.';}
+ finally{
+  refreshing=false;
+  if(connected&&!document.hidden&&navigator.onLine){
+   const delay=statusFailures?Math.min(30000,POLL_INTERVAL_MS*2**Math.min(statusFailures,3)):POLL_INTERVAL_MS;
+   statusTimer=setTimeout(refreshStatus,delay);
+  }
+ }
 }
 ui.sendOrder.onclick=async()=>{
  if(!connected||!sender||sender.busy)return;
@@ -93,18 +105,23 @@ ui.sendOrder.onclick=async()=>{
    for(const id of Object.keys(cart))if(!availability(visualById(id),catalog,true).ok)throw new Error('CUSTOMER_PRODUCT_UNAVAILABLE');
   }
   const expectedTotal=sender.pending?.expectedTotal ?? Object.entries(cart).reduce((sum,[id,item])=>sum+visualById(id).price*item.quantity,0);
+  const sentItems=Object.entries(cart).map(([id,item])=>({name:visualById(id).name,quantity:item.quantity,note:item.note.trim()||null}));
   const promise=sender.send(cart,expectedTotal);renderCart();render();
   const result=await promise;
+  acknowledgedOrders.set(result.id,{id:result.id,number:result.number,status:'sent',total_cents:result.total_cents,items:sentItems,created_at:new Date().toISOString()});
+  orders=mergeAcknowledgedOrders(orders,acknowledgedOrders);renderOrders();
   cart={};render();renderCart();
   ui.sendMessage.textContent=`Pedido #${result.number} enviado com sucesso. Total confirmado: ${money(result.total_cents)}.`;
   msg('Pedido enviado com sucesso. Acompanhe o preparo abaixo.');
+  closeCart();
+  [...ui.orderStatus.querySelectorAll('[data-order-id]')].find(el=>el.dataset.orderId===result.id)?.scrollIntoView({block:'nearest'});
   await refreshStatus();
  }catch(error){ui.sendMessage.textContent=errorText(error);invalidate(error);}
  finally{renderCart();render();}
 };
 document.addEventListener('visibilitychange',()=>{clearTimeout(statusTimer);if(!document.hidden)refreshStatus();});
 window.addEventListener('online',()=>{if(connected)refreshStatus();});
-window.addEventListener('offline',()=>{ui.connectionNote.textContent='Sem conexão. Nenhum pedido será enviado automaticamente.';});
+window.addEventListener('offline',()=>{clearTimeout(statusTimer);ui.connectionNote.textContent='Sem conexão. Nenhum pedido será enviado automaticamente.';});
 async function boot(qrToken){
  render();
  const params=new URLSearchParams(location.search),token=qrToken ?? params.get('t');
@@ -135,7 +152,7 @@ async function boot(qrToken){
     ui.newVisit.disabled=true;
     try{
      const {error}=await client.auth.signOut({scope:'local'});if(error)throw error;
-     sender=null;cart={};orders=[];renderOrders();ui.newVisit.hidden=true;
+     sender=null;cart={};orders=[];acknowledgedOrders.clear();renderOrders();ui.newVisit.hidden=true;
      await boot(token);
     }catch(error){msg(errorText(error));}
     finally{ui.newVisit.disabled=false;}

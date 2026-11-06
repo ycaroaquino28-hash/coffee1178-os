@@ -20,7 +20,7 @@ Relatório completo: `product-reconciliation.md` e versão estruturada `.json`. 
 6. Carrinho contém UUID, quantidade e observação. A chave de idempotência é persistida **antes** da requisição; falha de armazenamento impede envio. Falha de rede mantém a mesma chave e bloqueia edição até confirmar o resultado. Rejeições explícitas por item inválido/indisponível liberam edição. Não há envio automático offline.
 7. `create_customer_order` determina a mesa pela sessão, valida produtos/quantidades/notas e soma preços do banco. Não aceita preço unitário, mesa, usuário ou sessão no payload. O total esperado é enviado apenas como trava de consentimento: se o total calculado pelo banco for diferente, a transação rejeita o pedido sem gravar nada; o valor do navegador nunca é usado para calcular a cobrança. Grava `orders` e `order_items` atomicamente, status `sent`, mesa `occupied`. Mesmo pedido/chave retorna o mesmo ID; chave reutilizada com conteúdo diferente falha.
 8. Realtime já publicado nas tabelas existentes notifica o Coffee 1178 OS, sem modificar suas assinaturas. As policies da equipe continuam enxergando pedidos de cliente. Cozinha/equipe seguem `sent → preparing → ready → delivered`, incluindo as rotinas atuais de baixa de estoque ao entregar.
-9. Cliente consulta somente `get_customer_orders` a cada 10 segundos, pausando em aba oculta. A resposta contém apenas os pedidos da própria sessão; nunca assinatura global de Realtime, dados de outros clientes ou dados administrativos.
+9. Cliente consulta somente `get_customer_orders` a cada 5 segundos no uso normal, pausando em aba oculta ou offline e espaçando tentativas em falhas. A resposta contém apenas os pedidos da própria sessão; nunca assinatura global de Realtime, dados de outros clientes ou dados administrativos.
 
 ## Proposta de banco — NÃO APLICADA
 
@@ -97,3 +97,6 @@ O proprietário confirmou pão francês com requeijão a R$ 7,90 e pão francês
 ## Bolo de cenoura confirmado — 2026-11-06
 
 Nome visual mantido como Bolo de Cenoura com Calda; mapeamento liberado conforme confirmação do proprietário. UUID `98e0913e-3ce3-4c63-a9b1-10c3c3a70d49`, ativo no staging e preço preservado de 990 centavos. O banco ainda usa o nome Bolo de Cenoura com Ganache e não foi alterado; o fluxo operacional pode exibir esse nome cadastrado. Todos os 40 itens visuais estão conferidos, mantendo bloqueios de segurança por sessão, inatividade ou divergência futura de preço.
+
+
+Acompanhamento visual atualizado: ver `customer-tracking.md`. Timeline por pedido, confirmação imediata após resposta da criação e consulta segura existente; nenhum acesso direto às tabelas foi adicionado.

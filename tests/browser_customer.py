@@ -97,9 +97,9 @@ with sync_playwright() as p:
  payload=page.evaluate('window.mockPayload');assert set(payload)=={'p_items','p_request_key','p_expected_total_cents'}
  assert payload['p_items'][0]['quantity']==2
  assert payload['p_items'][0]['note']=='Sem sal <script>bad()</script>'
- page.locator('#closeCart').click();assert 'Pedido recebido' in page.locator('#orderStatus').inner_text()
+ assert not page.locator('#overlay').evaluate("e=>e.classList.contains('open')");assert 'Pedido recebido' in page.locator('#orderStatus').inner_text()
  page.evaluate("window.mockStatus='ready';document.dispatchEvent(new Event('visibilitychange'))")
- page.wait_for_function("document.getElementById('orderStatus').textContent.includes('Pronto')")
+ page.wait_for_function("document.querySelector('[data-order-status=\"ready\"]')!==null")
  page.eval_on_selector_all('img', '(imgs)=>Promise.all(imgs.map(img=>{img.loading="eager";return img.decode()}))')
  page.screenshot(path='/tmp/coffee-customer-cafe-mobile.png',full_page=True)
  assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')

@@ -50,7 +50,7 @@ test('storage failure prevents sending an order without a durable key',async()=>
 });
 test('escape user/product text and map operational statuses',()=>{
  assert.equal(escapeHtml('<img onerror="x">'),'&lt;img onerror=&quot;x&quot;&gt;');
- assert.equal(statusLabel('sent'),'Pedido recebido');assert.equal(statusLabel('preparing'),'Preparando');assert.equal(statusLabel('ready'),'Pronto');
+ assert.equal(statusLabel('sent'),'Pedido recebido');assert.equal(statusLabel('preparing'),'Preparando');assert.equal(statusLabel('ready'),'Pronto para servir');
 });
 test('prepared SQL does not modify staff RPCs or grant customer access to operational tables',()=>{
  const sql=fs.readFileSync(new URL('../supabase/proposals/customer_self_service.sql',import.meta.url),'utf8');
