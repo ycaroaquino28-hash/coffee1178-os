@@ -4,6 +4,16 @@
   command = ""
 
 [[redirects]]
+  from = "/operacional-staging"
+  to = "/operacional-staging/"
+  status = 301
+
+[[redirects]]
+  from = "/operacional-staging/*"
+  to = "/operacional-staging/index.html"
+  status = 200
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
@@ -38,3 +48,15 @@
   for = "/assets/staging-presentation.mjs"
   [headers.values]
     Cache-Control = "no-cache, must-revalidate"
+
+# Isolated operational staging shell and scoped service worker.
+[[headers]]
+  for = "/operacional-staging/*"
+  [headers.values]
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/operacional-staging/service-worker.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+    Service-Worker-Allowed = "/operacional-staging/"
