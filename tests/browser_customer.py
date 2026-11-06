@@ -56,10 +56,10 @@ with sync_playwright() as p:
  assert '?t=' not in page.url
  assert page.locator('h2#title').inner_text()=='Cafeteria 1178'
  # Approved products are enabled in the live UI; unresolved associations stay disabled.
- for name in ['Coca-Cola Original 350 ml','Coca-Cola Zero 350 ml','Suco de Uva em Lata','Leite e Canela']:
+ for name in ['Coca-Cola Original 350 ml','Coca-Cola Zero 350 ml','Suco de Uva em Lata','Leite e Canela','Tortinha de Frango com Requeijão']:
   product=page.locator('article.product').filter(has=page.get_by_role('heading',name=name,exact=True))
   assert product.get_by_role('button',name='Adicionar +').is_enabled(),name
- for name in ['Tortinha de Frango com Requeijão','Pão na Chapa com Requeijão','Bolo de Cenoura com Calda']:
+ for name in ['Pão na Chapa com Requeijão','Bolo de Cenoura com Calda']:
   product=page.locator('article.product').filter(has=page.get_by_role('heading',name=name,exact=True))
   assert product.get_by_role('button',name='Adicionar +').is_disabled(),name
  page.get_by_role('button',name='Coffee & House',exact=True).click()
@@ -79,6 +79,13 @@ with sync_playwright() as p:
  page.eval_on_selector_all('img', '(imgs)=>Promise.all(imgs.map(img=>{img.loading="eager";return img.decode()}))')
  page.screenshot(path='/tmp/coffee-customer-house-mobile.png',full_page=True)
  page.get_by_role('button',name='Cafeteria 1178',exact=True).click()
+ tortinha=page.locator('article.product').filter(has=page.get_by_role('heading',name='Tortinha de Frango com Requeijão',exact=True))
+ tortinha.get_by_role('button',name='Adicionar +').click()
+ page.locator('#cartBtn').click()
+ assert 'Tortinha de Frango com Requeijão' in page.locator('#cartItems').inner_text()
+ assert '7,90' in page.locator('#cartTotal').inner_text()
+ page.locator('[data-minus]').click()
+ page.locator('#closeCart').click()
  item=page.locator('article.product').filter(has=page.get_by_role('heading',name='Croissant Canastra',exact=True))
  item.get_by_role('button',name='Adicionar +').click();item.get_by_role('button',name='Adicionar +').click()
  page.locator('#cartBtn').click();page.locator('textarea').fill('Sem sal <script>bad()</script>')

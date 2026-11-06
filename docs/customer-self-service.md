@@ -8,7 +8,7 @@ O frontend usa o `index.html` existente em `coffee1178-os-v1.0.1-stable/coffee11
 
 O mapeamento de produtos usa UUIDs lidos do banco. Correspondências ambíguas (composição, sabor ou embalagem) não são habilitadas para envio até conferência. Preços diferentes do banco também bloqueiam o item, sem corrigir seu preço visual automaticamente. O catálogo oficial é consultado por RPC antes de cada novo envio. O backend sempre calcula o total com `products.price_cents`, independentemente do navegador.
 
-Relatório completo: `product-reconciliation.md` e versão estruturada `.json`. São 40 itens visuais únicos: 19 iguais e 21 com nome diferente; não há divergências de preço nem ausências. Os quatro mapeamentos comerciais aprovados (duas Coca-Colas, Suco de Uva em Lata e Leite e Canela) estão conferidos e liberados quando houver sessão válida. Permanecem bloqueados somente Tortinha de Frango com Requeijão, Pão na Chapa com Requeijão, Bolo de Cenoura com Calda e Drink de Maçã Verde sem Álcool. O relatório pode ser regenerado com `node scripts/reconcile-products.mjs`.
+Relatório completo: `product-reconciliation.md` e versão estruturada `.json`. São 40 itens visuais únicos: 19 iguais e 21 com nome diferente; não há divergências de preço nem ausências. Os quatro mapeamentos comerciais aprovados (duas Coca-Colas, Suco de Uva em Lata e Leite e Canela) estão conferidos e liberados quando houver sessão válida. Permanecem bloqueados somente Pão na Chapa com Requeijão, Bolo de Cenoura com Calda e Drink de Maçã Verde sem Álcool. A tortinha foi liberada a pedido do proprietário em 2026-11-06, usando o UUID ativo de Tortinha de Frango, a R$ 7,90. O relatório pode ser regenerado com `node scripts/reconcile-products.mjs`.
 
 ## QR → sessão → pedido → operação
 
@@ -84,25 +84,6 @@ Consulta somente de leitura confirmou os quatro UUIDs, nomes, preços e `active=
 Reexecutados: 13 testes de unidade/regressão, teste Chromium em celular/tablet com Supabase simulado, validação sintática dos módulos e teste offline do provisionamento QR; todos passaram. O navegador verificou os quatro produtos liberados nas áreas correspondentes e as quatro associações ainda bloqueadas. A suite SQL continua sem execução porque `psql`/PostgreSQL/Supabase CLI não estão disponíveis; não foi executada no banco de produção como alternativa. O hash do app operacional permanece inalterado. Nenhuma migration, deploy ou alteração de produto no banco nesta sincronização.
 
 
-## Validação em Supabase staging real — 2026-11-05
+## Liberação da tortinha — 2026-11-06
 
-Foi criado um segundo projeto Supabase gratuito e isolado para staging, sem tocar no banco de produção. A proposta de autoatendimento foi aplicada junto de um schema operacional mínimo equivalente ao necessário para o Coffee 1178 OS, com 7 mesas e os 40 produtos atuais copiados por leitura do banco de produção.
-
-O primeiro teste em Supabase gerenciado revelou uma incompatibilidade importante que os testes locais simulados não mostravam: custom roles não recebem `USAGE` no schema gerenciado `auth`. Por isso, `customer_private.require_customer()` não pode chamar `auth.uid()` / `auth.jwt()` diretamente sob o owner `coffee_customer_rpc`. A proposta foi corrigida para ler os claims já validados pelo PostgREST através de `request.jwt.claims`, mantendo a rejeição de sessões que também estejam ligadas a operador.
-
-Após a correção, passaram em staging real:
-- token QR inválido rejeitado;
-- token correto identifica Mesa 01;
-- tentativa de trocar Mesa 01 por Mesa 02 é rejeitada;
-- cliente não enxerga diretamente `orders`, `order_items` ou `cafe_tables`;
-- catálogo retorna os 40 produtos ativos esperados;
-- preço enviado pelo navegador é rejeitado;
-- total divergente é rejeitado;
-- idempotência retorna o mesmo pedido para a mesma chave;
-- cliente 2 não enxerga pedido do cliente 1;
-- fluxo operacional completo do pedido passou: `sent → preparing → ready → delivered → closed`;
-- fechamento por Pix liberou a Mesa 01 e revogou a sessão do cliente.
-
-Os fixtures artificiais usados nos testes SQL foram removidos ao final e as FKs de Auth foram novamente validadas. Ficou ativo apenas o token de staging da Mesa 01 para o próximo teste pelo navegador.
-
-Pendência para o teste real no celular: habilitar **Anonymous Sign-Ins** no projeto Supabase de staging e publicar uma preview apontando somente para as chaves públicas desse staging. Nenhuma migration de autoatendimento foi aplicada no banco de produção.
+Consulta somente de leitura ao staging confirmou produto ativo `8abb0c24-242d-4e95-96a1-d79f0c1ccde2`, preço 790 centavos. O mapeamento visual da tortinha foi marcado como conferido a pedido do proprietário. A lógica geral de indisponibilidade, preços e autorização da mesa permanece intacta. Os outros três mapeamentos pendentes não foram liberados sem confirmação das diferenças de composição. O catálogo e seu módulo importador receberam versão de URL para evitar cache antigo.

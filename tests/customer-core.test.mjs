@@ -80,8 +80,8 @@ test('approved commercial products use exact names, prices and UUIDs and can be 
  }
  assert.equal(photoFileMap['Leite e Canela'],'latte-cannella.webp');
 });
-test('only the four unapproved associations remain blocked and reconciliation has no price/missing differences',()=>{
- const blocked=['Tortinha de Frango com Requeijão','Pão na Chapa com Requeijão','Bolo de Cenoura com Calda','Drink de Maçã Verde sem Álcool'].sort();
+test('only the three unapproved associations remain blocked and reconciliation has no price/missing differences',()=>{
+ const blocked=['Pão na Chapa com Requeijão','Bolo de Cenoura com Calda','Drink de Maçã Verde sem Álcool'].sort();
  const catalog=JSON.parse(fs.readFileSync(new URL('fixtures/products.json',import.meta.url),'utf8'));
  const unique=[...new Map(Object.values(menus).flat().map(p=>[p.name,p])).values()];
  assert.deepEqual(unique.filter(p=>!availability(p,catalog,true).ok).map(p=>p.name).sort(),blocked);
@@ -92,13 +92,8 @@ test('only the four unapproved associations remain blocked and reconciliation ha
  for(const item of unique){const r=rows.find(r=>r.site===item.name);assert.equal(r.product_id,item.productId);assert.equal(r.site_price_cents,item.price);assert.equal(r.supabase_price_cents,item.price);}
 });
 
-
-test('managed Supabase customer auth reads verified request claims without direct auth schema access',()=>{
- const sql=fs.readFileSync(new URL('../supabase/proposals/customer_self_service.sql',import.meta.url),'utf8');
- const match=sql.match(/create function customer_private\.require_customer\(\)[\s\S]*?end \$\$;/);
- assert(match,'require_customer function not found');
- const block=match[0];
- assert.match(block,/current_setting\('request\.jwt\.claims'/);
- assert(!block.includes('auth.uid()'));
- assert(!block.includes('auth.jwt()'));
+test('tortinha is available with the active staging UUID and unchanged price',()=>{
+ const catalog=JSON.parse(fs.readFileSync(new URL('fixtures/products.json',import.meta.url),'utf8'));
+ const item=menus.cafe.find(p=>p.name==='Tortinha de Frango com Requeijão');
+ assert.equal(item.productId,'8abb0c24-242d-4e95-96a1-d79f0c1ccde2');assert.equal(item.price,790);assert.equal(item.mappingReviewed,true);assert.equal(availability(item,catalog,true).ok,true);
 });

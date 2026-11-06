@@ -1,4 +1,4 @@
-// Visual e fotos preservados. Mapeamentos comerciais conferidos no Supabase em 2026-11-05.
+// Mapeamentos conferidos; tortinha liberada a pedido do proprietário em 2026-11-06.
 export const menus = {
   "cafe": [
     {
@@ -83,7 +83,7 @@ export const menus = {
       "price": 790,
       "note": "Tortinha salgada de frango com requeijão.",
       "productId": "8abb0c24-242d-4e95-96a1-d79f0c1ccde2",
-      "mappingReviewed": false
+      "mappingReviewed": true
     },
     {
       "name": "Pão de Batata com Requeijão",

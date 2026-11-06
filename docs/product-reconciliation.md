@@ -1,8 +1,8 @@
-# Conferência de produtos — 2026-11-05
+# Conferência de produtos — 2026-11-06
 
 Consulta somente de leitura ao Supabase após as alterações comerciais realizadas pelo proprietário. Frontend sincronizado: Coca-Cola Original 350 ml e Coca-Cola Zero 350 ml a R$ 7,00; Suco de Uva em Lata a R$ 7,00; Leite e Canela a R$ 8,90. Os quatro UUIDs foram conferidos, os mapeamentos estão aprovados e liberados para envio quando a sessão da mesa estiver válida. Caffè d’Oro permanece a R$ 32,90. Nenhuma alteração foi feita no banco.
 
-40 itens visuais únicos e 40 produtos no banco: 19 iguais, 21 com nome diferente, zero divergências de preço e zero ausências. As quatro associações ainda não aprovadas permanecem bloqueadas: Tortinha de Frango com Requeijão; Pão na Chapa com Requeijão; Bolo de Cenoura com Calda; Drink de Maçã Verde sem Álcool. As fotos foram preservadas.
+40 itens visuais únicos e 40 produtos no banco: 19 iguais, 21 com nome diferente, zero divergências de preço e zero ausências. A tortinha foi conferida e liberada a pedido do proprietário em 2026-11-06. As três associações ainda não aprovadas permanecem bloqueadas: Pão na Chapa com Requeijão; Bolo de Cenoura com Calda; Drink de Maçã Verde sem Álcool. As fotos foram preservadas.
 
 | Produto do site | Preço do site | Produto Supabase | Preço Supabase | Situação | Associação |
 |---|---:|---|---:|---|---|
@@ -17,7 +17,7 @@ Consulta somente de leitura ao Supabase após as alterações comerciais realiza
 | Croissant Canastra | R$ 19,90 | Croissant Canastra | R$ 19,90 | igual | mapeado |
 | Croissant com Nutella | R$ 22,90 | Croissant Nutella | R$ 22,90 | nome diferente | mapeado |
 | Pão de Queijo | R$ 4,50 | Pão de Queijo 90 g | R$ 4,50 | nome diferente | mapeado |
-| Tortinha de Frango com Requeijão | R$ 7,90 | Tortinha de Frango | R$ 7,90 | nome diferente | pendente de conferência |
+| Tortinha de Frango com Requeijão | R$ 7,90 | Tortinha de Frango | R$ 7,90 | nome diferente | mapeado |
 | Pão de Batata com Requeijão | R$ 6,90 | Pão de Batata com Requeijão | R$ 6,90 | igual | mapeado |
 | Pão na Chapa com Requeijão | R$ 7,90 | Pão Francês na Chapa | R$ 7,90 | nome diferente | pendente de conferência |
 | Pão na Chapa com Queijo Canastra | R$ 9,90 | Pão na Chapa com Queijo Canastra | R$ 9,90 | igual | mapeado |
