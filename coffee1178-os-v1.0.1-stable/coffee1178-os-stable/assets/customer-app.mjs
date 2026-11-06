@@ -1,8 +1,10 @@
+import {isOrderingEntry} from './customer-entry.mjs?v=public-menu-20261106-01';
 import {menus,photoFileMap} from './customer-menu.mjs?v=products-20261106-03';
 import {availability,buildItems,OrderSender,money,escapeHtml as esc,statusLabel,MAX_UNITS,MAX_LINES,MAX_QUANTITY,MAX_NOTE} from './customer-core.mjs?v=tracking-20261106-01';
 import {renderOrderTracking,mergeAcknowledgedOrders,POLL_INTERVAL_MS} from './customer-tracking.mjs?v=tracking-20261106-01';
 const $=id=>document.getElementById(id);
 const ui=Object.fromEntries(['cafeTab','houseTab','title','hint','products','count','cartItems','cartTotal','cartBtn','closeCart','overlay','sendOrder','sendMessage','customerMessage','tableLabel','connectionNote','orderStatus','newVisit'].map(id=>[id,$(id)]));
+const orderingMode=isOrderingEntry(location.pathname,location.search);
 let active='cafe',cart={},catalog=[],connected=false,sender=null,client=null,orders=[],statusTimer,refreshing=false;
 let lastFocus;
 let statusFailures=0,renderedOrdersMarkup='';
@@ -23,7 +25,7 @@ function render(){
   const full=['Caffè d’Oro','Aperol Spritz','Drink de Maçã Verde sem Álcool','Gin Tônica'].includes(p.name);
   const available=availability(p,catalog,connected);
   const media=src?`<div class="product-media${full?' drink-full':''}"><img src="${esc(src)}" alt="${esc(p.name)}" loading="lazy" decoding="async"></div>`:'';
-  return `<article class="product">${media}<h3>${esc(p.name)}</h3>${p.note?`<p>${esc(p.note)}</p>`:''}${p.photoStatus&&!src?`<div class="photo-note">${esc(p.photoStatus)}</div>`:''}<div class="bottom"><span class="price">${money(p.price)}</span><button class="add" data-add="${i}" ${!available.ok||sender?.pending?'disabled':''}>Adicionar +</button></div>${available.ok?'':`<span class="unavailable">${esc(available.reason)}</span>`}</article>`;
+  return `<article class="product">${media}<h3>${esc(p.name)}</h3>${p.note?`<p>${esc(p.note)}</p>`:''}${p.photoStatus&&!src?`<div class="photo-note">${esc(p.photoStatus)}</div>`:''}<div class="bottom"><span class="price">${money(p.price)}</span>${orderingMode?`<button class="add" data-add="${i}" ${!available.ok||sender?.pending?'disabled':''}>Adicionar +</button>`:''}</div>${!orderingMode||available.ok?'':`<span class="unavailable">${esc(available.reason)}</span>`}</article>`;
  }).join('');
  ui.products.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{
   if(sender?.pending||sender?.busy)return;
@@ -49,7 +51,7 @@ function renderCart(){
  ui.cartItems.querySelectorAll('[data-minus]').forEach(b=>b.onclick=()=>{if(locked)return;const id=b.dataset.minus;if(--cart[id].quantity<=0)delete cart[id];renderCart();ui.count.textContent=cartCount();});
  ui.cartItems.querySelectorAll('[data-plus]').forEach(b=>b.onclick=()=>{if(locked||cartCount()>=MAX_UNITS)return;cart[b.dataset.plus].quantity++;renderCart();ui.count.textContent=cartCount();});
 }
-function openCart(){lastFocus=document.activeElement;renderCart();ui.overlay.classList.add('open');ui.overlay.setAttribute('aria-hidden','false');document.body.classList.add('cart-open');ui.closeCart.focus();}
+function openCart(){if(!orderingMode)return;lastFocus=document.activeElement;renderCart();ui.overlay.classList.add('open');ui.overlay.setAttribute('aria-hidden','false');document.body.classList.add('cart-open');ui.closeCart.focus();}
 function closeCart(){ui.overlay.classList.remove('open');ui.overlay.setAttribute('aria-hidden','true');document.body.classList.remove('cart-open');lastFocus?.focus();}
 ui.cafeTab.onclick=()=>{active='cafe';render();};ui.houseTab.onclick=()=>{active='house';render();};
 ui.cartBtn.onclick=openCart;ui.closeCart.onclick=closeCart;ui.overlay.onclick=e=>{if(e.target===ui.overlay)closeCart();};
@@ -123,11 +125,21 @@ document.addEventListener('visibilitychange',()=>{clearTimeout(statusTimer);if(!
 window.addEventListener('online',()=>{if(connected)refreshStatus();});
 window.addEventListener('offline',()=>{clearTimeout(statusTimer);ui.connectionNote.textContent='Sem conexão. Nenhum pedido será enviado automaticamente.';});
 async function boot(qrToken){
+ ui.cartBtn.hidden=!orderingMode;
+ ui.cartBtn.disabled=!orderingMode;
+ const footer=ui.cartBtn.closest('.bar');if(footer)footer.hidden=!orderingMode;
+ ui.orderStatus.hidden=!orderingMode;
  render();
+ if(!orderingMode){
+  ui.tableLabel.textContent='Cardápio';
+  document.title='Coffee 1178 & House — Cardápio';
+  msg('Escaneie o QR da sua mesa para fazer pedidos no local. Aqui você pode consultar o cardápio.');
+  return; // Do not load the SDK, read saved auth or call any customer RPC.
+ }
  const params=new URLSearchParams(location.search),token=qrToken ?? params.get('t');
  if(token!==null&&!/^[0-9a-f]{64}$/.test(token)){msg('QR inválido. Use o QR da sua mesa.');return;}
  // Remove the bearer QR from browser history before loading any external SDK.
- if(token!==null){params.delete('t');history.replaceState(null,'',location.pathname+(params.size?'?'+params:'')+location.hash);}
+ if(token!==null){params.delete('t');history.replaceState(null,'','/pedido'+(params.size?'?'+params:'')+location.hash);}
  const cfg=window.COFFEE1178_CONFIG||{};
  if(!cfg.SUPABASE_URL||!cfg.SUPABASE_KEY){msg('Autoatendimento em preparação. Consulte a equipe.');return;}
  try{
