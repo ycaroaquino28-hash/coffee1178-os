@@ -1,4 +1,4 @@
-// Composição e mapeamentos de pães/maçã verde confirmados pelo proprietário em 2026-11-06.
+// Catálogo visual e correspondências confirmados pelo proprietário em 2026-11-06.
 export const menus = {
   "cafe": [
     {
@@ -150,7 +150,7 @@ export const menus = {
       "price": 990,
       "note": "Fatia de bolo de cenoura com calda.",
       "productId": "98e0913e-3ce3-4c63-a9b1-10c3c3a70d49",
-      "mappingReviewed": false
+      "mappingReviewed": true
     },
     {
       "name": "Bolo de Laranja",

@@ -80,8 +80,8 @@ test('approved commercial products use exact names, prices and UUIDs and can be 
  }
  assert.equal(photoFileMap['Leite e Canela'],'latte-cannella.webp');
 });
-test('only the unapproved carrot cake association remains blocked and reconciliation has no price/missing differences',()=>{
- const blocked=['Bolo de Cenoura com Calda'];
+test('all confirmed products are available and reconciliation has no price/missing differences',()=>{
+ const blocked=[];
  const catalog=JSON.parse(fs.readFileSync(new URL('fixtures/products.json',import.meta.url),'utf8'));
  const unique=[...new Map(Object.values(menus).flat().map(p=>[p.name,p])).values()];
  assert.deepEqual(unique.filter(p=>!availability(p,catalog,true).ok).map(p=>p.name).sort(),blocked);
@@ -109,4 +109,10 @@ test('approved bread fillings and nonalcoholic apple drink remain distinct from 
  assert.equal(cream.price,790);assert.equal(apple.price,1490);assert.match(apple.note,/gaseificado.*maçã verde.*especiarias.*sem álcool/);assert.equal(gin.price,2490);assert.notEqual(apple.productId,gin.productId);
  for(const p of [bread,cream,apple])assert.equal(availability(p,catalog,true).ok,true);
  assert.equal(photoFileMap[bread.name],'image-8-.jpg');assert.equal(photoFileMap[cream.name],'image-7-.jpg');
+});
+
+test('carrot cake is released as Calda with its original image, UUID and price',()=>{
+ const catalog=JSON.parse(fs.readFileSync(new URL('fixtures/products.json',import.meta.url),'utf8'));
+ const p=menus.cafe.find(p=>p.productId==='98e0913e-3ce3-4c63-a9b1-10c3c3a70d49');
+ assert.equal(p.name,'Bolo de Cenoura com Calda');assert.equal(p.price,990);assert.equal(p.mappingReviewed,true);assert.equal(availability(p,catalog,true).ok,true);assert.equal(photoFileMap[p.name],'image-20261103-145520-.jpg');
 });

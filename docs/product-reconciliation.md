@@ -2,7 +2,7 @@
 
 Consulta somente de leitura ao Supabase após as alterações comerciais realizadas pelo proprietário. Frontend sincronizado: Coca-Cola Original 350 ml e Coca-Cola Zero 350 ml a R$ 7,00; Suco de Uva em Lata a R$ 7,00; Leite e Canela a R$ 8,90. Os quatro UUIDs foram conferidos, os mapeamentos estão aprovados e liberados para envio quando a sessão da mesa estiver válida. Caffè d’Oro permanece a R$ 32,90. Nenhuma alteração foi feita no banco.
 
-40 itens visuais únicos e 40 produtos no banco: 18 iguais, 22 com nome diferente, zero divergências de preço e zero ausências. A tortinha foi conferida e liberada a pedido do proprietário em 2026-11-06. Pão francês com requeijão e Drink de Maçã Verde sem Álcool foram confirmados e liberados pelo proprietário. O pão francês com queijo Canastra e presunto foi confirmado como o item de R$ 9,90, separado do Misto Canastra de R$ 21,90. Permanece bloqueado apenas Bolo de Cenoura com Calda, até confirmar a correspondência com Bolo de Cenoura com Ganache. As fotos foram preservadas.
+40 itens visuais únicos e 40 produtos no banco: 18 iguais, 22 com nome diferente, zero divergências de preço e zero ausências. A tortinha foi conferida e liberada a pedido do proprietário em 2026-11-06. Pão francês com requeijão e Drink de Maçã Verde sem Álcool foram confirmados e liberados pelo proprietário. O pão francês com queijo Canastra e presunto foi confirmado como o item de R$ 9,90, separado do Misto Canastra de R$ 21,90. Bolo de Cenoura com Calda foi confirmado e liberado pelo proprietário, preservando o nome visual Calda e o UUID existente no banco (ainda cadastrado como Ganache). Não restam mapeamentos bloqueados por conferência; produtos inativos, sessão inválida e diferenças futuras de preço continuam bloqueando envio. As fotos foram preservadas.
 
 | Produto do site | Preço do site | Produto Supabase | Preço Supabase | Situação | Associação |
 |---|---:|---|---:|---|---|
@@ -26,7 +26,7 @@ Consulta somente de leitura ao Supabase após as alterações comerciais realiza
 | Brownie de Castanhas | R$ 12,90 | Brownie de Castanha | R$ 12,90 | nome diferente | mapeado |
 | Pão de Mel com Doce de Leite | R$ 9,90 | Mini Pão de Mel de Doce de Leite | R$ 9,90 | nome diferente | mapeado |
 | Pão de Mel com Café | R$ 9,90 | Mini Pão de Mel de Café | R$ 9,90 | nome diferente | mapeado |
-| Bolo de Cenoura com Calda | R$ 9,90 | Bolo de Cenoura com Ganache | R$ 9,90 | nome diferente | pendente de conferência |
+| Bolo de Cenoura com Calda | R$ 9,90 | Bolo de Cenoura com Ganache | R$ 9,90 | nome diferente | mapeado |
 | Bolo de Laranja | R$ 7,90 | Bolo de Laranja Artesanal | R$ 7,90 | nome diferente | mapeado |
 | Bolo de Chocolate Artesanal | R$ 7,90 | Bolo de Chocolate Artesanal | R$ 7,90 | igual | mapeado |
 | Água sem Gás 500 ml | R$ 3,50 | Água Mineral sem gás 500 ml | R$ 3,50 | nome diferente | mapeado |

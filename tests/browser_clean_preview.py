@@ -66,7 +66,7 @@ with sync_playwright() as p:
   assert product.get_by_role('button',name='Adicionar +').is_enabled(),name
  for name in ['Bolo de Cenoura com Calda']:
   product=page.locator('article.product').filter(has=page.get_by_role('heading',name=name,exact=True))
-  assert product.get_by_role('button',name='Adicionar +').is_disabled(),name
+  assert product.get_by_role('button',name='Adicionar +').is_enabled(),name
  page.get_by_role('button',name='Coffee & House',exact=True).click()
  assert page.locator('.tag').inner_text()=='ENTRE O CAFÉ E A NOITE'
  for width,height in [(320,568),(390,844),(844,390),(768,1024)]:

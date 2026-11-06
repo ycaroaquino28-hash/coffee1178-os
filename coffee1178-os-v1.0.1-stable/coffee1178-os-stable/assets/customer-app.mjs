@@ -1,4 +1,4 @@
-import {menus,photoFileMap} from './customer-menu.mjs?v=products-20261106-02';
+import {menus,photoFileMap} from './customer-menu.mjs?v=products-20261106-03';
 import {availability,buildItems,OrderSender,money,escapeHtml as esc,statusLabel,MAX_UNITS,MAX_LINES,MAX_QUANTITY,MAX_NOTE} from './customer-core.mjs';
 const $=id=>document.getElementById(id);
 const ui=Object.fromEntries(['cafeTab','houseTab','title','hint','products','count','cartItems','cartTotal','cartBtn','closeCart','overlay','sendOrder','sendMessage','customerMessage','tableLabel','connectionNote','orderStatus','newVisit'].map(id=>[id,$(id)]));
