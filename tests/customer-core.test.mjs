@@ -72,13 +72,13 @@ test('expected checkout total is only sent as a consent guard',async()=>{
 
 test('approved commercial products use exact names, prices and UUIDs and can be ordered',()=>{
  const catalog=JSON.parse(fs.readFileSync(new URL('fixtures/products.json',import.meta.url),'utf8'));
- const approved=[['Coca-Cola Original 350 ml',700,'145c5004-b381-4061-a431-2e3185251b1d'],['Coca-Cola Zero 350 ml',700,'bf586ace-5b11-4b38-9002-1cc693f42a1f'],['Suco de Uva em Lata',700,'6f951d49-cab7-4382-ba98-000f345d0645'],['Leite e Canela',890,'120ca94f-5925-420c-8522-972555a27b4a']];
+ const approved=[['Coca-Cola Original 350 ml',700,'145c5004-b381-4061-a431-2e3185251b1d'],['Coca-Cola Zero 350 ml',700,'bf586ace-5b11-4b38-9002-1cc693f42a1f'],['Suco de Uva em Lata',700,'6f951d49-cab7-4382-ba98-000f345d0645'],['Latte & Cannella',890,'120ca94f-5925-420c-8522-972555a27b4a']];
  for(const [name,price,id] of approved){
   const entries=Object.values(menus).flat().filter(p=>p.name===name);assert(entries.length);
   for(const item of entries){assert.equal(item.productId,id);assert.equal(item.price,price);assert.equal(item.mappingReviewed,true);assert.equal(availability(item,catalog,true).ok,true);}
-  const p=catalog.find(p=>p.id===id);assert.equal(p.name,name);assert.equal(p.price_cents,price);assert.equal(p.active,true);
+  const p=catalog.find(p=>p.id===id);assert.equal(p.name,name==='Latte & Cannella'?'Leite e Canela':name);assert.equal(p.price_cents,price);assert.equal(p.active,true);
  }
- assert.equal(photoFileMap['Leite e Canela'],'latte-cannella.webp');
+ assert.equal(photoFileMap['Latte & Cannella'],'latte-cannella.webp');
 });
 test('all confirmed products are available and reconciliation has no price/missing differences',()=>{
  const blocked=[];
@@ -89,7 +89,7 @@ test('all confirmed products are available and reconciliation has no price/missi
  assert.equal(rows.length,40);assert.equal(catalog.length,40);
  assert.equal(rows.filter(r=>r.situation==='igual').length,18);
  assert.equal(rows.filter(r=>r.situation==='nome diferente').length,22);
- for(const item of unique){const r=rows.find(r=>r.site===item.name);assert.equal(r.product_id,item.productId);assert.equal(r.site_price_cents,item.price);assert.equal(r.supabase_price_cents,item.price);}
+ for(const item of unique){const r=rows.find(r=>r.product_id===item.productId);assert.equal(r.product_id,item.productId);assert.equal(r.site_price_cents,item.price);assert.equal(r.supabase_price_cents,item.price);}
 });
 
 test('tortinha is available with the active staging UUID and unchanged price',()=>{

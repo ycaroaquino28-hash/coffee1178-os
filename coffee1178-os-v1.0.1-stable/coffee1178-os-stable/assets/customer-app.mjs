@@ -1,5 +1,5 @@
 import {isOrderingEntry} from './customer-entry.mjs?v=public-menu-20261106-01';
-import {menus,photoFileMap} from './customer-menu.mjs?v=products-20261106-03';
+import {menus,photoFileMap} from './customer-menu.mjs?v=menu-text-20261106-01';
 import {availability,buildItems,OrderSender,money,escapeHtml as esc,statusLabel,MAX_UNITS,MAX_LINES,MAX_QUANTITY,MAX_NOTE} from './customer-core.mjs?v=tracking-20261106-01';
 import {renderOrderTracking,mergeAcknowledgedOrders,POLL_INTERVAL_MS} from './customer-tracking.mjs?v=tracking-20261106-01';
 const $=id=>document.getElementById(id);

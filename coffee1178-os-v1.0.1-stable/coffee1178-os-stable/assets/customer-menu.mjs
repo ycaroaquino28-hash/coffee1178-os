@@ -51,7 +51,7 @@ export const menus = {
       "mappingReviewed": true
     },
     {
-      "name": "Leite e Canela",
+      "name": "Latte & Cannella",
       "price": 890,
       "note": "Leite com canela e açúcar · 300 ml.",
       "productId": "120ca94f-5925-420c-8522-972555a27b4a",
@@ -275,14 +275,14 @@ export const menus = {
     {
       "name": "Tábua 1178 — Grande",
       "price": 5990,
-      "note": "Doritos, queijo meia cura, salaminho italiano, azeitona, pão de alho e molho agridoce.",
+      "note": "Doritos, queijo meia cura, salaminho italiano, azeitona, pão de alho, onion rings (anéis de cebola) e molho agridoce.",
       "productId": "a1606d63-1b55-47da-915b-e1554bcfc80f",
       "mappingReviewed": true
     },
     {
       "name": "Tábua 1178 — Pequena",
       "price": 3990,
-      "note": "Doritos, queijo meia cura, salaminho italiano, azeitona, pão de alho e molho agridoce.",
+      "note": "Doritos, queijo meia cura, salaminho italiano, azeitona, pão de alho, onion rings (anéis de cebola) e molho agridoce.",
       "photo": null,
       "photoStatus": "Foto correta pendente",
       "productId": "953a9be2-83fd-49cd-92f9-d32d18a70446",
@@ -365,7 +365,7 @@ export const photoFileMap = {
   "Tábua 1178 — Grande": "tabua-g.jpg",
   "Tábua 1178 — Pequena": "verde.jpg",
   "Batatas Crocantes 1178": "batatas.jpg",
-  "Leite e Canela": "latte-cannella.webp",
+  "Latte & Cannella": "latte-cannella.webp",
   "Pão Francês na Chapa com Requeijão": "image-7-.jpg",
   "Pão Francês na Chapa com Queijo Canastra e Presunto": "image-8-.jpg"
 };
