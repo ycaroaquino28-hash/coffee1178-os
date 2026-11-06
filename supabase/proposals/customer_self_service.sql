@@ -85,7 +85,7 @@ create policy customer_api_items on public.order_items to coffee_customer_rpc
  with check (exists(select 1 from public.orders o where o.id=order_id and o.source='customer'));
 
 create function customer_private.require_customer() returns uuid
-language plpgsql stable security invoker set search_path='' as $
+language plpgsql stable security invoker set search_path='' as $customer$
 declare
  claims jsonb:=coalesce(nullif(current_setting('request.jwt.claims',true),''),'{}')::jsonb;
  u uuid;
@@ -105,7 +105,7 @@ begin
    raise exception using errcode='P0001', message='CUSTOMER_AUTH_REQUIRED';
  end if;
  return u;
-end $;
+end $customer$;
 create function customer_private.active_session() returns customer_private.customer_sessions
 language plpgsql stable security invoker set search_path='' as $$
 declare s customer_private.customer_sessions; u uuid:=customer_private.require_customer();
