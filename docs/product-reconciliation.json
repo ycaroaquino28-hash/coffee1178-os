@@ -117,21 +117,21 @@
     "review": "mapeado"
   },
   {
-    "site": "Pão na Chapa com Requeijão",
+    "site": "Pão Francês na Chapa com Requeijão",
     "site_price_cents": 790,
     "supabase": "Pão Francês na Chapa",
     "supabase_price_cents": 790,
     "product_id": "9e0d939a-eb61-4b83-a29a-93bc0a1b8656",
     "situation": "nome diferente",
-    "review": "pendente de conferência"
+    "review": "mapeado"
   },
   {
-    "site": "Pão na Chapa com Queijo Canastra",
+    "site": "Pão Francês na Chapa com Queijo Canastra e Presunto",
     "site_price_cents": 990,
     "supabase": "Pão na Chapa com Queijo Canastra",
     "supabase_price_cents": 990,
     "product_id": "74aba9dc-3324-4fcb-90a9-8bfc933e145b",
-    "situation": "igual",
+    "situation": "nome diferente",
     "review": "mapeado"
   },
   {
@@ -330,7 +330,7 @@
     "supabase_price_cents": 1490,
     "product_id": "49a1f1d3-6944-4286-a2e4-97cffc2dc7a2",
     "situation": "nome diferente",
-    "review": "pendente de conferência"
+    "review": "mapeado"
   },
   {
     "site": "Tábua 1178 — Grande",

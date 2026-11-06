@@ -80,15 +80,15 @@ test('approved commercial products use exact names, prices and UUIDs and can be 
  }
  assert.equal(photoFileMap['Leite e Canela'],'latte-cannella.webp');
 });
-test('only the three unapproved associations remain blocked and reconciliation has no price/missing differences',()=>{
- const blocked=['Pão na Chapa com Requeijão','Bolo de Cenoura com Calda','Drink de Maçã Verde sem Álcool'].sort();
+test('only the unapproved carrot cake association remains blocked and reconciliation has no price/missing differences',()=>{
+ const blocked=['Bolo de Cenoura com Calda'];
  const catalog=JSON.parse(fs.readFileSync(new URL('fixtures/products.json',import.meta.url),'utf8'));
  const unique=[...new Map(Object.values(menus).flat().map(p=>[p.name,p])).values()];
  assert.deepEqual(unique.filter(p=>!availability(p,catalog,true).ok).map(p=>p.name).sort(),blocked);
  const rows=JSON.parse(fs.readFileSync(new URL('../docs/product-reconciliation.json',import.meta.url),'utf8'));
  assert.equal(rows.length,40);assert.equal(catalog.length,40);
- assert.equal(rows.filter(r=>r.situation==='igual').length,19);
- assert.equal(rows.filter(r=>r.situation==='nome diferente').length,21);
+ assert.equal(rows.filter(r=>r.situation==='igual').length,18);
+ assert.equal(rows.filter(r=>r.situation==='nome diferente').length,22);
  for(const item of unique){const r=rows.find(r=>r.site===item.name);assert.equal(r.product_id,item.productId);assert.equal(r.site_price_cents,item.price);assert.equal(r.supabase_price_cents,item.price);}
 });
 
@@ -96,4 +96,17 @@ test('tortinha is available with the active staging UUID and unchanged price',()
  const catalog=JSON.parse(fs.readFileSync(new URL('fixtures/products.json',import.meta.url),'utf8'));
  const item=menus.cafe.find(p=>p.name==='Tortinha de Frango com Requeijão');
  assert.equal(item.productId,'8abb0c24-242d-4e95-96a1-d79f0c1ccde2');assert.equal(item.price,790);assert.equal(item.mappingReviewed,true);assert.equal(availability(item,catalog,true).ok,true);
+});
+
+test('approved bread fillings and nonalcoholic apple drink remain distinct from Misto and gin',()=>{
+ const catalog=JSON.parse(fs.readFileSync(new URL('fixtures/products.json',import.meta.url),'utf8'));
+ const bread=menus.cafe.find(p=>p.productId==='74aba9dc-3324-4fcb-90a9-8bfc933e145b');
+ const cream=menus.cafe.find(p=>p.productId==='9e0d939a-eb61-4b83-a29a-93bc0a1b8656');
+ const misto=menus.cafe.find(p=>p.productId==='da53e562-0d92-43e1-861d-cd741ed21b78');
+ const apple=menus.house.find(p=>p.productId==='49a1f1d3-6944-4286-a2e4-97cffc2dc7a2');
+ const gin=menus.house.find(p=>p.productId==='e56b12e0-23b8-46b5-9533-cb2fae3ede78');
+ assert.equal(bread.price,990);assert.match(bread.name,/Queijo Canastra e Presunto/);assert.equal(misto.price,2190);assert.notEqual(bread.productId,misto.productId);
+ assert.equal(cream.price,790);assert.equal(apple.price,1490);assert.match(apple.note,/gaseificado.*maçã verde.*especiarias.*sem álcool/);assert.equal(gin.price,2490);assert.notEqual(apple.productId,gin.productId);
+ for(const p of [bread,cream,apple])assert.equal(availability(p,catalog,true).ok,true);
+ assert.equal(photoFileMap[bread.name],'image-8-.jpg');assert.equal(photoFileMap[cream.name],'image-7-.jpg');
 });

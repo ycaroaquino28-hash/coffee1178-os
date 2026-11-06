@@ -2,7 +2,7 @@
 
 Consulta somente de leitura ao Supabase após as alterações comerciais realizadas pelo proprietário. Frontend sincronizado: Coca-Cola Original 350 ml e Coca-Cola Zero 350 ml a R$ 7,00; Suco de Uva em Lata a R$ 7,00; Leite e Canela a R$ 8,90. Os quatro UUIDs foram conferidos, os mapeamentos estão aprovados e liberados para envio quando a sessão da mesa estiver válida. Caffè d’Oro permanece a R$ 32,90. Nenhuma alteração foi feita no banco.
 
-40 itens visuais únicos e 40 produtos no banco: 19 iguais, 21 com nome diferente, zero divergências de preço e zero ausências. A tortinha foi conferida e liberada a pedido do proprietário em 2026-11-06. As três associações ainda não aprovadas permanecem bloqueadas: Pão na Chapa com Requeijão; Bolo de Cenoura com Calda; Drink de Maçã Verde sem Álcool. As fotos foram preservadas.
+40 itens visuais únicos e 40 produtos no banco: 18 iguais, 22 com nome diferente, zero divergências de preço e zero ausências. A tortinha foi conferida e liberada a pedido do proprietário em 2026-11-06. Pão francês com requeijão e Drink de Maçã Verde sem Álcool foram confirmados e liberados pelo proprietário. O pão francês com queijo Canastra e presunto foi confirmado como o item de R$ 9,90, separado do Misto Canastra de R$ 21,90. Permanece bloqueado apenas Bolo de Cenoura com Calda, até confirmar a correspondência com Bolo de Cenoura com Ganache. As fotos foram preservadas.
 
 | Produto do site | Preço do site | Produto Supabase | Preço Supabase | Situação | Associação |
 |---|---:|---|---:|---|---|
@@ -19,8 +19,8 @@ Consulta somente de leitura ao Supabase após as alterações comerciais realiza
 | Pão de Queijo | R$ 4,50 | Pão de Queijo 90 g | R$ 4,50 | nome diferente | mapeado |
 | Tortinha de Frango com Requeijão | R$ 7,90 | Tortinha de Frango | R$ 7,90 | nome diferente | mapeado |
 | Pão de Batata com Requeijão | R$ 6,90 | Pão de Batata com Requeijão | R$ 6,90 | igual | mapeado |
-| Pão na Chapa com Requeijão | R$ 7,90 | Pão Francês na Chapa | R$ 7,90 | nome diferente | pendente de conferência |
-| Pão na Chapa com Queijo Canastra | R$ 9,90 | Pão na Chapa com Queijo Canastra | R$ 9,90 | igual | mapeado |
+| Pão Francês na Chapa com Requeijão | R$ 7,90 | Pão Francês na Chapa | R$ 7,90 | nome diferente | mapeado |
+| Pão Francês na Chapa com Queijo Canastra e Presunto | R$ 9,90 | Pão na Chapa com Queijo Canastra | R$ 9,90 | nome diferente | mapeado |
 | Misto Canastra | R$ 21,90 | Misto Canastra 1178 | R$ 21,90 | nome diferente | mapeado |
 | Brownie Meio Amargo | R$ 12,90 | Brownie Meio Amargo | R$ 12,90 | igual | mapeado |
 | Brownie de Castanhas | R$ 12,90 | Brownie de Castanha | R$ 12,90 | nome diferente | mapeado |
@@ -42,7 +42,7 @@ Consulta somente de leitura ao Supabase após as alterações comerciais realiza
 | Tropical Gin | R$ 24,90 | Tropical Gin | R$ 24,90 | igual | mapeado |
 | Maracujá Spritz (sem álcool) | R$ 10,90 | Maracujá Spritz | R$ 10,90 | nome diferente | mapeado |
 | Limone di Sicilia (sem álcool) | R$ 13,90 | Limone di Sicília | R$ 13,90 | nome diferente | mapeado |
-| Drink de Maçã Verde sem Álcool | R$ 14,90 | Verde Firenze | R$ 14,90 | nome diferente | pendente de conferência |
+| Drink de Maçã Verde sem Álcool | R$ 14,90 | Verde Firenze | R$ 14,90 | nome diferente | mapeado |
 | Tábua 1178 — Grande | R$ 59,90 | Tábua 1178 — Para Compartilhar | R$ 59,90 | nome diferente | mapeado |
 | Tábua 1178 — Pequena | R$ 39,90 | Tábua 1178 — Individual | R$ 39,90 | nome diferente | mapeado |
 | Batatas Crocantes 1178 | R$ 12,90 | Batatas Crocantes 1178 | R$ 12,90 | igual | mapeado |

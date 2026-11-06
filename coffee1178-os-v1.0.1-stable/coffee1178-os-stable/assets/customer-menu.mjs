@@ -1,4 +1,4 @@
-// Mapeamentos conferidos; tortinha liberada a pedido do proprietário em 2026-11-06.
+// Composição e mapeamentos de pães/maçã verde confirmados pelo proprietário em 2026-11-06.
 export const menus = {
   "cafe": [
     {
@@ -93,16 +93,16 @@ export const menus = {
       "mappingReviewed": true
     },
     {
-      "name": "Pão na Chapa com Requeijão",
+      "name": "Pão Francês na Chapa com Requeijão",
       "price": 790,
-      "note": "Pão na chapa com requeijão.",
+      "note": "Pão francês na chapa com requeijão.",
       "productId": "9e0d939a-eb61-4b83-a29a-93bc0a1b8656",
-      "mappingReviewed": false
+      "mappingReviewed": true
     },
     {
-      "name": "Pão na Chapa com Queijo Canastra",
+      "name": "Pão Francês na Chapa com Queijo Canastra e Presunto",
       "price": 990,
-      "note": "Pão na chapa com queijo Canastra.",
+      "note": "Pão francês na chapa com queijo Canastra e presunto.",
       "productId": "74aba9dc-3324-4fcb-90a9-8bfc933e145b",
       "mappingReviewed": true
     },
@@ -266,11 +266,11 @@ export const menus = {
     {
       "name": "Drink de Maçã Verde sem Álcool",
       "price": 1490,
-      "note": "Drink sem álcool com sabor de maçã verde.",
+      "note": "Drink gaseificado de maçã verde com especiarias, sem álcool.",
       "photo": null,
       "photoStatus": "Foto correta pendente",
       "productId": "49a1f1d3-6944-4286-a2e4-97cffc2dc7a2",
-      "mappingReviewed": false
+      "mappingReviewed": true
     },
     {
       "name": "Tábua 1178 — Grande",
@@ -345,8 +345,6 @@ export const photoFileMap = {
   "Pão de Queijo": "image-10-.jpg",
   "Tortinha de Frango com Requeijão": "image-20261103-143315-.jpg",
   "Pão de Batata com Requeijão": "image-20261103-143504-.jpg",
-  "Pão na Chapa com Requeijão": "image-7-.jpg",
-  "Pão na Chapa com Queijo Canastra": "image-8-.jpg",
   "Misto Canastra": "misto-canastra.jpg",
   "Brownie Meio Amargo": "image-9-.jpg",
   "Brownie de Castanhas": "img_20261030_080045_749.jpg",
@@ -367,5 +365,7 @@ export const photoFileMap = {
   "Tábua 1178 — Grande": "tabua-g.jpg",
   "Tábua 1178 — Pequena": "verde.jpg",
   "Batatas Crocantes 1178": "batatas.jpg",
-  "Leite e Canela": "latte-cannella.webp"
+  "Leite e Canela": "latte-cannella.webp",
+  "Pão Francês na Chapa com Requeijão": "image-7-.jpg",
+  "Pão Francês na Chapa com Queijo Canastra e Presunto": "image-8-.jpg"
 };

@@ -8,7 +8,7 @@ O frontend usa o `index.html` existente em `coffee1178-os-v1.0.1-stable/coffee11
 
 O mapeamento de produtos usa UUIDs lidos do banco. Correspondências ambíguas (composição, sabor ou embalagem) não são habilitadas para envio até conferência. Preços diferentes do banco também bloqueiam o item, sem corrigir seu preço visual automaticamente. O catálogo oficial é consultado por RPC antes de cada novo envio. O backend sempre calcula o total com `products.price_cents`, independentemente do navegador.
 
-Relatório completo: `product-reconciliation.md` e versão estruturada `.json`. São 40 itens visuais únicos: 19 iguais e 21 com nome diferente; não há divergências de preço nem ausências. Os quatro mapeamentos comerciais aprovados (duas Coca-Colas, Suco de Uva em Lata e Leite e Canela) estão conferidos e liberados quando houver sessão válida. Permanecem bloqueados somente Pão na Chapa com Requeijão, Bolo de Cenoura com Calda e Drink de Maçã Verde sem Álcool. A tortinha foi liberada a pedido do proprietário em 2026-11-06, usando o UUID ativo de Tortinha de Frango, a R$ 7,90. O relatório pode ser regenerado com `node scripts/reconcile-products.mjs`.
+Relatório completo: `product-reconciliation.md` e versão estruturada `.json`. São 40 itens visuais únicos: 18 iguais e 22 com nome diferente; não há divergências de preço nem ausências. Os quatro mapeamentos comerciais aprovados (duas Coca-Colas, Suco de Uva em Lata e Leite e Canela) estão conferidos e liberados quando houver sessão válida. Permanece bloqueado somente Bolo de Cenoura com Calda, até confirmar a correspondência com Bolo de Cenoura com Ganache. A tortinha foi liberada a pedido do proprietário em 2026-11-06, usando o UUID ativo de Tortinha de Frango, a R$ 7,90. O relatório pode ser regenerado com `node scripts/reconcile-products.mjs`.
 
 ## QR → sessão → pedido → operação
 
@@ -87,3 +87,8 @@ Reexecutados: 13 testes de unidade/regressão, teste Chromium em celular/tablet 
 ## Liberação da tortinha — 2026-11-06
 
 Consulta somente de leitura ao staging confirmou produto ativo `8abb0c24-242d-4e95-96a1-d79f0c1ccde2`, preço 790 centavos. O mapeamento visual da tortinha foi marcado como conferido a pedido do proprietário. A lógica geral de indisponibilidade, preços e autorização da mesa permanece intacta. Os outros três mapeamentos pendentes não foram liberados sem confirmação das diferenças de composição. O catálogo e seu módulo importador receberam versão de URL para evitar cache antigo.
+
+
+## Confirmação de pães e maçã verde — 2026-11-06
+
+O proprietário confirmou pão francês com requeijão a R$ 7,90 e pão francês com queijo Canastra e presunto a R$ 9,90; este é separado do Misto Canastra de R$ 21,90. Os nomes/descrições do frontend foram alinhados sem mudar UUIDs, fotos ou preços. Verde Firenze foi confirmado como o drink sem álcool: descrição “Drink gaseificado de maçã verde com especiarias, sem álcool.” Mapeamentos liberados no frontend; nenhuma escrita no banco. Firenze Gin continua separado e alcoólico. Somente a associação do bolo de cenoura continua aguardando confirmação.
