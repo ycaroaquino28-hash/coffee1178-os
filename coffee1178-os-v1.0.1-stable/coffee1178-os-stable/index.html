@@ -1,18 +1,174 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#8f5446">
-  <meta name="description" content="Comandas e mesas da Coffee 1178">
-  <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="icon" href="./assets/icon-house.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./assets/styles.css">
-  <title>Coffee 1178 OS</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#F1E8D8">
+<title>Coffee 1178 & House — Prévia</title>
+<style>
+:root{--vanilla:#F1E8D8;--paper:#FBF8F2;--coffee:#76523D;--dark:#35261F;--muted:#8C796D;--line:#E8DED2;--surface:#fff;--soft:#EEE1D3}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--dark);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;transition:background .28s,color .28s}
+button{font:inherit;cursor:pointer}.hero{min-height:340px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:42px 20px;background:var(--vanilla);transition:background .28s,color .28s}
+.brand{color:var(--coffee);display:flex;flex-direction:column;align-items:center}.coffee,.house{font:400 13px Georgia,serif;letter-spacing:9px}.number{font:400 clamp(90px,24vw,138px)/.92 Georgia,serif;letter-spacing:-8px;margin:12px 0}.tag{font:400 11px Georgia,serif;letter-spacing:0;color:var(--coffee);margin-top:34px;text-transform:uppercase}
+.wrap{max-width:960px;margin:auto;padding:26px 18px 110px}.intro{display:flex;justify-content:space-between;align-items:center;gap:12px}.intro h1{font:400 29px Georgia,serif;margin:4px 0}.eyebrow{font-size:11px;letter-spacing:0;color:var(--muted);text-transform:uppercase}.pill{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:10px 15px;color:var(--coffee)}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:20px 0 28px}.tab{border:1px solid var(--line);background:#F7F0E7;border-radius:18px;padding:16px 10px;color:var(--coffee);font-weight:700;transition:.2s}.tab.active{background:var(--coffee);color:#fff;box-shadow:0 7px 16px #76523d30}
+h2{font:400 28px/1.15 Georgia,serif;margin:24px 0 18px;letter-spacing:0}.products{display:grid;grid-template-columns:1fr;gap:12px}.product{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:17px 16px;box-shadow:0 5px 18px #4d30280b;display:flex;flex-direction:column;gap:14px;min-width:0}.product-media{width:100%;aspect-ratio:4/3;border-radius:13px;overflow:hidden;background:var(--soft);box-shadow:inset 0 0 0 1px rgba(0,0,0,.03)}.product-media img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;filter:none!important;transform:none!important;image-rendering:auto}.product-media.drink-full{background:#2a1c17;padding:7px}.product-media.drink-full img{object-fit:contain;object-position:center center}.product h3{font:600 19px/1.25 system-ui,-apple-system,"Segoe UI",sans-serif;margin:0;letter-spacing:0!important;word-spacing:0!important;text-transform:none;overflow-wrap:anywhere}.product p{font-size:12px;line-height:1.35;color:var(--muted);margin:-4px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.bottom{display:flex;align-items:center;justify-content:space-between;gap:12px}.price{font-size:13px;font-weight:650;color:var(--coffee);letter-spacing:0}.add{border:0;border-radius:12px;background:var(--soft);color:var(--coffee);padding:10px 14px;font-size:13px;font-weight:750;white-space:nowrap;min-height:42px}
+.bar{position:fixed;bottom:0;left:0;right:0;background:#fbf8f2ed;backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:12px 18px}.bar-inner{max-width:960px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}.note{font-size:11px;color:var(--muted);max-width:220px}.cartbtn{border:0;border-radius:17px;background:var(--coffee);color:#fff;padding:15px 20px}
+body.house{--paper:#241914;--coffee:#D7A864;--dark:#F7EFE6;--muted:#C2AE9B;--line:#5C4133;--surface:#32241E;--soft:#4A342A;background:#241914}
+body.house .hero{position:relative;background-color:#241914;background-image:url("./assets/preview-house-amber.jpg");background-position:center 48%;background-size:cover;background-repeat:no-repeat;color:#F4E1C4;margin-bottom:-1px;border-bottom:0;box-shadow:inset 0 -3px 0 #241914}
+body.house .hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:5px;background:linear-gradient(to bottom,rgba(36,25,20,0),#241914);pointer-events:none}\nbody.house .brand{color:#F6E4C7;text-shadow:0 2px 18px rgba(30,14,8,.4)}body.house .tag{color:#F6E4C7;text-shadow:0 2px 18px rgba(30,14,8,.4);font-family:"Baskerville","Palatino Linotype",Georgia,serif!important;font-size:12px;font-weight:400;letter-spacing:4px!important;line-height:1.5;text-transform:uppercase}
+body.house .coffee,body.house .house{font-family:"Baskerville","Palatino Linotype",Georgia,serif}body.house .tag{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:0}
+body.house .coffee{letter-spacing:10px}body.house .house{letter-spacing:8px}body.house .number{color:#F4DFC0;font-family:"Baskerville","Palatino Linotype",Georgia,serif}
+body.house .tab{background:#2E211B;border-color:#5E4234;color:#D7A864}body.house .tab.active{background:linear-gradient(145deg,#80502F,#B37435 58%,#80502F);color:#fff}
+body.house .pill{background:#2C201B;color:#D8AF72}body.house .product{background:linear-gradient(180deg,rgba(58,42,34,.98),rgba(48,34,28,.98));border-color:#634739;box-shadow:0 8px 22px rgba(0,0,0,.14)}body.house .product h3{color:#FFF7EF}body.house .price{color:#DDB57C}body.house .add{background:#563A2D;color:#FFF6EC;border:1px solid #76523D}body.house .bar{background:rgba(31,22,18,.93)}body.house .cartbtn{background:linear-gradient(145deg,#7C4A27,#A8672E)}
+.photo-note{font-size:11px;color:var(--muted);margin-top:-6px}.overlay{position:fixed;inset:0;background:rgba(25,16,12,.66);display:none;align-items:flex-end;z-index:50}.overlay.open{display:flex}.sheet{width:min(100%,650px);max-height:82vh;overflow:auto;margin:0 auto;background:var(--paper);color:var(--dark);border-radius:24px 24px 0 0;padding:22px 18px 28px;border:1px solid var(--line);box-shadow:0 -18px 50px rgba(0,0,0,.22)}.sheet-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.sheet-head h2{margin:0}.close{border:1px solid var(--line);background:var(--surface);color:var(--dark);border-radius:999px;width:38px;height:38px;font-size:22px;line-height:1}.cartrow{display:grid;grid-template-columns:1fr auto;gap:8px 14px;padding:14px 0;border-bottom:1px solid var(--line)}.cartrow strong{font-size:14px}.qty{display:flex;align-items:center;gap:8px}.qty button{width:30px;height:30px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--dark)}.cart-total{display:flex;justify-content:space-between;gap:12px;padding-top:18px;font-weight:800}.empty-cart{padding:24px 0;color:var(--muted)}
+@media(min-width:560px){.products{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:900px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{min-height:390px}}
+@media(max-width:559px){.wrap{padding-left:14px;padding-right:14px}.intro{align-items:flex-start}.intro h1{font-size:25px}.tabs{gap:7px}.tab{padding:14px 8px;font-size:14px}.product{padding:16px}.product h3{font-size:18px}.bottom{align-items:center}.price{font-size:12px}.add{padding:9px 12px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<script src="./assets/menu/photos-original.js"></script>
+<script src="./assets/menu/photo-patch.js"></script>
 </head>
 <body>
-  <div id="app"><div class="boot"><div class="brand">Coffee 1178 OS</div><p>Iniciando...</p></div></div>
-  <script src="./config.js"></script>
-  <script type="module" src="./assets/app.js"></script>
-</body>
-</html>
+<header class="hero">
+  <div class="brand"><span class="coffee">COFFEE</span><span class="number">1178</span><span class="house">&amp; HOUSE</span></div>
+  <div class="tag">UMA NOVA FORMA DE VIVER O CAFÉ</div>
+</header>
+<main class="wrap">
+  <div class="intro"><div><div class="eyebrow">Cardápio digital · Prévia visual</div><h1>Escolha seu momento.</h1></div><span class="pill">Mesa —</span></div>
+  <nav class="tabs"><button class="tab active" id="cafeTab">Cafeteria 1178</button><button class="tab" id="houseTab">Coffee &amp; House</button></nav>
+  <div class="eyebrow" id="hint">Cafés · confeitaria · salgados</div><h2 id="title">Cafeteria 1178</h2><div class="products" id="products"></div>
+</main>
+<div class="bar"><div class="bar-inner"><span class="note">Prévia de demonstração. Nenhum pedido será enviado ao Coffee 1178 OS.</span><button class="cartbtn" id="cartBtn">Ver seleção · <span id="count">0</span></button></div></div>
+<div class="overlay" id="overlay" aria-hidden="true"><section class="sheet" role="dialog" aria-modal="true" aria-label="Sua seleção"><div class="sheet-head"><h2>Sua seleção</h2><button class="close" id="closeCart" aria-label="Fechar">×</button></div><div id="cartItems"></div><div class="cart-total"><span>Total demonstrativo</span><span id="cartTotal">R$ 0,00</span></div><p class="note" style="max-width:none;margin-top:14px">Esta é uma prévia visual. Nenhum pedido é enviado ao Coffee 1178 OS.</p></section></div>
+<script>
+const menus={
+  cafe:[
+    {name:"Café Tradicional",price:300,note:"Café tradicional servido quente."},
+    {name:"Café Especial 1178",price:990,note:"Café especial preparado na hora."},
+    {name:"Café Espresso",price:1090,note:"Café espresso servido em dose individual."},
+    {name:"Latte Art",price:1290,note:"Espresso com leite vaporizado e finalização em latte art."},
+    {name:"Cappuccino Tradicional",price:1190,note:"Cappuccino cremoso, equilibrado e servido bem quente — um clássico da cafeteria."},
+    {name:"Cappuccino com Nutella",price:1590,note:"Cappuccino cremoso com o creme de avelã mais famoso do mundo: Nutella."},
+    {name:"Chocolate Quente",price:1290,note:"Bebida quente à base de chocolate."},
+    {name:"Latte & Cannella",price:890,note:"Leite com canela e açúcar · 300 ml."},
+    {name:"Croissant Canastra",price:1990,note:"Croissant amanteigado com queijo Canastra, de sabor marcante e identidade mineira."},
+    {name:"Croissant com Nutella",price:2290,note:"Croissant amanteigado com recheio generoso de Nutella, cremoso e intenso."},
+    {name:"Pão de Queijo",price:450,note:"Pão de queijo 90 g, assado e servido quente."},
+    {name:"Tortinha de Frango com Requeijão",price:790,note:"Tortinha salgada de frango com requeijão."},
+    {name:"Pão de Batata com Requeijão",price:690,note:"Pão de batata recheado com requeijão."},
+    {name:"Pão na Chapa com Requeijão",price:790,note:"Pão na chapa com requeijão."},
+    {name:"Pão na Chapa com Queijo Canastra",price:990,note:"Pão na chapa com queijo Canastra."},
+    {name:"Misto Canastra",price:2190,note:"Pão rústico com queijo Canastra e presunto selecionado."},
+    {name:"Brownie Meio Amargo",price:1290,note:"Brownie meio amargo com a opção com ou sem Nutella. Nutella adicionada apenas no consumo local; não embalamos para viagem."},
+    {name:"Brownie de Castanhas",price:1290,note:"Brownie de castanha com a opção com ou sem Nutella. Nutella adicionada apenas no consumo local; não embalamos para viagem."},
+    {name:"Pão de Mel com Doce de Leite",price:990,note:"Pão de mel individual com doce de leite.",photo:null,photoStatus:"Foto em conferência"},
+    {name:"Pão de Mel com Café",price:990,note:"Pão de mel individual com café.",photo:null,photoStatus:"Foto em conferência"},
+    {name:"Bolo de Cenoura com Calda",price:990,note:"Fatia de bolo de cenoura com calda."},
+    {name:"Bolo de Laranja",price:790,note:"Fatia de bolo de laranja."},
+    {name:"Bolo de Chocolate Artesanal",price:790,note:"Fatia de bolo de chocolate artesanal."},
+    {name:"Água sem Gás 500 ml",price:350,note:"Água mineral sem gás · 500 ml."},
+    {name:"Água com Gás 500 ml",price:450,note:"Água mineral com gás · 500 ml."},
+    {name:"Coca-Cola Original 350 ml",price:700,note:"Coca-Cola Original · 350 ml."},
+    {name:"Coca-Cola Zero 350 ml",price:700,note:"Coca-Cola Zero · 350 ml."},
+    {name:"Suco de Uva Lata",price:700,note:"Suco de uva em lata."}
+  ],
+  house:[
+    {name:"Aperol Spritz",price:2590,note:"Drink à base de Aperol e espumante seco."},
+    {name:"Absolut & Red Bull",price:2690,note:"Vodka Absolut com Red Bull."},
+    {name:"Caffè d’Oro",price:3490,note:"Espresso recém-extraído, Amarula e Licor 43: cremoso, aromático e de sabor intenso."},
+    {name:"Firenze Gin",price:2490,note:"Preparado com Beefeater London Dry Gin, de perfil clássico e marcante."},
+    {name:"Gin Tônica",price:2390,note:"Beefeater London Dry Gin com água tônica, leve, aromático e refrescante."},
+    {name:"Tropical Gin",price:2490,note:"Beefeater London Dry Gin em uma combinação tropical, refrescante e aromática.",photo:null,photoStatus:"Foto em conferência"},
+    {name:"Maracujá Spritz (sem álcool)",price:1090,note:"Drink sem álcool com maracujá.",photo:null,photoStatus:"Foto em conferência"},
+    {name:"Limone di Sicilia (sem álcool)",price:1390,note:"Drink sem álcool com limão siciliano."},
+    {name:"Drink de Maçã Verde sem Álcool",price:1490,note:"Drink sem álcool com sabor de maçã verde.",photo:null,photoStatus:"Foto correta pendente"},
+    {name:"Tábua 1178 — Grande",price:5990,note:"Doritos, queijo meia cura, salaminho italiano, azeitona, pão de alho e molho agridoce."},
+    {name:"Tábua 1178 — Pequena",price:3990,note:"Doritos, queijo meia cura, salaminho italiano, azeitona, pão de alho e molho agridoce.",photo:null,photoStatus:"Foto correta pendente"},
+    {name:"Batatas Crocantes 1178",price:1290,note:"Batatas palito com sal e páprica."},
+    {name:"Água sem Gás 500 ml",price:350,note:"Água mineral sem gás · 500 ml."},
+    {name:"Água com Gás 500 ml",price:450,note:"Água mineral com gás · 500 ml."},
+    {name:"Coca-Cola Original 350 ml",price:700,note:"Coca-Cola Original · 350 ml."},
+    {name:"Coca-Cola Zero 350 ml",price:700,note:"Coca-Cola Zero · 350 ml."},
+    {name:"Suco de Uva Lata",price:700,note:"Suco de uva em lata."}
+  ]
+};
+
+const photoFileMap={
+  "Café Tradicional":"image-6-.jpg",
+  "Café Especial 1178":"image-20261103-143703-.jpg",
+  "Café Espresso":"image-20261103-144331-.jpg",
+  "Latte Art":"img_20261011_111901_707.jpg",
+  "Cappuccino Tradicional":"cappuccino-tradicional.webp",
+  "Cappuccino com Nutella":"img_20260920_153126_589.jpg",
+  "Chocolate Quente":"image-20261103-145327-.jpg",
+  "Latte & Cannella":"latte-cannella.webp",
+  "Croissant Canastra":"img-20261015-wa0020.jpg",
+  "Croissant com Nutella":"croissant-nutella-correto.webp",
+  "Pão de Queijo":"image-10-.jpg",
+  "Tortinha de Frango com Requeijão":"image-20261103-143315-.jpg",
+  "Pão de Batata com Requeijão":"image-20261103-143504-.jpg",
+  "Pão na Chapa com Requeijão":"image-7-.jpg",
+  "Pão na Chapa com Queijo Canastra":"image-8-.jpg",
+  "Misto Canastra":"misto-canastra.jpg",
+  "Brownie Meio Amargo":"image-9-.jpg",
+  "Brownie de Castanhas":"img_20261030_080045_749.jpg",
+  "Pão de Mel com Doce de Leite":"image-5-.jpg",
+  "Pão de Mel com Café":"image-5-.jpg",
+  "Bolo de Cenoura com Calda":"image-20261103-145520-.jpg",
+  "Bolo de Laranja":"image-20261103-145643-.jpg",
+  "Bolo de Chocolate Artesanal":"image-20261103-145752-.jpg",
+  "Aperol Spritz":"aperol.jpg",
+  "Absolut & Red Bull":"absolut.jpg",
+  "Caffè d’Oro":"caffe-doro.jpg",
+  "Firenze Gin":"firenze.jpg",
+  "Gin Tônica":"./assets/menu/gin-tonica.png",
+  "Tropical Gin":"tropical.jpg",
+  "Maracujá Spritz (sem álcool)":"tabua-p.jpg",
+  "Limone di Sicilia (sem álcool)":"limone-sicilia.webp",
+  "Drink de Maçã Verde sem Álcool":"firenze.jpg",
+  "Tábua 1178 — Grande":"tabua-g.jpg",
+  "Tábua 1178 — Pequena":"verde.jpg",
+  "Batatas Crocantes 1178":"batatas.jpg"
+};
+let active="cafe";
+const cart={};
+const money=c=>new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(c/100);
+const keyFor=(area,index)=>area+"-"+index;
+function cartCount(){return Object.values(cart).reduce((s,q)=>s+q,0)}
+function render(){
+  document.body.classList.toggle("house",active==="house");
+  document.querySelector('meta[name="theme-color"]').content=active==="house"?"#241914":"#F1E8D8";
+  cafeTab.classList.toggle("active",active==="cafe"); houseTab.classList.toggle("active",active==="house");
+  title.textContent=active==="cafe"?"Cafeteria 1178":"Coffee & House";
+  hint.textContent=active==="cafe"?"Cafés · confeitaria · salgados":"Drinks · petiscos · bebidas";
+  document.querySelector(".tag").textContent=active==="house"?"ENTRE O CAFÉ E A NOITE":"UMA NOVA FORMA DE VIVER O CAFÉ";
+  products.innerHTML=menus[active].map((p,i)=>{const file=photoFileMap[p.name];const src=file?(file.startsWith("./")?file:(window.COFFEE_PHOTOS?window.COFFEE_PHOTOS[file]:null)):null;const fullDrink=["Caffè d’Oro","Aperol Spritz","Drink de Maçã Verde sem Álcool","Gin Tônica"].includes(p.name);const media=src?'<div class="product-media'+(fullDrink?' drink-full':'')+'"><img src="'+src+'" alt="'+p.name+'" loading="lazy" decoding="async"></div>':'';return '<article class="product">'+media+'<h3>'+p.name+'</h3>'+(p.note?'<p>'+p.note+'</p>':'')+((p.photoStatus&&!src)?'<div class="photo-note">'+p.photoStatus+'</div>':'')+'<div class="bottom"><span class="price">'+money(p.price)+'</span><button class="add" data-add="'+i+'">Adicionar +</button></div></article>'}).join("");
+  document.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>{const k=keyFor(active,+b.dataset.add);cart[k]=(cart[k]||0)+1;updateCartBadge()});
+}
+function updateCartBadge(){count.textContent=cartCount()}
+function renderCart(){
+  const entries=Object.entries(cart).filter(([,q])=>q>0);
+  if(!entries.length){cartItems.innerHTML='<div class="empty-cart">Nenhum produto selecionado.</div>';cartTotal.textContent=money(0);return}
+  let total=0;
+  cartItems.innerHTML=entries.map(([k,q])=>{const [area,idx]=k.split("-");const p=menus[area][+idx];total+=p.price*q;return '<div class="cartrow"><div><strong>'+p.name+'</strong><div class="photo-note">'+money(p.price)+' cada</div></div><div class="qty"><button data-minus="'+k+'">−</button><span>'+q+'</span><button data-plus="'+k+'">+</button></div></div>'}).join("");
+  cartTotal.textContent=money(total);
+  document.querySelectorAll("[data-minus]").forEach(b=>b.onclick=()=>{cart[b.dataset.minus]--;if(cart[b.dataset.minus]<=0)delete cart[b.dataset.minus];updateCartBadge();renderCart()});
+  document.querySelectorAll("[data-plus]").forEach(b=>b.onclick=()=>{cart[b.dataset.plus]++;updateCartBadge();renderCart()});
+}
+function openCart(){renderCart();overlay.classList.add("open");overlay.setAttribute("aria-hidden","false")}
+function closeCartFn(){overlay.classList.remove("open");overlay.setAttribute("aria-hidden","true")}
+cafeTab.onclick=()=>{active="cafe";render()};
+houseTab.onclick=()=>{active="house";render()};
+cartBtn.onclick=openCart;closeCart.onclick=closeCartFn;overlay.onclick=e=>{if(e.target===overlay)closeCartFn()};
+render();updateCartBadge();
+</script>
+</body></html>
+<style>
+/* Letter spacing is reserved for the logo only */
+body,button,h1,h2,h3,p,.eyebrow,.tag,.pill,.tab,.price,.add,.note,.cartbtn{letter-spacing:normal!important}
+.brand .coffee{letter-spacing:10px!important}
+.brand .house{letter-spacing:8px!important}
+.brand .number{letter-spacing:-8px!important}
+</style>
