@@ -86,8 +86,8 @@ test('all confirmed products are available and reconciliation has no price/missi
  const unique=[...new Map(Object.values(menus).flat().map(p=>[p.name,p])).values()];
  assert.deepEqual(unique.filter(p=>!availability(p,catalog,true).ok).map(p=>p.name).sort(),blocked);
  const rows=JSON.parse(fs.readFileSync(new URL('../docs/product-reconciliation.json',import.meta.url),'utf8'));
- assert.equal(rows.length,40);assert.equal(catalog.length,40);
- assert.equal(rows.filter(r=>r.situation==='igual').length,18);
+ assert.equal(rows.length,41);assert.equal(catalog.length,41);
+ assert.equal(rows.filter(r=>r.situation==='igual').length,19);
  assert.equal(rows.filter(r=>r.situation==='nome diferente').length,22);
  for(const item of unique){const r=rows.find(r=>r.product_id===item.productId);assert.equal(r.product_id,item.productId);assert.equal(r.site_price_cents,item.price);assert.equal(r.supabase_price_cents,item.price);}
 });

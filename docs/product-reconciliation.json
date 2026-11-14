@@ -358,5 +358,14 @@
     "product_id": "b78a24f3-44c5-4ba0-a7b5-c000e8dceffc",
     "situation": "igual",
     "review": "mapeado"
-  }
+  },
+{
+  "site": "Croissant com Nutella e Morango",
+  "site_price_cents": 2490,
+  "supabase": "Croissant com Nutella e Morango",
+  "supabase_price_cents": 2490,
+  "product_id": "355c51fc-ae57-4390-b9b0-94e50d36ba31",
+  "situation": "igual",
+  "review": "mapeado"
+}
 ]

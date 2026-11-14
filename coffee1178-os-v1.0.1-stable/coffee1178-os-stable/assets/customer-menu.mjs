@@ -72,6 +72,13 @@ export const menus = {
       "mappingReviewed": true
     },
     {
+      "name": "Croissant com Nutella e Morango",
+      "price": 2490,
+      "note": "Croissant amanteigado com Nutella e morangos.",
+      "productId": "355c51fc-ae57-4390-b9b0-94e50d36ba31",
+      "mappingReviewed": true
+    },
+    {
       "name": "Pão de Queijo",
       "price": 450,
       "note": "Pão de queijo 90 g, assado e servido quente.",
@@ -342,6 +349,7 @@ export const photoFileMap = {
   "Chocolate Quente": "image-20261103-145327-.jpg",
   "Croissant Canastra": "img-20261015-wa0020.jpg",
   "Croissant com Nutella": "croissant-nutella-correto.webp",
+  "Croissant com Nutella e Morango": "./assets/menu/croissant-nutella-morango.jpg",
   "Pão de Queijo": "image-10-.jpg",
   "Tortinha de Frango com Requeijão": "image-20261103-143315-.jpg",
   "Pão de Batata com Requeijão": "image-20261103-143504-.jpg",
