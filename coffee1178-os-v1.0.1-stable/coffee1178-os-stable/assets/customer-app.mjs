@@ -1,5 +1,5 @@
 import {isOrderingEntry} from './customer-entry.mjs?v=public-menu-20261106-01';
-import {menus,photoFileMap} from './customer-menu.mjs?v=croissant-morango-20261114-01';
+import {menus,photoFileMap} from './customer-menu.mjs?v=novas-bebidas-20261126-01';
 import {availability,buildItems,OrderSender,money,escapeHtml as esc,statusLabel,MAX_UNITS,MAX_LINES,MAX_QUANTITY,MAX_NOTE} from './customer-core.mjs?v=tracking-20261106-01';
 import {renderOrderTracking,mergeAcknowledgedOrders,POLL_INTERVAL_MS} from './customer-tracking.mjs?v=tracking-20261106-01';
 const $=id=>document.getElementById(id);
@@ -25,7 +25,7 @@ function render(){
   const full=['Caffè d’Oro','Aperol Spritz','Drink de Maçã Verde sem Álcool','Gin Tônica'].includes(p.name);
   const available=availability(p,catalog,connected);
   const media=src?`<div class="product-media${full?' drink-full':''}"><img src="${esc(src)}" alt="${esc(p.name)}" loading="lazy" decoding="async"></div>`:'';
-  return `<article class="product">${media}<h3>${esc(p.name)}</h3>${p.note?`<p>${esc(p.note)}</p>`:''}${p.photoStatus&&!src?`<div class="photo-note">${esc(p.photoStatus)}</div>`:''}<div class="bottom"><span class="price">${money(p.price)}</span>${orderingMode?`<button class="add" data-add="${i}" ${!available.ok||sender?.pending?'disabled':''}>Adicionar +</button>`:''}</div>${!orderingMode||available.ok?'':`<span class="unavailable">${esc(available.reason)}</span>`}</article>`;
+  return `${p.category==='Chás'?'<h2 id="chas" class="category-heading">Chás</h2>':''}<article class="product">${media}<h3>${esc(p.name)}</h3>${p.note?`<p>${esc(p.note)}</p>`:''}${p.photoStatus&&!src?`<div class="photo-note">${esc(p.photoStatus)}</div>`:''}<div class="bottom"><span class="price">${money(p.price)}</span>${orderingMode?`<button class="add" data-add="${i}" ${!available.ok||sender?.pending?'disabled':''}>Adicionar +</button>`:''}</div>${!orderingMode||available.ok?'':`<span class="unavailable">${esc(available.reason)}</span>`}</article>`;
  }).join('');
  ui.products.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{
   if(sender?.pending||sender?.busy)return;
