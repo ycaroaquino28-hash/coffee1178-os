@@ -58,6 +58,14 @@ export const menus = {
       "mappingReviewed": true
     },
     {
+      "name": "Chá — erva-cidreira ou erva-doce",
+      "price": 590,
+      "note": "Sabores: erva-cidreira ou erva-doce.",
+      "category": "Chás",
+      "productId": null,
+      "mappingReviewed": false
+    },
+    {
       "name": "Croissant Canastra",
       "price": 1990,
       "note": "Croissant amanteigado com queijo Canastra, de sabor marcante e identidade mineira.",
@@ -202,11 +210,25 @@ export const menus = {
       "mappingReviewed": true
     },
     {
-      "name": "Suco de Uva em Lata",
-      "price": 700,
-      "note": "Suco de uva em lata.",
+      "name": "Coca-Cola Black",
+      "price": 780,
+      "note": "",
+      "productId": null,
+      "mappingReviewed": false
+    },
+    {
+      "name": "Suco Tial caixinha — pêssego",
+      "price": 450,
+      "note": "",
+      "productId": null,
+      "mappingReviewed": false
+    },
+    {
+      "name": "Suco em lata — uva, pêssego ou manga",
+      "price": 790,
+      "note": "Sabores: uva, pêssego ou manga.",
       "productId": "6f951d49-cab7-4382-ba98-000f345d0645",
-      "mappingReviewed": true
+      "mappingReviewed": false
     }
   ],
   "house": [
@@ -331,11 +353,25 @@ export const menus = {
       "mappingReviewed": true
     },
     {
-      "name": "Suco de Uva em Lata",
-      "price": 700,
-      "note": "Suco de uva em lata.",
+      "name": "Coca-Cola Black",
+      "price": 780,
+      "note": "",
+      "productId": null,
+      "mappingReviewed": false
+    },
+    {
+      "name": "Suco Tial caixinha — pêssego",
+      "price": 450,
+      "note": "",
+      "productId": null,
+      "mappingReviewed": false
+    },
+    {
+      "name": "Suco em lata — uva, pêssego ou manga",
+      "price": 790,
+      "note": "Sabores: uva, pêssego ou manga.",
       "productId": "6f951d49-cab7-4382-ba98-000f345d0645",
-      "mappingReviewed": true
+      "mappingReviewed": false
     }
   ]
 };
