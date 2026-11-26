@@ -30,7 +30,7 @@ body.house .pill{background:#2C201B;color:#D8AF72}body.house .product{background
 <script src="./assets/menu/photos-original.js"></script>
 <script src="./assets/menu/photo-patch.js"></script>
 <meta name="referrer" content="no-referrer">
-<link rel="stylesheet" href="./assets/customer.css?v=tracking-20261106-01">
+<link rel="stylesheet" href="./assets/customer.css?v=editorial-20261126-01">
 <script src="./config.js"></script>
 </head>
 <body>
@@ -40,8 +40,8 @@ body.house .pill{background:#2C201B;color:#D8AF72}body.house .product{background
 </header>
 <main class="wrap">
   <div class="intro"><div><div class="eyebrow">Cardápio digital</div><h1>Escolha seu momento.</h1></div><span class="pill" id="tableLabel">Cardápio</span></div>
-  <nav class="tabs"><button class="tab active" id="cafeTab">Cafeteria 1178</button><button class="tab" id="houseTab">Coffee &amp; House</button></nav>
-  <div class="eyebrow" id="hint">Cafés · confeitaria · salgados</div><h2 id="title">Cafeteria 1178</h2><p id="customerMessage" role="status" aria-live="polite"></p><button class="pill" id="newVisit" hidden>Iniciar nova visita</button><section id="orderStatus" aria-label="Seus pedidos" aria-live="polite"></section><div class="products" id="products"></div>
+  <nav class="tabs" aria-label="Experiências do cardápio"><button class="tab active" id="cafeTab">Cafeteria 1178</button><button class="tab" id="houseTab">Coffee &amp; House</button></nav>
+  <div class="eyebrow" id="hint">Cafés · confeitaria · salgados</div><h2 id="title">Cafeteria 1178</h2><p class="house-schedule">Primeiro sábado de cada mês.</p><p id="customerMessage" role="status" aria-live="polite"></p><button class="pill" id="newVisit" hidden>Iniciar nova visita</button><section id="orderStatus" aria-label="Seus pedidos" aria-live="polite"></section><div class="products" id="products"></div>
 </main>
 <div class="bar"><div class="bar-inner"><span class="note"><span id="connectionNote">Escaneie o QR da sua mesa para pedir.</span></span><button class="cartbtn" id="cartBtn">Ver carrinho · <span id="count">0</span></button></div></div>
 <div class="overlay" id="overlay" aria-hidden="true"><section class="sheet" role="dialog" aria-modal="true" aria-label="Seu pedido"><div class="sheet-head"><h2>Seu pedido</h2><button class="close" id="closeCart" aria-label="Fechar">×</button></div><div id="cartItems"></div><div class="cart-total"><span>Total</span><span id="cartTotal">R$ 0,00</span></div><p id="sendMessage" role="status" aria-live="polite"></p><button class="cartbtn" id="sendOrder" disabled>Enviar pedido</button></section></div>
