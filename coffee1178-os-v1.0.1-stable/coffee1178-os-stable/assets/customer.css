@@ -136,3 +136,5 @@ body.house .house-schedule {display:block}
 @media(hover:hover) {.product:hover {border-color:var(--coffee);box-shadow:0 8px 22px #23180e14}.tab:not(.active):hover,.add:enabled:hover {border-color:var(--coffee)}}
 @media(prefers-reduced-motion:no-preference) {.products {animation:editorial-enter .24s ease-out}@keyframes editorial-enter {from{opacity:.6;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}}
 @media(prefers-reduced-motion:reduce) {*,*::before,*::after {animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+.category-heading{grid-column:1/-1;margin:12px 0 0;scroll-margin-top:80px}.tea-link{display:inline-flex;align-items:center;min-height:44px;padding:6px 14px;border:1px solid var(--line);border-radius:6px;color:var(--coffee);text-decoration:none;margin-bottom:16px}body.house .tea-link{display:none}.tea-link:focus-visible{outline:3px solid var(--coffee);outline-offset:3px}
